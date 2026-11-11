@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<!-- TEMPLATE projetos-landing-guia. Replace placeholders and content. DO NOT rewrite the CSS.
+     TRILINGUAL: this file is the PT version (guia/index.html). The guia/en/index.html and
+     guia/es/index.html versions are translated copies: lang="en"/"es", selector with a.on for the language,
+     selector hrefs ../ and ../es/ (or ../en/), and images assets/ -> ../assets/. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clock 2027 — AI is 5 months ahead. What about your week?</title>
+<meta name="description" content="Free kit that recreates the projections from the AI 2027 update and measures how much of your work AI already leads (AL1–AL5 scale), with a monthly signals dashboard. Python, no internet required.">
+<link rel="alternate" hreflang="pt-BR" href="https://inematds.github.io/relogio-2027/guia/">
+<link rel="alternate" hreflang="en" href="https://inematds.github.io/relogio-2027/guia/en/">
+<link rel="alternate" hreflang="es" href="https://inematds.github.io/relogio-2027/guia/es/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0c10; --bg2:#14141b; --card:#16161e; --line:#272730;
+    --txt:#e9e9ee; --mut:#9a9aa6; --amb:#E2A23B; --amb2:#f0c070; --sky:#38bdf8; --pro:#cbd5e1;
+    color-scheme:dark;
+  }
+  body.light{
+    --bg:#f6f7f9; --bg2:#eceef2; --card:#ffffff; --line:#e1e3ea;
+    --txt:#1a1a22; --mut:#5b5b68; --amb:#b9791d; --amb2:#a16207; --sky:#0369a1; --pro:#b45309;
+    color-scheme:light;
+  }
+  body.light .hero .glow{opacity:.5}
+  body.light pre{background:#0e0e14;color:#d6d6e0}
+  body.light pre .c{color:#8a8a98}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:Sora,sans-serif;line-height:1.15;margin:0}
+  a{color:var(--amb);text-decoration:none}
+  code,pre{font-family:"JetBrains Mono",monospace}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+  .mut{color:var(--mut)} .amb{color:var(--amb)}
+  .chip{display:inline-block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amb);font-weight:600;font-family:Sora}
+  nav{position:sticky;top:0;z-index:30;backdrop-filter:blur(12px);background:rgba(12,12,16,.78);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;gap:22px;height:60px}
+  nav .brand{display:flex;align-items:center;gap:8px;font-family:Sora;font-weight:800;letter-spacing:-.02em;color:var(--amb)}
+  nav .brand .emoji{font-size:1.25rem}
+  nav .sep{color:var(--mut);opacity:.45}
+  nav .inema{color:var(--sky);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .inema:hover{filter:brightness(1.15)}
+  nav .pro{color:var(--pro);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .pro:hover{filter:brightness(1.15)}
+  nav .clubpro{display:inline-flex;align-items:center;gap:6px}
+  nav .links{margin-left:auto;display:flex;align-items:center;gap:20px;font-size:.92rem}
+  nav .links a.sec{color:var(--mut)} nav .links a.sec:hover{color:var(--txt)}
+  .lang{display:inline-flex;gap:2px;font-family:Sora;font-size:.78rem}
+  .lang a{color:var(--mut);padding:.2em .45em;border-radius:6px} .lang a.on{color:var(--amb);background:rgba(226,162,59,.12)}
+  .tgl{background:var(--bg2);border:1px solid var(--line);color:var(--txt);width:38px;height:38px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:1.05rem}
+  .tgl:hover{border-color:var(--amb)}
+  .btn{display:inline-block;background:var(--amb);color:#1a1206;font-weight:600;padding:.6em 1.05em;border-radius:10px;font-family:Sora}
+  .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+  @media(max-width:760px){nav .links a.sec{display:none}}
+  @media(max-width:520px){nav .wrap{gap:8px;padding:8px 14px;height:auto;flex-wrap:wrap} nav .links{gap:8px;margin-left:0;width:100%;justify-content:space-between} nav .btn{padding:.45em .7em;font-size:.82rem} .tgl{width:34px;height:34px}}
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero .glow{position:absolute;inset:-40% -20% auto auto;width:70%;height:600px;background:radial-gradient(closest-side,rgba(226,162,59,.22),transparent 70%);pointer-events:none}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:74px 22px}
+  .hero h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;letter-spacing:-.025em}
+  .hero p.lead{font-size:1.18rem;color:var(--mut);margin:1.1em 0 1.6em;max-width:34ch}
+  .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .hero figure{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000}
+  .hero figure img{width:100%;height:auto;display:block}
+  .resumo{padding:38px 0 34px;border-bottom:1px solid var(--line)}
+  .resumo p{font-size:1.12rem;line-height:1.7;max-width:74ch;margin:.55em 0 0}
+  @media(max-width:780px){.hero .wrap{grid-template-columns:1fr;padding:48px 22px}}
+  section{padding:62px 0;border-bottom:1px solid var(--line)}
+  section h2{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;letter-spacing:-.02em}
+  section .sub{color:var(--mut);margin:.6em 0 2em;max-width:62ch}
+  .grid{display:grid;gap:16px}
+  .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:820px){.g3,.g4{grid-template-columns:1fr 1fr}}
+  @media(max-width:540px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .card h3{font-size:1.05rem;margin-bottom:.4em}
+  .card p{color:var(--mut);font-size:.92rem;margin:0}
+  .num{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:8px;background:rgba(226,162,59,.14);color:var(--amb);font-family:Sora;font-weight:800;font-size:.9rem;margin-bottom:.7em}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+  .flow span{background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:.45em .9em;font-size:.85rem;font-family:Sora;font-weight:600}
+  .flow .arr{color:var(--amb);border:none;background:none;padding:0 .1em}
+  pre{background:#0a0a0e;border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow:auto;font-size:.86rem;line-height:1.6;color:#d6d6e0}
+  pre .c{color:#6f6f7c} pre .k{color:var(--amb2)} pre .s{color:#9ece6a}
+  .step{display:grid;grid-template-columns:46px minmax(0,1fr);gap:16px;margin-bottom:26px}
+  .step>div,.card{min-width:0}
+  p code,li code,td code{overflow-wrap:anywhere}
+  .step .b{width:46px;height:46px;border-radius:12px;background:var(--amb);color:#1a1206;font-family:Sora;font-weight:800;font-size:1.25rem;display:flex;align-items:center;justify-content:center}
+  .step h3{font-size:1.12rem;margin-bottom:.3em}
+  .step p{color:var(--mut);margin:.2em 0 .7em}
+  .ex{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:680px){.ex{grid-template-columns:1fr}}
+  .ex figure{margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  .ex figure img{width:100%;height:auto;display:block}
+  .ex figcaption{padding:12px 14px;font-size:.88rem;color:var(--mut);background:var(--card)}
+  .phase{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .phase:last-child{border:none}
+  .phase .tag{flex:0 0 92px;font-family:Sora;font-weight:800;color:var(--amb)}
+  .phase .d strong{display:block;margin-bottom:.2em}
+  .phase .d span{color:var(--mut);font-size:.92rem}
+  footer{padding:46px 0;text-align:center;color:var(--mut);font-size:.9rem}
+  .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:.3em .8em;font-size:.78rem;color:var(--mut);margin:0 4px}
+  table.n{width:100%;border-collapse:collapse;font-size:.92rem;margin-top:10px}
+  table.n th,table.n td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left}
+  table.n th{color:var(--amb);font-family:Sora}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a class="brand" href="#top"><span class="emoji">⏰</span> Clock 2027</a>
+  <span class="sep">|</span>
+  <span class="clubpro">
+    <a class="inema" href="https://inema.club" target="_blank" rel="noopener">INEMA.CLUB</a>
+    <span class="sep">-</span>
+    <a class="pro" href="https://inema.pro" target="_blank" rel="noopener">PRO</a>
+  </span>
+  <div class="links">
+    <a class="sec" href="#oque">What it is</a>
+    <a class="sec" href="#fluxo">How it works</a>
+    <a class="sec" href="#guia">User guide</a>
+    <a class="sec" href="#exemplos">Examples</a>
+    <a class="sec" href="#roadmap">Roadmap</a>
+    <span class="lang"><a href="../">PT</a><a class="on" href="./">EN</a><a href="../es/">ES</a></span>
+    <button class="tgl" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">🌙</button>
+    <a class="btn" href="https://github.com/inematds/relogio-2027" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</div></nav>
+
+<header class="hero" id="top">
+  <div class="glow"></div>
+  <div class="wrap">
+    <div>
+      <span class="chip">Free kit · Python · offline</span>
+      <h1>AI is 5 months ahead. <span class="amb">What about your week?</span></h1>
+      <p class="lead">The authors of the AI 2027 scenario say reality has moved ahead. This kit recreates their calculations on your machine and measures how much of your work AI already leads.</p>
+      <div class="cta">
+        <a class="btn" href="#guia">Start the guide</a>
+        <a class="btn ghost" href="https://github.com/inematds/relogio-2027" target="_blank" rel="noopener">View on GitHub</a>
+      </div>
+    </div>
+    <figure><img src="../assets/banner-en.jpg" alt="Clock 2027 banner: AI is 5 months ahead"></figure>
+  </div>
+</header>
+
+<section id="resumo" class="resumo"><div class="wrap">
+  <span class="chip">In short</span>
+  <p>Clock 2027 is a free kit of three Python scripts for anyone who wants to understand the pace of AI and prepare without panic. The first recreates the projections from the November 2026 AI 2027 update and lets you change the assumptions. The second takes your task list, assigns each task an automation level from 1 to 5, and shows how much of your week AI already leads, with a plan for the month. The third keeps track of the signals you follow month by month. You only need Python 3; nothing leaves your machine.</p>
+</div></section>
+
+<section id="oque"><div class="wrap">
+  <span class="chip">What it is</span>
+  <h2>Three tools, one question: <span class="amb">has the clock moved ahead for you?</span></h2>
+  <p class="sub">On 10/11/2026, the AI Futures Project reported that AI-driven acceleration is already about 5 months ahead of the AI 2027 scenario. This kit brings that calculation into your daily routine.</p>
+  <figure style="margin:0 0 26px;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000"><img src="../assets/banner-grade-en.jpg" alt="Clock 2027: projection, AL1–AL5 scale, monthly signals, 30-day plan, human review and tests" loading="lazy" style="width:100%;display:block"></figure>
+  <div class="grid g3">
+    <div class="card"><h3>📈 Report projection</h3><p><code>projecao.py</code> recreates two simple extrapolations: researchers' gains doubling every ~3.4 months and the fully automated research curve (AL5). You can change the doubling period, starting point and scenario.</p></div>
+    <div class="card"><h3>🪜 My scale</h3><p><code>minha-escada.py</code> reads your tasks (hours per week, AL1–AL5 level, critical or not), calculates how much AI already leads, compares it with Anthropic's 26%, and writes a <code>relatorio.md</code> with what to move up and what to review.</p></div>
+    <div class="card"><h3>📡 This month's signals</h3><p><code>sinais.py</code> compares the indicators you record each month (METR, Anthropic automation, revenue, benchmarks) and shows whether the clock moved ahead ↑ or fell behind ↓.</p></div>
+  </div>
+</div></section>
+
+<section id="fluxo"><div class="wrap">
+  <span class="chip">How it works</span>
+  <h2>From the report to <span class="amb">your week</span></h2>
+  <p class="sub">Public figures are built in as constants, with their sources commented in the code. You change the assumptions and your tasks; the kit does the math.</p>
+  <div class="flow">
+    <span>Report figures</span><span class="arr">→</span>
+    <span>Projection with your assumptions</span><span class="arr">→</span>
+    <span>Your tasks at AL1–AL5</span><span class="arr">→</span>
+    <span>Report + monthly plan</span><span class="arr">→</span>
+    <span>Month-by-month signals</span>
+  </div>
+  <table class="n">
+    <tr><th>Level</th><th>What it means</th></tr>
+    <tr><td>AL1</td><td>You do it alone</td></tr>
+    <tr><td>AL2</td><td>AI helps</td></tr>
+    <tr><td>AL3</td><td>AI collaborates</td></tr>
+    <tr><td>AL4</td><td>AI leads and you review</td></tr>
+    <tr><td>AL5</td><td>Fully automated</td></tr>
+  </table>
+</div></section>
+
+<section id="pre"><div class="wrap">
+  <span class="chip">Requirements</span>
+  <h2>Just <span class="amb">Python 3</span></h2>
+  <p class="sub">No packages to install, no keys, no connection. Works on Linux, Mac and Windows.</p>
+  <div class="grid g3">
+    <div class="card"><h3>🐍 Python 3</h3><p>Check the version.</p><pre><span class="c"># should show 3.x</span>
+<span class="k">python3 --version</span></pre></div>
+    <div class="card"><h3>📥 The kit</h3><p>Download the repository.</p><pre><span class="k">git clone https://github.com/inematds/relogio-2027</span>
+<span class="k">cd relogio-2027</span></pre></div>
+    <div class="card"><h3>📝 A spreadsheet</h3><p>To edit the CSVs: any text editor, Excel or LibreOffice (save as UTF-8 CSV, comma-delimited).</p></div>
+  </div>
+</div></section>
+
+<section id="guia"><div class="wrap">
+  <span class="chip">User guide · step by step</span>
+  <h2>In <span class="amb">10 minutes</span></h2>
+  <p class="sub">This is extrapolation, not prophecy: the dates are conditional calculations, not guaranteed deadlines.</p>
+
+  <div class="step"><div class="b">1</div><div>
+    <h3>Check the clock</h3>
+    <p>Run the baseline projection, then a slower scenario to see how much the dates change.</p>
+<pre><span class="k">python3 kit/scripts/projecao.py</span>  <span class="c"># 30x ~Feb/2027 · 100x ~Aug/2027 · 1,000x ~Aug/2028 · 95% AL5 ~Nov/2027</span>
+<span class="k">python3 kit/scripts/projecao.py --cenario lento</span>
+<span class="k">python3 kit/scripts/projecao.py --dobra-meses 5 --ganho-hoje 8</span>  <span class="c"># your own assumptions</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">2</div><div>
+    <h3>List your tasks</h3>
+    <p>Open <code>kit/exemplos/minhas-tarefas.csv</code> and replace the examples with your own: task, hours per week, level (AL1 to AL5), and whether it is critical (<code>s</code>/<code>n</code>). Don't count the same hour twice.</p>
+<pre><span class="s">tarefa,horas_semana,nivel,critico</span>
+<span class="s">Rascunhar textos,8,AL3,n</span>
+<span class="s">Resumir reuniões,4,AL4,n</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">3</div><div>
+    <h3>Measure your scale</h3>
+    <p>The script shows the share of hours in which AI already leads (AL4+AL5), the projection, and the three tasks to move up one level this month. Critical tasks stay on the human review list.</p>
+<pre><span class="k">python3 kit/scripts/minha-escada.py</span>  <span class="c"># writes kit/relatorio.md</span>
+<span class="k">python3 kit/scripts/minha-escada.py --saida kit/relatorio-dez.md</span>  <span class="c"># saves another version</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">4</div><div>
+    <h3>Record signals every month</h3>
+    <p>In <code>kit/exemplos/sinais.csv</code>, the example values are fictional: replace them with the figures you collect (month, indicator, value), always using the same unit. The script doesn't fetch anything from the internet.</p>
+<pre><span class="k">python3 kit/scripts/sinais.py</span>  <span class="c"># ↑ moved ahead · ↓ fell behind · average doubling time in months</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">5</div><div>
+    <h3>Use the prompts (optional)</h3>
+    <p>In <code>kit/prompts/</code> there are three prompts to paste into any AI: classify your tasks at AL1–AL5, build a 30-day plan to move up one level, and decide what to keep under human review. Don't paste sensitive data.</p>
+<pre><span class="k">cat kit/prompts/01-classifique.md</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">6</div><div>
+    <h3>Check that everything works</h3>
+    <p>22 tests check the dates against the report (one-month tolerance), the example, and the error messages.</p>
+<pre><span class="k">python3 kit/testes/run.py</span>  <span class="c"># OK</span></pre>
+  </div></div>
+</div></section>
+
+<section id="exemplos"><div class="wrap">
+  <span class="chip">Examples</span>
+  <h2>The figures used by the kit</h2>
+  <p class="sub">All are public, from the AI Futures Project's 10/11/2026 update and METR's assessment of Anthropic.</p>
+  <table class="n">
+    <tr><th>Indicator</th><th>Value</th></tr>
+    <tr><td>Acceleration of Anthropic's progress (METR)</td><td>~2x (range 1.3x to 3x)</td></tr>
+    <tr><td>Share of that acceleration caused by AI</td><td>~80% → 1.7x</td></tr>
+    <tr><td>Lead over the AI 2027 scenario</td><td>~5 months</td></tr>
+    <tr><td>Model research led by Claude (AL4)</td><td>1% in Mar/2026 → 26% in Aug/2026</td></tr>
+    <tr><td>Researchers' self-reported gains</td><td>~12x in Sep/2026, doubling every ~3.4 months</td></tr>
+    <tr><td>Fully automated research (AL5, extrapolation)</td><td>50% ~Jun/2027 · 95% ~Nov/2027</td></tr>
+    <tr><td>Superhuman AI researcher</td><td>likely in 2027 (all authors)</td></tr>
+  </table>
+  <p class="sub" style="margin-top:22px">Works with other INEMA kits: <a href="https://github.com/inematds/negocios-com-ia" target="_blank" rel="noopener">negocios-com-ia</a> · <a href="https://github.com/inematds/esforco-certo" target="_blank" rel="noopener">esforco-certo</a> · <a href="https://github.com/inematds/audite-seu-claude" target="_blank" rel="noopener">audite-seu-claude</a> · <a href="https://github.com/inematds/agente-que-aprende" target="_blank" rel="noopener">agente-que-aprende</a> · <a href="https://github.com/inematds/caixa-do-agente" target="_blank" rel="noopener">caixa-do-agente</a> · <a href="https://github.com/inematds/agente-blindado" target="_blank" rel="noopener">agente-blindado</a>.</p>
+</div></section>
+
+<section id="roadmap"><div class="wrap">
+  <span class="chip">Roadmap</span>
+  <h2>Next steps</h2>
+  <p class="sub">The kit is intentionally small. What could come next:</p>
+  <div class="phase"><div class="tag">Today</div><div class="d"><strong>Projection, scale and signals</strong><span>Three scripts, three prompts, 22 tests. No network.</span></div></div>
+  <div class="phase"><div class="tag">Next</div><div class="d"><strong>Chart of your scale</strong><span>A local HTML page that plots your curve alongside Anthropic's curve.</span></div></div>
+  <div class="phase"><div class="tag">Later</div><div class="d"><strong>Team scale</strong><span>Combine several people's CSVs to see the scale for a team or company.</span></div></div>
+</div></section>
+
+<footer>
+  <div class="wrap">
+    <div class="pill">Python 3</div><div class="pill">no dependencies</div><div class="pill">offline</div>
+    <p style="margin-top:18px">Clock 2027 · extrapolation, not prophecy ·
+      <a href="https://github.com/inematds/relogio-2027">inematds/relogio-2027</a> ·
+      <a href="https://inema.club">INEMA.CLUB</a></p>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var KEY='relogio-2027-theme';
+    var b=document.body, t=document.getElementById('themeToggle');
+    if(localStorage.getItem(KEY)==='light'){ b.classList.add('light'); t.textContent='☀️'; }
+    t.addEventListener('click',function(){
+      var light=b.classList.toggle('light');
+      t.textContent=light?'☀️':'🌙';
+      localStorage.setItem(KEY, light?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>

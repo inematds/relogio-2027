@@ -1,0 +1,9 @@
+kit/relatorio*.md
+codex.log
+capa.log
+b*.log
+PEDIDO-CODEX.md
+guia/assets/*.codex.log
+guia/assets/*.png
+!guia/assets/hero.png
+__pycache__/

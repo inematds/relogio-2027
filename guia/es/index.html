@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<!-- TEMPLATE projetos-landing-guia. Troque placeholders e o conteudo. NAO reescreva o CSS.
+     TRILINGUE: este arquivo e a versao PT (guia/index.html). As versoes guia/en/index.html e
+     guia/es/index.html sao copias traduzidas: lang="en"/"es", seletor com a.on no idioma,
+     hrefs do seletor ../ e ../es/ (ou ../en/), e imagens assets/ -> ../assets/. -->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reloj 2027 — la IA lleva 5 meses de adelanto. ¿Y tu semana?</title>
+<meta name="description" content="Kit gratuito que rehace las proyecciones de la actualización de AI 2027 y mide cuánto de tu trabajo ya lidera la IA (escalera AL1–AL5), con un panel de señales mensual. Python, sin internet.">
+<link rel="alternate" hreflang="pt-BR" href="https://inematds.github.io/relogio-2027/guia/">
+<link rel="alternate" hreflang="en" href="https://inematds.github.io/relogio-2027/guia/en/">
+<link rel="alternate" hreflang="es" href="https://inematds.github.io/relogio-2027/guia/es/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0c10; --bg2:#14141b; --card:#16161e; --line:#272730;
+    --txt:#e9e9ee; --mut:#9a9aa6; --amb:#E2A23B; --amb2:#f0c070; --sky:#38bdf8; --pro:#cbd5e1;
+    color-scheme:dark;
+  }
+  body.light{
+    --bg:#f6f7f9; --bg2:#eceef2; --card:#ffffff; --line:#e1e3ea;
+    --txt:#1a1a22; --mut:#5b5b68; --amb:#b9791d; --amb2:#a16207; --sky:#0369a1; --pro:#b45309;
+    color-scheme:light;
+  }
+  body.light .hero .glow{opacity:.5}
+  body.light pre{background:#0e0e14;color:#d6d6e0}
+  body.light pre .c{color:#8a8a98}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:Sora,sans-serif;line-height:1.15;margin:0}
+  a{color:var(--amb);text-decoration:none}
+  code,pre{font-family:"JetBrains Mono",monospace}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+  .mut{color:var(--mut)} .amb{color:var(--amb)}
+  .chip{display:inline-block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amb);font-weight:600;font-family:Sora}
+  nav{position:sticky;top:0;z-index:30;backdrop-filter:blur(12px);background:rgba(12,12,16,.78);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;gap:22px;height:60px}
+  nav .brand{display:flex;align-items:center;gap:8px;font-family:Sora;font-weight:800;letter-spacing:-.02em;color:var(--amb)}
+  nav .brand .emoji{font-size:1.25rem}
+  nav .sep{color:var(--mut);opacity:.45}
+  nav .inema{color:var(--sky);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .inema:hover{filter:brightness(1.15)}
+  nav .pro{color:var(--pro);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .pro:hover{filter:brightness(1.15)}
+  nav .clubpro{display:inline-flex;align-items:center;gap:6px}
+  nav .links{margin-left:auto;display:flex;align-items:center;gap:20px;font-size:.92rem}
+  nav .links a.sec{color:var(--mut)} nav .links a.sec:hover{color:var(--txt)}
+  .lang{display:inline-flex;gap:2px;font-family:Sora;font-size:.78rem}
+  .lang a{color:var(--mut);padding:.2em .45em;border-radius:6px} .lang a.on{color:var(--amb);background:rgba(226,162,59,.12)}
+  .tgl{background:var(--bg2);border:1px solid var(--line);color:var(--txt);width:38px;height:38px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:1.05rem}
+  .tgl:hover{border-color:var(--amb)}
+  .btn{display:inline-block;background:var(--amb);color:#1a1206;font-weight:600;padding:.6em 1.05em;border-radius:10px;font-family:Sora}
+  .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+  @media(max-width:760px){nav .links a.sec{display:none}}
+  @media(max-width:520px){nav .wrap{gap:8px;padding:8px 14px;height:auto;flex-wrap:wrap} nav .links{gap:8px;margin-left:0;width:100%;justify-content:space-between} nav .btn{padding:.45em .7em;font-size:.82rem} .tgl{width:34px;height:34px}}
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero .glow{position:absolute;inset:-40% -20% auto auto;width:70%;height:600px;background:radial-gradient(closest-side,rgba(226,162,59,.22),transparent 70%);pointer-events:none}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:74px 22px}
+  .hero h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;letter-spacing:-.025em}
+  .hero p.lead{font-size:1.18rem;color:var(--mut);margin:1.1em 0 1.6em;max-width:34ch}
+  .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .hero figure{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000}
+  .hero figure img{width:100%;height:auto;display:block}
+  .resumo{padding:38px 0 34px;border-bottom:1px solid var(--line)}
+  .resumo p{font-size:1.12rem;line-height:1.7;max-width:74ch;margin:.55em 0 0}
+  @media(max-width:780px){.hero .wrap{grid-template-columns:1fr;padding:48px 22px}}
+  section{padding:62px 0;border-bottom:1px solid var(--line)}
+  section h2{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;letter-spacing:-.02em}
+  section .sub{color:var(--mut);margin:.6em 0 2em;max-width:62ch}
+  .grid{display:grid;gap:16px}
+  .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:820px){.g3,.g4{grid-template-columns:1fr 1fr}}
+  @media(max-width:540px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .card h3{font-size:1.05rem;margin-bottom:.4em}
+  .card p{color:var(--mut);font-size:.92rem;margin:0}
+  .num{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:8px;background:rgba(226,162,59,.14);color:var(--amb);font-family:Sora;font-weight:800;font-size:.9rem;margin-bottom:.7em}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+  .flow span{background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:.45em .9em;font-size:.85rem;font-family:Sora;font-weight:600}
+  .flow .arr{color:var(--amb);border:none;background:none;padding:0 .1em}
+  pre{background:#0a0a0e;border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow:auto;font-size:.86rem;line-height:1.6;color:#d6d6e0}
+  pre .c{color:#6f6f7c} pre .k{color:var(--amb2)} pre .s{color:#9ece6a}
+  .step{display:grid;grid-template-columns:46px minmax(0,1fr);gap:16px;margin-bottom:26px}
+  .step>div,.card{min-width:0}
+  p code,li code,td code{overflow-wrap:anywhere}
+  .step .b{width:46px;height:46px;border-radius:12px;background:var(--amb);color:#1a1206;font-family:Sora;font-weight:800;font-size:1.25rem;display:flex;align-items:center;justify-content:center}
+  .step h3{font-size:1.12rem;margin-bottom:.3em}
+  .step p{color:var(--mut);margin:.2em 0 .7em}
+  .ex{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:680px){.ex{grid-template-columns:1fr}}
+  .ex figure{margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  .ex figure img{width:100%;height:auto;display:block}
+  .ex figcaption{padding:12px 14px;font-size:.88rem;color:var(--mut);background:var(--card)}
+  .phase{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .phase:last-child{border:none}
+  .phase .tag{flex:0 0 92px;font-family:Sora;font-weight:800;color:var(--amb)}
+  .phase .d strong{display:block;margin-bottom:.2em}
+  .phase .d span{color:var(--mut);font-size:.92rem}
+  footer{padding:46px 0;text-align:center;color:var(--mut);font-size:.9rem}
+  .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:.3em .8em;font-size:.78rem;color:var(--mut);margin:0 4px}
+  table.n{width:100%;border-collapse:collapse;font-size:.92rem;margin-top:10px}
+  table.n th,table.n td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left}
+  table.n th{color:var(--amb);font-family:Sora}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a class="brand" href="#top"><span class="emoji">⏰</span> Reloj 2027</a>
+  <span class="sep">|</span>
+  <span class="clubpro">
+    <a class="inema" href="https://inema.club" target="_blank" rel="noopener">INEMA.CLUB</a>
+    <span class="sep">-</span>
+    <a class="pro" href="https://inema.pro" target="_blank" rel="noopener">PRO</a>
+  </span>
+  <div class="links">
+    <a class="sec" href="#oque">Qué es</a>
+    <a class="sec" href="#fluxo">Cómo funciona</a>
+    <a class="sec" href="#guia">Guía de uso</a>
+    <a class="sec" href="#exemplos">Ejemplos</a>
+    <a class="sec" href="#roadmap">Roadmap</a>
+    <span class="lang"><a href="../">PT</a><a href="../en/">EN</a><a class="on" href="./">ES</a></span>
+    <button class="tgl" id="themeToggle" aria-label="Cambiar tema" title="Cambiar tema">🌙</button>
+    <a class="btn" href="https://github.com/inematds/relogio-2027" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</div></nav>
+
+<header class="hero" id="top">
+  <div class="glow"></div>
+  <div class="wrap">
+    <div>
+      <span class="chip">Kit gratuito · Python · sin internet</span>
+      <h1>La IA lleva 5 meses de adelanto. <span class="amb">¿Y tu semana?</span></h1>
+      <p class="lead">Los autores del escenario AI 2027 dicen que la realidad se adelantó. Este kit rehace sus cálculos en tu computadora y mide cuánto de tu trabajo ya lidera la IA.</p>
+      <div class="cta">
+        <a class="btn" href="#guia">Empezar la guía</a>
+        <a class="btn ghost" href="https://github.com/inematds/relogio-2027" target="_blank" rel="noopener">Ver en GitHub</a>
+      </div>
+    </div>
+    <figure><img src="../assets/banner-es.jpg" alt="Banner Reloj 2027: la IA lleva 5 meses de adelanto"></figure>
+  </div>
+</header>
+
+<section id="resumo" class="resumo"><div class="wrap">
+  <span class="chip">En resumen</span>
+  <p>Reloj 2027 es un kit gratuito de tres scripts en Python para quienes quieren entender la velocidad de la IA y prepararse sin pánico. El primero rehace las proyecciones de la actualización de noviembre de 2026 de AI 2027 y te permite cambiar las hipótesis. El segundo toma la lista de tus tareas, asigna un nivel de automatización del 1 al 5 a cada una y muestra cuánto de tu semana ya lidera la IA, con un plan para el mes. El tercero guarda las señales que sigues mes a mes. Solo necesitas Python 3; nada sale de tu computadora.</p>
+</div></section>
+
+<section id="oque"><div class="wrap">
+  <span class="chip">Qué es</span>
+  <h2>Tres herramientas, una pregunta: <span class="amb">¿el reloj se adelantó para ti?</span></h2>
+  <p class="sub">El 10/11/2026, el AI Futures Project publicó que la aceleración causada por la IA ya está unos 5 meses por delante del escenario AI 2027. El kit lleva ese cálculo a tu día a día.</p>
+  <figure style="margin:0 0 26px;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000"><img src="../assets/banner-grade-es.jpg" alt="Reloj 2027: proyección, escalera AL1–AL5, señales del mes, plan de 30 días, revisión humana y pruebas" loading="lazy" style="width:100%;display:block"></figure>
+  <div class="grid g3">
+    <div class="card"><h3>📈 Proyección del informe</h3><p><code>projecao.py</code> rehace las dos extrapolaciones simples: la mejora de los investigadores, que se duplica cada ~3,4 meses, y la curva de investigación totalmente automatizada (AL5). Puedes cambiar la duplicación, el punto de partida y el escenario.</p></div>
+    <div class="card"><h3>🪜 Mi escalera</h3><p><code>minha-escada.py</code> lee tus tareas (horas por semana, nivel AL1–AL5, si es crítica o no), calcula cuánto ya lidera la IA, compara con el 26% de Anthropic y escribe un <code>relatorio.md</code> con qué subir de nivel y qué revisar.</p></div>
+    <div class="card"><h3>📡 Señales del mes</h3><p><code>sinais.py</code> compara los indicadores que anotas cada mes (METR, automatización de Anthropic, ingresos, benchmarks) y muestra si el reloj se adelantó ↑ o se retrasó ↓.</p></div>
+  </div>
+</div></section>
+
+<section id="fluxo"><div class="wrap">
+  <span class="chip">Cómo funciona</span>
+  <h2>Del informe a <span class="amb">tu semana</span></h2>
+  <p class="sub">Los números públicos se incorporan como constantes con la fuente comentada en el código. Cambias las hipótesis y tus tareas; el kit hace los cálculos.</p>
+  <div class="flow">
+    <span>Números del informe</span><span class="arr">→</span>
+    <span>Proyección con tus hipótesis</span><span class="arr">→</span>
+    <span>Tus tareas en AL1–AL5</span><span class="arr">→</span>
+    <span>Informe + plan del mes</span><span class="arr">→</span>
+    <span>Señales mes a mes</span>
+  </div>
+  <table class="n">
+    <tr><th>Nivel</th><th>Qué significa</th></tr>
+    <tr><td>AL1</td><td>Lo haces por tu cuenta</td></tr>
+    <tr><td>AL2</td><td>La IA ayuda</td></tr>
+    <tr><td>AL3</td><td>La IA colabora</td></tr>
+    <tr><td>AL4</td><td>La IA lidera y tú revisas</td></tr>
+    <tr><td>AL5</td><td>Totalmente automático</td></tr>
+  </table>
+</div></section>
+
+<section id="pre"><div class="wrap">
+  <span class="chip">Requisitos previos</span>
+  <h2>Solo <span class="amb">Python 3</span></h2>
+  <p class="sub">No necesitas instalar paquetes, usar claves ni conectarte a internet. Funciona en Linux, Mac y Windows.</p>
+  <div class="grid g3">
+    <div class="card"><h3>🐍 Python 3</h3><p>Comprueba la versión.</p><pre><span class="c"># debe mostrar 3.x</span>
+<span class="k">python3 --version</span></pre></div>
+    <div class="card"><h3>📥 El kit</h3><p>Descarga el repositorio.</p><pre><span class="k">git clone https://github.com/inematds/relogio-2027</span>
+<span class="k">cd relogio-2027</span></pre></div>
+    <div class="card"><h3>📝 Una hoja de cálculo</h3><p>Para editar los CSV: cualquier editor de texto, Excel o LibreOffice (guardar como CSV UTF-8, con comas).</p></div>
+  </div>
+</div></section>
+
+<section id="guia"><div class="wrap">
+  <span class="chip">Guía de uso · paso a paso</span>
+  <h2>En <span class="amb">10 minutos</span></h2>
+  <p class="sub">Es una extrapolación, no una profecía: las fechas son cálculos condicionales, no plazos garantizados.</p>
+
+  <div class="step"><div class="b">1</div><div>
+    <h3>Consulta el reloj</h3>
+    <p>Ejecuta la proyección base y luego un escenario más lento para ver cuánto cambian las fechas.</p>
+<pre><span class="k">python3 kit/scripts/projecao.py</span>  <span class="c"># 30x ~feb/2027 · 100x ~ago/2027 · 1.000x ~ago/2028 · 95% AL5 ~nov/2027</span>
+<span class="k">python3 kit/scripts/projecao.py --cenario lento</span>
+<span class="k">python3 kit/scripts/projecao.py --dobra-meses 5 --ganho-hoje 8</span>  <span class="c"># tus propias hipótesis</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">2</div><div>
+    <h3>Haz una lista de tus tareas</h3>
+    <p>Abre <code>kit/exemplos/minhas-tarefas.csv</code> y reemplázalas por las tuyas: tarea, horas por semana, nivel (AL1 a AL5) y si es crítica (<code>s</code>/<code>n</code>). No cuentes la misma hora dos veces.</p>
+<pre><span class="s">tarefa,horas_semana,nivel,critico</span>
+<span class="s">Rascunhar textos,8,AL3,n</span>
+<span class="s">Resumir reuniões,4,AL4,n</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">3</div><div>
+    <h3>Mide tu escalera</h3>
+    <p>El script muestra la proporción de horas en las que la IA ya lidera (AL4+AL5), la proyección y las tres tareas que puedes subir un nivel este mes. Las tareas críticas aparecen en la lista de revisión humana.</p>
+<pre><span class="k">python3 kit/scripts/minha-escada.py</span>  <span class="c"># guarda kit/relatorio.md</span>
+<span class="k">python3 kit/scripts/minha-escada.py --saida kit/relatorio-dez.md</span>  <span class="c"># guarda otra versión</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">4</div><div>
+    <h3>Anota las señales cada mes</h3>
+    <p>En <code>kit/exemplos/sinais.csv</code>, los valores de ejemplo son ficticios: reemplázalos por los números que recopiles (mes, indicador, valor), siempre en la misma unidad. El script no busca nada en internet.</p>
+<pre><span class="k">python3 kit/scripts/sinais.py</span>  <span class="c"># ↑ se adelantó · ↓ se retrasó · promedio de duplicación en meses</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">5</div><div>
+    <h3>Usa los prompts (opcional)</h3>
+    <p>En <code>kit/prompts/</code> hay tres prompts para pegar en cualquier IA: clasificar tus tareas en AL1–AL5, crear un plan de 30 días para subir un nivel y decidir qué mantener con revisión humana. No pegues datos sensibles.</p>
+<pre><span class="k">cat kit/prompts/01-classifique.md</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">6</div><div>
+    <h3>Comprueba que todo funcione</h3>
+    <p>22 pruebas comprueban las fechas frente al informe (con un mes de tolerancia), el ejemplo y los mensajes de error.</p>
+<pre><span class="k">python3 kit/testes/run.py</span>  <span class="c"># OK</span></pre>
+  </div></div>
+</div></section>
+
+<section id="exemplos"><div class="wrap">
+  <span class="chip">Ejemplos</span>
+  <h2>Los números que usa el kit</h2>
+  <p class="sub">Todos son públicos y provienen de la actualización del 10/11/2026 del AI Futures Project y de la evaluación de METR sobre Anthropic.</p>
+  <table class="n">
+    <tr><th>Indicador</th><th>Valor</th></tr>
+    <tr><td>Aceleración del progreso de Anthropic (METR)</td><td>~2x (rango de 1,3x a 3x)</td></tr>
+    <tr><td>Parte de esa aceleración causada por la IA</td><td>~80% → 1,7x</td></tr>
+    <tr><td>Ventaja frente al escenario AI 2027</td><td>~5 meses</td></tr>
+    <tr><td>Investigación de modelos liderada por Claude (AL4)</td><td>1% en mar/2026 → 26% en ago/2026</td></tr>
+    <tr><td>Mejora declarada por los investigadores</td><td>~12x en sep/2026, se duplica cada ~3,4 meses</td></tr>
+    <tr><td>Investigación totalmente automatizada (AL5, extrapolación)</td><td>50% ~jun/2027 · 95% ~nov/2027</td></tr>
+    <tr><td>Investigador de IA sobrehumano</td><td>probable en 2027 (según todos los autores)</td></tr>
+  </table>
+  <p class="sub" style="margin-top:22px">Combina con otros kits INEMA: <a href="https://github.com/inematds/negocios-com-ia" target="_blank" rel="noopener">negocios-com-ia</a> · <a href="https://github.com/inematds/esforco-certo" target="_blank" rel="noopener">esforco-certo</a> · <a href="https://github.com/inematds/audite-seu-claude" target="_blank" rel="noopener">audite-seu-claude</a> · <a href="https://github.com/inematds/agente-que-aprende" target="_blank" rel="noopener">agente-que-aprende</a> · <a href="https://github.com/inematds/caixa-do-agente" target="_blank" rel="noopener">caixa-do-agente</a> · <a href="https://github.com/inematds/agente-blindado" target="_blank" rel="noopener">agente-blindado</a>.</p>
+</div></section>
+
+<section id="roadmap"><div class="wrap">
+  <span class="chip">Roadmap</span>
+  <h2>Próximos pasos</h2>
+  <p class="sub">El kit es pequeño a propósito. Esto es lo que podría venir después:</p>
+  <div class="phase"><div class="tag">Hoy</div><div class="d"><strong>Proyección, escalera y señales</strong><span>Tres scripts, tres prompts, 22 pruebas. Sin internet.</span></div></div>
+  <div class="phase"><div class="tag">Próximo</div><div class="d"><strong>Gráfico de tu escalera</strong><span>Una página HTML local que dibuja tu curva junto a la curva de Anthropic.</span></div></div>
+  <div class="phase"><div class="tag">Después</div><div class="d"><strong>Escalera del equipo</strong><span>Sumar los CSV de varias personas para ver la escalera de un equipo o una empresa.</span></div></div>
+</div></section>
+
+<footer>
+  <div class="wrap">
+    <div class="pill">Python 3</div><div class="pill">sin dependencias</div><div class="pill">sin conexión</div>
+    <p style="margin-top:18px">Reloj 2027 · extrapolación, no profecía ·
+      <a href="https://github.com/inematds/relogio-2027">inematds/relogio-2027</a> ·
+      <a href="https://inema.club">INEMA.CLUB</a></p>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var KEY='relogio-2027-theme';
+    var b=document.body, t=document.getElementById('themeToggle');
+    if(localStorage.getItem(KEY)==='light'){ b.classList.add('light'); t.textContent='☀️'; }
+    t.addEventListener('click',function(){
+      var light=b.classList.toggle('light');
+      t.textContent=light?'☀️':'🌙';
+      localStorage.setItem(KEY, light?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>
