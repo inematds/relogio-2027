@@ -187,9 +187,9 @@
 <section id="pre"><div class="wrap">
   <span class="chip">Pré-requisitos</span>
   <h2>Só o <span class="amb">Python 3</span></h2>
-  <p class="sub">Nenhum pacote para instalar, nenhuma chave, nenhuma conexão. Funciona em Linux, Mac e Windows. <strong>No Windows</strong>, troque <code>python3</code> por <code>py</code> em todos os comandos e <code>cat</code> por <code>type</code>.</p>
+  <p class="sub">Nenhum pacote para instalar, nenhuma chave, nenhuma conexão. Funciona em Linux, Mac e Windows. <strong>No Windows</strong>: instale o Python pelo <a href="https://www.python.org/downloads/" target="_blank" rel="noopener">python.org</a>, abra a pasta do kit no Explorador, clique com o botão direito e escolha “Abrir no Terminal” (PowerShell), e troque <code>python3</code> por <code>py</code> em todos os comandos.</p>
   <div class="grid g3">
-    <div class="card"><h3>🐍 Python 3</h3><p>Confira a versão.</p><pre><span class="c"># deve mostrar 3.x</span>
+    <div class="card"><h3>🐍 Python 3</h3><p>Confira a versão. Se aparecer “não reconhecido”, instale pelo <a href="https://www.python.org/downloads/" target="_blank" rel="noopener">python.org</a>.</p><pre><span class="c"># deve mostrar 3.x</span>
 <span class="k">python3 --version</span></pre></div>
     <div class="card"><h3>📥 O kit</h3><p>Com git, clone o repositório. Sem git, <a href="https://github.com/inematds/relogio-2027/archive/refs/heads/main.zip">baixe o ZIP</a>, descompacte e abra o terminal na pasta <code>relogio-2027-main</code>.</p><pre><span class="k">git clone https://github.com/inematds/relogio-2027</span>
 <span class="k">cd relogio-2027</span></pre></div>
@@ -222,22 +222,24 @@
     <h3>Meça a sua escada</h3>
     <p>O script mostra a parcela das horas em que a IA já lidera (AL4+AL5), a projeção e as três tarefas para subir um nível neste mês. As críticas ficam na lista de revisão humana. Se você rodar sem trocar o exemplo, o resultado é do exemplo, não seu; para usar um arquivo próprio sem mexer no exemplo, passe <code>--csv</code>.</p>
 <pre><span class="k">python3 kit/scripts/minha-escada.py</span>  <span class="c"># grava kit/relatorio.md</span>
-<span class="k">python3 kit/scripts/minha-escada.py --csv minhas.csv</span>  <span class="c"># seu próprio arquivo</span>
+<span class="k">cp kit/exemplos/minhas-tarefas.csv minhas.csv</span>  <span class="c"># cria a sua cópia (Windows: copy)</span>
+<span class="k">python3 kit/scripts/minha-escada.py --csv minhas.csv</span>  <span class="c"># usa a sua cópia</span>
 <span class="k">python3 kit/scripts/minha-escada.py --saida kit/relatorio-dez.md</span>  <span class="c"># guarda outra versão</span></pre>
   </div></div>
 
   <div class="step"><div class="b">4</div><div>
     <h3>Anote os sinais todo mês</h3>
-    <p>Em <code>kit/exemplos/sinais.csv</code> os valores de exemplo são fictícios: troque pelos números que você coletar (mês, indicador, valor), sempre na mesma unidade. O script não busca nada na internet.</p>
+    <p>Em <code>kit/exemplos/sinais.csv</code> os valores de exemplo são fictícios: troque pelos números que você coletar (mês, indicador, valor), sempre na mesma unidade e com o nome do indicador idêntico todo mês. O script não busca nada na internet.</p>
 <pre><span class="s">mes,indicador,valor</span>
-<span class="s">2026-11,Claude lidera a pesquisa (%),26</span>
+<span class="s">2026-11,Anthropic parcela AL4 em porcentagem,26</span>
 <span class="k">python3 kit/scripts/sinais.py</span>  <span class="c"># ↑ adiantou · ↓ atrasou · média de dobra em meses</span></pre>
   </div></div>
 
   <div class="step"><div class="b">5</div><div>
     <h3>Use os prompts (opcional)</h3>
     <p>Em <code>kit/prompts/</code> há três prompts para colar em qualquer IA: classificar suas tarefas em AL1–AL5, montar um plano de 30 dias para subir um nível e decidir o que manter com revisão humana. Não cole dados sensíveis.</p>
-<pre><span class="k">cat kit/prompts/01-classifique.md</span></pre>
+<pre><span class="c"># abra no Bloco de Notas (ou qualquer editor) e copie o texto:</span>
+<span class="s">kit/prompts/01-classifique.md</span></pre>
   </div></div>
 
   <div class="step"><div class="b">6</div><div>
