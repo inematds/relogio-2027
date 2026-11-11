@@ -1,6 +1,7 @@
 """Contas locais. Apenas biblioteca padrão."""
 import argparse
 import csv
+import io
 import math
 from datetime import date, timedelta
 from pathlib import Path
@@ -31,7 +32,10 @@ CENARIOS = {'lento': 0.75, 'base': 1.0, 'rapido': 1.25}
 
 def numero(texto):
     try:
-        n = float(texto)
+        t = str(texto).strip()
+        if ',' in t and '.' not in t:
+            t = t.replace(',', '.')  # Excel em português: 2,5
+        n = float(t)
     except (ValueError, TypeError):
         raise ValueError(f'número inválido: {texto!r}')
     if not math.isfinite(n):
@@ -99,11 +103,18 @@ def ponto(texto):
 
 
 def ler_csv(caminho, campos):
-    with Path(caminho).open(encoding='utf-8-sig', newline='') as f:
-        leitor = csv.DictReader(f)
-        if leitor.fieldnames != campos:
-            raise ValueError('cabeçalho esperado: ' + ','.join(campos))
-        linhas = list(leitor)
+    bruto = Path(caminho).read_bytes()
+    try:
+        texto = bruto.decode('utf-8-sig')
+    except UnicodeDecodeError:
+        texto = bruto.decode('cp1252')  # Excel no Windows salva assim
+    primeira = texto.splitlines()[0] if texto.strip() else ''
+    sep = ';' if primeira.count(';') > primeira.count(',') else ','  # Excel em português usa ;
+    leitor = csv.DictReader(io.StringIO(texto, newline=''), delimiter=sep)
+    if [c.strip() for c in (leitor.fieldnames or [])] != campos:
+        raise ValueError('cabeçalho esperado: ' + ','.join(campos) + ' (separado por vírgula ou ponto e vírgula)')
+    leitor.fieldnames = campos
+    linhas = list(leitor)
     if not linhas:
         raise ValueError('CSV vazio: inclua pelo menos uma linha')
     for i, linha in enumerate(linhas, 2):

@@ -43,7 +43,7 @@ def main():
     linhas += ['', '## Subir um nível neste mês', '']
     linhas += [f"- {t['tarefa']}: {t['horas']:g} h/semana; {t['nivel']} → AL{int(t['nivel'][-1])+1}. Teste em amostra e confira a qualidade antes de ampliar." for t in elegiveis] or ['Nenhuma tarefa elegível.']
     linhas += ['', '## Manter revisão humana', '', 'Em tarefas críticas, AL4 é o teto sugerido: humano confere e aprova antes de usar.', '']
-    linhas += [f"- {t['tarefa']} ({t['nivel']}): " + ('retire a automação sem revisão; volte a AL4 com checagem.' if t['nivel'] == 'AL5' else 'mantenha revisão; se chegar a AL4, confira dados, exceções e resultado.') for t in tarefas if t['critico'] == 's'] or ['Nenhuma tarefa marcada como crítica.']
+    linhas += [f"- {t['tarefa']} ({t['nivel']}): " + ('retire a automação sem revisão; volte a AL4 com checagem.' if t['nivel'] == 'AL5' else ('já está no teto sugerido (AL4): mantenha a conferência de dados, exceções e resultado.' if t['nivel'] == 'AL4' else 'pode subir até AL4, sempre com conferência humana de dados, exceções e resultado.')) for t in tarefas if t['critico'] == 's'] or ['Nenhuma tarefa marcada como crítica.']
     args.saida.write_text('\n'.join(linhas) + '\n', encoding='utf-8')
     print('\n'.join(linhas))
     print(f'\nArquivo gerado: {args.saida}')

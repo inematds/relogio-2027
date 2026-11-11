@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <!-- TEMPLATE projetos-landing-guia. Replace placeholders and content. DO NOT rewrite the CSS.
      TRILINGUAL: this file is the PT version (guia/index.html). The guia/en/index.html and
-     guia/es/index.html versions are translated copies: lang="en"/"es", selector with a.on for the language,
+     guia/es/index.html versions are translated copies: lang="en"/"es", selector with a.on in the current language,
      selector hrefs ../ and ../es/ (or ../en/), and images assets/ -> ../assets/. -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Clock 2027 — AI is 5 months ahead. What about your week?</title>
-<meta name="description" content="Free kit that recreates the projections from the AI 2027 update and measures how much of your work AI already leads (AL1–AL5 scale), with a monthly signals dashboard. Python, no internet required.">
+<meta name="description" content="A free kit that recalculates the AI 2027 update projections and measures how much of your work AI already leads (AL1–AL5 scale), with a monthly signals dashboard. Python, no internet required.">
 <link rel="alternate" hreflang="pt-BR" href="https://inematds.github.io/relogio-2027/guia/">
 <link rel="alternate" hreflang="en" href="https://inematds.github.io/relogio-2027/guia/en/">
 <link rel="alternate" hreflang="es" href="https://inematds.github.io/relogio-2027/guia/es/">
@@ -134,9 +134,9 @@
   <div class="glow"></div>
   <div class="wrap">
     <div>
-      <span class="chip">Free kit · Python · offline</span>
+      <span class="chip">Free kit · Python · no internet</span>
       <h1>AI is 5 months ahead. <span class="amb">What about your week?</span></h1>
-      <p class="lead">The authors of the AI 2027 scenario say reality has moved ahead. This kit recreates their calculations on your machine and measures how much of your work AI already leads.</p>
+      <p class="lead">The authors of the AI 2027 scenario say reality has moved ahead. This kit recalculates their projections on your machine and measures how much of your work AI already leads.</p>
       <div class="cta">
         <a class="btn" href="#guia">Start the guide</a>
         <a class="btn ghost" href="https://github.com/inematds/relogio-2027" target="_blank" rel="noopener">View on GitHub</a>
@@ -148,25 +148,25 @@
 
 <section id="resumo" class="resumo"><div class="wrap">
   <span class="chip">In short</span>
-  <p>Clock 2027 is a free kit of three Python scripts for anyone who wants to understand the pace of AI and prepare without panic. The first recreates the projections from the November 2026 AI 2027 update and lets you change the assumptions. The second takes your task list, assigns each task an automation level from 1 to 5, and shows how much of your week AI already leads, with a plan for the month. The third keeps track of the signals you follow month by month. You only need Python 3; nothing leaves your machine.</p>
+  <p>Clock 2027 is a free kit of three Python scripts for anyone who wants to understand the pace of AI and prepare without panic. The first recalculates the projections from the November 2026 AI 2027 update and lets you change the assumptions. The second takes your task list, assigns each task an automation level from 1 to 5, shows how much of your week AI already leads, and provides a plan for the month. The third tracks the signals you follow month by month. All you need is Python 3; nothing leaves your machine.</p>
 </div></section>
 
 <section id="oque"><div class="wrap">
   <span class="chip">What it is</span>
   <h2>Three tools, one question: <span class="amb">has the clock moved ahead for you?</span></h2>
-  <p class="sub">On 10/11/2026, the AI Futures Project reported that AI-driven acceleration is already about 5 months ahead of the AI 2027 scenario. This kit brings that calculation into your daily routine.</p>
-  <figure style="margin:0 0 26px;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000"><img src="../assets/banner-grade-en.jpg" alt="Clock 2027: projection, AL1–AL5 scale, monthly signals, 30-day plan, human review and tests" loading="lazy" style="width:100%;display:block"></figure>
+  <p class="sub">On 10/11/2026, the AI Futures Project (<a href="https://blog.ai-futures.org/p/q35-timelines-update-looks-like-the" target="_blank" rel="noopener">read the update</a>) reported that AI-driven acceleration is already about 5 months ahead of the AI 2027 scenario. This kit brings that calculation into your day-to-day life.</p>
+  <figure style="margin:0 0 26px;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000"><img src="../assets/banner-grade-en.jpg" alt="Clock 2027: projection, AL1–AL5 scale, monthly signals, 30-day plan, human review, and tests" loading="lazy" style="width:100%;display:block"></figure>
   <div class="grid g3">
-    <div class="card"><h3>📈 Report projection</h3><p><code>projecao.py</code> recreates two simple extrapolations: researchers' gains doubling every ~3.4 months and the fully automated research curve (AL5). You can change the doubling period, starting point and scenario.</p></div>
+    <div class="card"><h3>📈 Report projection</h3><p><code>projecao.py</code> recalculates two simple extrapolations: researchers' productivity gain, which doubles about every 3.4 months, and the fully automated research curve (AL5). You can change the doubling time, starting point, and scenario.</p></div>
     <div class="card"><h3>🪜 My scale</h3><p><code>minha-escada.py</code> reads your tasks (hours per week, AL1–AL5 level, critical or not), calculates how much AI already leads, compares it with Anthropic's 26%, and writes a <code>relatorio.md</code> with what to move up and what to review.</p></div>
-    <div class="card"><h3>📡 This month's signals</h3><p><code>sinais.py</code> compares the indicators you record each month (METR, Anthropic automation, revenue, benchmarks) and shows whether the clock moved ahead ↑ or fell behind ↓.</p></div>
+    <div class="card"><h3>📡 Monthly signals</h3><p><code>sinais.py</code> compares the indicators you record every month (METR, Anthropic automation, revenue, benchmarks) and shows whether the clock has moved ahead ↑ or fallen behind ↓.</p></div>
   </div>
 </div></section>
 
 <section id="fluxo"><div class="wrap">
   <span class="chip">How it works</span>
   <h2>From the report to <span class="amb">your week</span></h2>
-  <p class="sub">Public figures are built in as constants, with their sources commented in the code. You change the assumptions and your tasks; the kit does the math.</p>
+  <p class="sub">Public figures are included as constants, with their sources noted in the code. You change the assumptions and your tasks; the kit does the calculations.</p>
   <div class="flow">
     <span>Report figures</span><span class="arr">→</span>
     <span>Projection with your assumptions</span><span class="arr">→</span>
@@ -185,15 +185,15 @@
 </div></section>
 
 <section id="pre"><div class="wrap">
-  <span class="chip">Requirements</span>
+  <span class="chip">Prerequisites</span>
   <h2>Just <span class="amb">Python 3</span></h2>
-  <p class="sub">No packages to install, no keys, no connection. Works on Linux, Mac and Windows.</p>
+  <p class="sub">No packages to install, no keys, no connection required. Works on Linux, Mac, and Windows. <strong>On Windows</strong>, replace <code>python3</code> with <code>py</code> in all commands and <code>cat</code> with <code>type</code>.</p>
   <div class="grid g3">
     <div class="card"><h3>🐍 Python 3</h3><p>Check the version.</p><pre><span class="c"># should show 3.x</span>
 <span class="k">python3 --version</span></pre></div>
-    <div class="card"><h3>📥 The kit</h3><p>Download the repository.</p><pre><span class="k">git clone https://github.com/inematds/relogio-2027</span>
+    <div class="card"><h3>📥 The kit</h3><p>With git, clone the repository. Without git, <a href="https://github.com/inematds/relogio-2027/archive/refs/heads/main.zip">download the ZIP</a>, extract it, and open a terminal in the <code>relogio-2027-main</code> folder.</p><pre><span class="k">git clone https://github.com/inematds/relogio-2027</span>
 <span class="k">cd relogio-2027</span></pre></div>
-    <div class="card"><h3>📝 A spreadsheet</h3><p>To edit the CSVs: any text editor, Excel or LibreOffice (save as UTF-8 CSV, comma-delimited).</p></div>
+    <div class="card"><h3>📝 A spreadsheet</h3><p>To edit the CSVs, use any text editor, Excel, or LibreOffice. You can save as a regular Excel “CSV” file: the kit accepts commas or semicolons, and numbers with a comma (2,5).</p></div>
   </div>
 </div></section>
 
@@ -204,7 +204,7 @@
 
   <div class="step"><div class="b">1</div><div>
     <h3>Check the clock</h3>
-    <p>Run the baseline projection, then a slower scenario to see how much the dates change.</p>
+    <p>Run the baseline projection, then a slower scenario to see how much the dates change. “30x” means that a researcher with AI is 30 times as productive as without AI (a gain they report themselves); “doubling time” is how many months it takes that gain to double.</p>
 <pre><span class="k">python3 kit/scripts/projecao.py</span>  <span class="c"># 30x ~Feb/2027 · 100x ~Aug/2027 · 1,000x ~Aug/2028 · 95% AL5 ~Nov/2027</span>
 <span class="k">python3 kit/scripts/projecao.py --cenario lento</span>
 <span class="k">python3 kit/scripts/projecao.py --dobra-meses 5 --ganho-hoje 8</span>  <span class="c"># your own assumptions</span></pre>
@@ -212,7 +212,8 @@
 
   <div class="step"><div class="b">2</div><div>
     <h3>List your tasks</h3>
-    <p>Open <code>kit/exemplos/minhas-tarefas.csv</code> and replace the examples with your own: task, hours per week, level (AL1 to AL5), and whether it is critical (<code>s</code>/<code>n</code>). Don't count the same hour twice.</p>
+    <p>Open <code>kit/exemplos/minhas-tarefas.csv</code> and replace the sample tasks with yours: task, hours per week, level (AL1 to AL5), and whether it is critical (<code>s</code>/<code>n</code>). Do not count the same hour twice.</p>
+    <p>The column names and values stay in Portuguese: tarefa = task, horas_semana = hours per week, nivel = level, critico = critical (s = yes, n = no). What the scripts print and relatorio.md are in Portuguese.</p>
 <pre><span class="s">tarefa,horas_semana,nivel,critico</span>
 <span class="s">Rascunhar textos,8,AL3,n</span>
 <span class="s">Resumir reuniões,4,AL4,n</span></pre>
@@ -220,41 +221,44 @@
 
   <div class="step"><div class="b">3</div><div>
     <h3>Measure your scale</h3>
-    <p>The script shows the share of hours in which AI already leads (AL4+AL5), the projection, and the three tasks to move up one level this month. Critical tasks stay on the human review list.</p>
-<pre><span class="k">python3 kit/scripts/minha-escada.py</span>  <span class="c"># writes kit/relatorio.md</span>
-<span class="k">python3 kit/scripts/minha-escada.py --saida kit/relatorio-dez.md</span>  <span class="c"># saves another version</span></pre>
+    <p>The script shows the share of hours where AI already leads (AL4+AL5), the projection, and the three tasks to move up one level this month. Critical tasks stay on the human review list. If you run it without replacing the example, the results are for the example, not you; to use your own file without changing the example, pass <code>--csv</code>.</p>
+<pre><span class="k">python3 kit/scripts/minha-escada.py</span>  <span class="c"># saves kit/relatorio.md</span>
+<span class="k">python3 kit/scripts/minha-escada.py --csv minhas.csv</span>  <span class="c"># your own file</span>
+<span class="k">python3 kit/scripts/minha-escada.py --saida kit/relatorio-dez.md</span>  <span class="c"># save another version</span></pre>
   </div></div>
 
   <div class="step"><div class="b">4</div><div>
     <h3>Record signals every month</h3>
-    <p>In <code>kit/exemplos/sinais.csv</code>, the example values are fictional: replace them with the figures you collect (month, indicator, value), always using the same unit. The script doesn't fetch anything from the internet.</p>
-<pre><span class="k">python3 kit/scripts/sinais.py</span>  <span class="c"># ↑ moved ahead · ↓ fell behind · average doubling time in months</span></pre>
+    <p>In <code>kit/exemplos/sinais.csv</code>, the sample values are fictional: replace them with the figures you collect (month, indicator, value), always using the same unit. The script does not fetch anything from the internet.</p>
+<pre><span class="s">mes,indicador,valor</span>
+<span class="s">2026-11,Claude lidera a pesquisa (%),26</span>
+<span class="k">python3 kit/scripts/sinais.py</span>  <span class="c"># ↑ moved ahead · ↓ fell behind · average doubling time in months</span></pre>
   </div></div>
 
   <div class="step"><div class="b">5</div><div>
     <h3>Use the prompts (optional)</h3>
-    <p>In <code>kit/prompts/</code> there are three prompts to paste into any AI: classify your tasks at AL1–AL5, build a 30-day plan to move up one level, and decide what to keep under human review. Don't paste sensitive data.</p>
+    <p>In <code>kit/prompts/</code> there are three prompts you can paste into any AI: classify your tasks at AL1–AL5, create a 30-day plan to move up one level, and decide what to keep under human review. Do not paste sensitive data.</p>
 <pre><span class="k">cat kit/prompts/01-classifique.md</span></pre>
   </div></div>
 
   <div class="step"><div class="b">6</div><div>
     <h3>Check that everything works</h3>
-    <p>22 tests check the dates against the report (one-month tolerance), the example, and the error messages.</p>
-<pre><span class="k">python3 kit/testes/run.py</span>  <span class="c"># OK</span></pre>
+    <p>22 tests check the dates against the report (with a one-month tolerance), the example, and the error messages.</p>
+<pre><span class="k">python3 kit/testes/run.py</span>  <span class="c"># Ran 22 tests … OK</span></pre>
   </div></div>
 </div></section>
 
 <section id="exemplos"><div class="wrap">
   <span class="chip">Examples</span>
   <h2>The figures used by the kit</h2>
-  <p class="sub">All are public, from the AI Futures Project's 10/11/2026 update and METR's assessment of Anthropic.</p>
+  <p class="sub">All figures are public, from the <a href="https://blog.ai-futures.org/p/q35-timelines-update-looks-like-the" target="_blank" rel="noopener">AI Futures Project update dated 10/11/2026</a> and <a href="https://metr.org/blog/2026-11-05-anthropic-ai-rd-acceleration-assessment/" target="_blank" rel="noopener">METR’s assessment of Anthropic</a>. METR is an independent group that measures what AI systems can do; AL4 means AI leads the task and the person only reviews.</p>
   <table class="n">
     <tr><th>Indicator</th><th>Value</th></tr>
-    <tr><td>Acceleration of Anthropic's progress (METR)</td><td>~2x (range 1.3x to 3x)</td></tr>
+    <tr><td>Anthropic progress acceleration (METR)</td><td>~2x (range 1.3x to 3x)</td></tr>
     <tr><td>Share of that acceleration caused by AI</td><td>~80% → 1.7x</td></tr>
     <tr><td>Lead over the AI 2027 scenario</td><td>~5 months</td></tr>
     <tr><td>Model research led by Claude (AL4)</td><td>1% in Mar/2026 → 26% in Aug/2026</td></tr>
-    <tr><td>Researchers' self-reported gains</td><td>~12x in Sep/2026, doubling every ~3.4 months</td></tr>
+    <tr><td>Researchers’ self-reported productivity gain</td><td>~12x in Sep/2026, doubling about every 3.4 months</td></tr>
     <tr><td>Fully automated research (AL5, extrapolation)</td><td>50% ~Jun/2027 · 95% ~Nov/2027</td></tr>
     <tr><td>Superhuman AI researcher</td><td>likely in 2027 (all authors)</td></tr>
   </table>
@@ -264,10 +268,10 @@
 <section id="roadmap"><div class="wrap">
   <span class="chip">Roadmap</span>
   <h2>Next steps</h2>
-  <p class="sub">The kit is intentionally small. What could come next:</p>
-  <div class="phase"><div class="tag">Today</div><div class="d"><strong>Projection, scale and signals</strong><span>Three scripts, three prompts, 22 tests. No network.</span></div></div>
-  <div class="phase"><div class="tag">Next</div><div class="d"><strong>Chart of your scale</strong><span>A local HTML page that plots your curve alongside Anthropic's curve.</span></div></div>
-  <div class="phase"><div class="tag">Later</div><div class="d"><strong>Team scale</strong><span>Combine several people's CSVs to see the scale for a team or company.</span></div></div>
+  <p class="sub">The kit is intentionally small. What may come next:</p>
+  <div class="phase"><div class="tag">Today</div><div class="d"><strong>Projection, scale, and signals</strong><span>Three scripts, three prompts, 22 tests. No network access.</span></div></div>
+  <div class="phase"><div class="tag">Next</div><div class="d"><strong>Chart of your scale</strong><span>A local HTML page that plots your curve alongside Anthropic’s.</span></div></div>
+  <div class="phase"><div class="tag">Later</div><div class="d"><strong>Team scale</strong><span>Combine CSVs from several people to see the scale for a team or company.</span></div></div>
 </div></section>
 
 <footer>

@@ -154,7 +154,7 @@
 <section id="oque"><div class="wrap">
   <span class="chip">O que é</span>
   <h2>Três ferramentas, uma pergunta: <span class="amb">o relógio adiantou para você?</span></h2>
-  <p class="sub">Em 10/11/2026 o AI Futures Project publicou que a aceleração causada pela IA já está cerca de 5 meses à frente do cenário AI 2027. O kit leva essa conta para o seu dia a dia.</p>
+  <p class="sub">Em 10/11/2026 o AI Futures Project (<a href="https://blog.ai-futures.org/p/q35-timelines-update-looks-like-the" target="_blank" rel="noopener">leia a atualização, em inglês</a>) publicou que a aceleração causada pela IA já está cerca de 5 meses à frente do cenário AI 2027. O kit leva essa conta para o seu dia a dia.</p>
   <figure style="margin:0 0 26px;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000"><img src="assets/banner-grade.jpg" alt="Relógio 2027: projeção, escada AL1–AL5, sinais do mês, plano de 30 dias, revisão humana e testes" loading="lazy" style="width:100%;display:block"></figure>
   <div class="grid g3">
     <div class="card"><h3>📈 Projeção do relatório</h3><p><code>projecao.py</code> refaz as duas extrapolações simples: o ganho dos pesquisadores que dobra a cada ~3,4 meses e a curva da pesquisa totalmente automatizada (AL5). Você muda a dobra, o ponto de partida e o cenário.</p></div>
@@ -187,13 +187,13 @@
 <section id="pre"><div class="wrap">
   <span class="chip">Pré-requisitos</span>
   <h2>Só o <span class="amb">Python 3</span></h2>
-  <p class="sub">Nenhum pacote para instalar, nenhuma chave, nenhuma conexão. Funciona em Linux, Mac e Windows.</p>
+  <p class="sub">Nenhum pacote para instalar, nenhuma chave, nenhuma conexão. Funciona em Linux, Mac e Windows. <strong>No Windows</strong>, troque <code>python3</code> por <code>py</code> em todos os comandos e <code>cat</code> por <code>type</code>.</p>
   <div class="grid g3">
     <div class="card"><h3>🐍 Python 3</h3><p>Confira a versão.</p><pre><span class="c"># deve mostrar 3.x</span>
 <span class="k">python3 --version</span></pre></div>
-    <div class="card"><h3>📥 O kit</h3><p>Baixe o repositório.</p><pre><span class="k">git clone https://github.com/inematds/relogio-2027</span>
+    <div class="card"><h3>📥 O kit</h3><p>Com git, clone o repositório. Sem git, <a href="https://github.com/inematds/relogio-2027/archive/refs/heads/main.zip">baixe o ZIP</a>, descompacte e abra o terminal na pasta <code>relogio-2027-main</code>.</p><pre><span class="k">git clone https://github.com/inematds/relogio-2027</span>
 <span class="k">cd relogio-2027</span></pre></div>
-    <div class="card"><h3>📝 Uma planilha</h3><p>Para editar os CSVs: qualquer editor de texto, Excel ou LibreOffice (salvar em CSV UTF-8, com vírgulas).</p></div>
+    <div class="card"><h3>📝 Uma planilha</h3><p>Para editar os CSVs: qualquer editor de texto, Excel ou LibreOffice. Pode salvar como “CSV” normal do Excel: o kit aceita vírgula ou ponto e vírgula, e número com vírgula (2,5).</p></div>
   </div>
 </div></section>
 
@@ -204,7 +204,7 @@
 
   <div class="step"><div class="b">1</div><div>
     <h3>Veja o relógio</h3>
-    <p>Roda a projeção base e depois um cenário mais lento, para ver quanto as datas mudam.</p>
+    <p>Roda a projeção base e depois um cenário mais lento, para ver quanto as datas mudam. “30x” quer dizer que o pesquisador com IA rende 30 vezes o que renderia sem IA (ganho que eles mesmos declaram); “dobra” é quantos meses esse ganho leva para dobrar.</p>
 <pre><span class="k">python3 kit/scripts/projecao.py</span>  <span class="c"># 30x ~fev/2027 · 100x ~ago/2027 · 1.000x ~ago/2028 · 95% AL5 ~nov/2027</span>
 <span class="k">python3 kit/scripts/projecao.py --cenario lento</span>
 <span class="k">python3 kit/scripts/projecao.py --dobra-meses 5 --ganho-hoje 8</span>  <span class="c"># suas próprias hipóteses</span></pre>
@@ -220,15 +220,18 @@
 
   <div class="step"><div class="b">3</div><div>
     <h3>Meça a sua escada</h3>
-    <p>O script mostra a parcela das horas em que a IA já lidera (AL4+AL5), a projeção e as três tarefas para subir um nível neste mês. As críticas ficam na lista de revisão humana.</p>
+    <p>O script mostra a parcela das horas em que a IA já lidera (AL4+AL5), a projeção e as três tarefas para subir um nível neste mês. As críticas ficam na lista de revisão humana. Se você rodar sem trocar o exemplo, o resultado é do exemplo, não seu; para usar um arquivo próprio sem mexer no exemplo, passe <code>--csv</code>.</p>
 <pre><span class="k">python3 kit/scripts/minha-escada.py</span>  <span class="c"># grava kit/relatorio.md</span>
+<span class="k">python3 kit/scripts/minha-escada.py --csv minhas.csv</span>  <span class="c"># seu próprio arquivo</span>
 <span class="k">python3 kit/scripts/minha-escada.py --saida kit/relatorio-dez.md</span>  <span class="c"># guarda outra versão</span></pre>
   </div></div>
 
   <div class="step"><div class="b">4</div><div>
     <h3>Anote os sinais todo mês</h3>
     <p>Em <code>kit/exemplos/sinais.csv</code> os valores de exemplo são fictícios: troque pelos números que você coletar (mês, indicador, valor), sempre na mesma unidade. O script não busca nada na internet.</p>
-<pre><span class="k">python3 kit/scripts/sinais.py</span>  <span class="c"># ↑ adiantou · ↓ atrasou · média de dobra em meses</span></pre>
+<pre><span class="s">mes,indicador,valor</span>
+<span class="s">2026-11,Claude lidera a pesquisa (%),26</span>
+<span class="k">python3 kit/scripts/sinais.py</span>  <span class="c"># ↑ adiantou · ↓ atrasou · média de dobra em meses</span></pre>
   </div></div>
 
   <div class="step"><div class="b">5</div><div>
@@ -240,14 +243,14 @@
   <div class="step"><div class="b">6</div><div>
     <h3>Confira que tudo funciona</h3>
     <p>22 testes conferem as datas contra o relatório (tolerância de um mês), o exemplo e as mensagens de erro.</p>
-<pre><span class="k">python3 kit/testes/run.py</span>  <span class="c"># OK</span></pre>
+<pre><span class="k">python3 kit/testes/run.py</span>  <span class="c"># Ran 22 tests … OK</span></pre>
   </div></div>
 </div></section>
 
 <section id="exemplos"><div class="wrap">
   <span class="chip">Exemplos</span>
   <h2>Os números que o kit usa</h2>
-  <p class="sub">Todos públicos, da atualização de 10/11/2026 do AI Futures Project e da avaliação do METR sobre a Anthropic.</p>
+  <p class="sub">Todos públicos, da <a href="https://blog.ai-futures.org/p/q35-timelines-update-looks-like-the" target="_blank" rel="noopener">atualização de 10/11/2026 do AI Futures Project</a> e da <a href="https://metr.org/blog/2026-11-05-anthropic-ai-rd-acceleration-assessment/" target="_blank" rel="noopener">avaliação do METR sobre a Anthropic</a> (em inglês). METR é um grupo independente que mede o que as IAs conseguem fazer; AL4 quer dizer que a IA conduz a tarefa e a pessoa só revisa.</p>
   <table class="n">
     <tr><th>Indicador</th><th>Valor</th></tr>
     <tr><td>Aceleração do progresso da Anthropic (METR)</td><td>~2x (faixa 1,3x a 3x)</td></tr>

@@ -13,7 +13,7 @@ python3 kit/scripts/projecao.py --cenario lento
 
 ## 2. Preencha sua escada — 5 minutos
 
-Abra `kit/exemplos/minhas-tarefas.csv` num editor ou planilha. Preserve o cabeçalho. Salve em CSV com vírgulas e UTF-8. Use ponto decimal nas horas. Horas devem ser maiores que zero. Evite contar a mesma hora duas vezes. `critico` aceita `s` ou `n`.
+Abra `kit/exemplos/minhas-tarefas.csv` num editor ou planilha. Preserve o cabeçalho. Pode salvar como CSV normal do Excel: o kit aceita vírgula ou ponto e vírgula, UTF-8 ou o formato do Windows, e horas com vírgula ou ponto decimal. Horas devem ser maiores que zero. Evite contar a mesma hora duas vezes. `critico` aceita `s` ou `n`.
 
 AL1: humano faz sozinho. AL2: IA assiste. AL3: IA colabora. AL4: IA lidera e humano revisa. AL5: totalmente automatizado.
 
