@@ -190,6 +190,49 @@
   .ov .band em{top:auto;bottom:6px}
   .exp{color:var(--mut);font-size:.86rem;margin:12px 0 0;padding-top:12px;border-top:1px dashed var(--line)}
   .exp b{color:var(--amb)}
+  /* plano de ação + animação da janela */
+  .anim{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 22px 18px;margin-bottom:34px}
+  .an-top{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-bottom:26px}
+  .clk{display:flex;align-items:center;gap:10px;font-size:.88rem;color:var(--mut)} .clk b{color:var(--amb)}
+  .dial{position:relative;width:42px;height:42px;border-radius:50%;border:3px solid var(--c-old)}
+  .dial.now{border-color:var(--c-now)}
+  .hand{position:absolute;left:50%;bottom:50%;width:3px;height:15px;margin-left:-1.5px;border-radius:2px;background:var(--txt);transform-origin:50% 100%}
+  .anim.run .hand.slow{animation:spin 3s linear infinite} .anim.run .hand.fast{animation:spin 1.765s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .replay{margin-left:auto;background:var(--bg2);border:1px solid var(--line);color:var(--txt);border-radius:10px;padding:.45em .9em;cursor:pointer;font:600 .85rem Sora,sans-serif}
+  .replay:hover{border-color:var(--amb)}
+  .an-axis{position:relative;height:34px;margin:0 8% 6px 150px;border-bottom:1px solid var(--line);font-size:.74rem;color:var(--mut)}
+  .an-axis span{position:absolute;bottom:4px;transform:translateX(-50%);text-align:center;line-height:1.15;white-space:nowrap}
+  .an-axis span:first-child{transform:none}
+  .trk2{display:grid;grid-template-columns:140px minmax(0,1fr);gap:10px;align-items:center;margin:18px 8% 0 0}
+  .trk2 .lbl{font:600 .82rem Sora,sans-serif;color:var(--mut)}
+  .lane{position:relative;height:30px;background:var(--bg2);border-radius:8px;margin-bottom:46px}
+  .fill{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:8px}
+  .fill.old{background:var(--c-old)} .fill.now{background:var(--c-now)}
+  .zone{position:absolute;top:-4px;bottom:-4px;background:repeating-linear-gradient(45deg,rgba(226,162,59,.35) 0 5px,transparent 5px 10px);border:1px dashed var(--c-now);border-radius:6px}
+  .pin{position:absolute;top:-6px;bottom:-6px;border-left:3px solid var(--c-old);opacity:.25;transition:opacity .4s}
+  .pin.now{border-color:var(--c-now)} .pin.on{opacity:1}
+  .pin em{position:absolute;top:100%;margin-top:4px;font-style:normal;font-size:.72rem;font-weight:600;white-space:nowrap;transform:translateX(-100%);color:var(--txt)}
+  .pin.now em{transform:none;left:4px}
+  .pin small{position:absolute;bottom:100%;margin-bottom:2px;font-size:.72rem;color:var(--mut);white-space:nowrap;transform:translateX(-50%)}
+  .cnt{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:.8rem;color:#fff;font-weight:600;white-space:nowrap;text-shadow:0 1px 3px rgba(0,0,0,.6)}
+  .cnt b{font:800 1.05rem Sora,sans-serif}
+  .an-cap{color:var(--mut);font-size:.9rem;margin:0}
+  .vs{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .vcol{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+  .vcol.old{border-top:4px solid var(--c-old)} .vcol.now{border-top:4px solid var(--c-now)}
+  .vcol .tag{font:600 .74rem Sora,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+  .vcol h3{font-family:Sora;margin:.4em 0 .7em;font-size:1.1rem}
+  .vcol ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:8px;color:var(--mut);font-size:.9rem}
+  .vcol li b{color:var(--txt)}
+  .steps2{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+  .st{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:6px;font-size:.86rem}
+  .st .when{font:800 .78rem Sora,sans-serif;color:var(--amb);text-transform:uppercase;letter-spacing:.05em}
+  .st b{font-family:Sora;font-size:.98rem} .st>span:last-child{color:var(--mut)}
+  .st code{font-size:.8rem;color:var(--amb2)}
+  @media(max-width:1000px){.steps2{grid-template-columns:1fr 1fr}}
+  @media(max-width:700px){.vs,.steps2{grid-template-columns:1fr}
+    .an-axis{margin-left:0;margin-right:12%} .trk2{grid-template-columns:1fr;gap:24px;margin-right:12%}}
 </style>
 </head>
 <body>
@@ -210,6 +253,7 @@
     <a class="sec" href="#graficos">Gráficos</a>
     <a class="sec" href="#exemplos">Números</a>
     <a class="sec" href="#video">Vídeo</a>
+    <a class="sec" href="#acao">Plano de ação</a>
     <a class="sec" href="#roadmap">Roadmap</a>
     <span class="lang"><a class="on" href="./">PT</a><a href="en/">EN</a><a href="es/">ES</a></span>
     <button class="tgl" id="themeToggle" aria-label="Alternar tema" title="Alternar tema">🌙</button>
@@ -563,6 +607,66 @@
   <p class="mut" style="margin-top:12px"><a href="https://www.youtube.com/watch?v=PoPJ2SLFjsM" target="_blank" rel="noopener">▶ Assistir no YouTube</a> · <a href="https://inematds.github.io/relogio-2027/videos/">Player com legendas e capítulos</a></p>
 </div></section>
 
+<section id="acao"><div class="wrap">
+  <span class="chip">Análise final · plano de ação</span>
+  <h2>A janela para se preparar <span class="amb">encolheu</span></h2>
+  <p class="sub">Juntando tudo: o que fazer com essa informação. Primeiro como era a visão antes da atualização, depois como fica agora que a IA está acelerando. Esta parte é a análise do INEMA a partir dos números dos relatórios.</p>
+
+  <div class="anim" id="janela" aria-label="Animação: o tempo até a IA pesquisadora sobre-humana caiu de cerca de 25 meses para 6 a 12 meses">
+    <div class="an-top">
+      <div class="clk"><div class="dial"><i class="hand slow"></i></div><span>Antes: ritmo normal</span></div>
+      <div class="clk"><div class="dial now"><i class="hand fast"></i></div><span>Agora: <b>1,7x</b> mais rápido</span></div>
+      <button type="button" class="replay" aria-label="Rever a animação">↻ Rever</button>
+    </div>
+    <div class="an-axis"><span style="left:0">hoje<br><small>nov/2026</small></span><span style="left:53.8%">2028</span><span style="left:100%">2029</span></div>
+    <div class="trk2">
+      <div class="lbl">Visão até ago/2026</div>
+      <div class="lane"><div class="fill old"></div><div class="pin" style="left:96.2%"><em>IA pesquisadora sobre-humana</em><small>dez/2028</small></div><div class="cnt old" data-to="25">≈ <b>0</b> meses para se preparar</div></div>
+    </div>
+    <div class="trk2">
+      <div class="lbl">Visão agora (nov/2026)</div>
+      <div class="lane"><div class="zone" style="left:23.1%;width:23.1%"></div><div class="fill now"></div><div class="pin now" style="left:23.1%"><em>IA pesquisadora sobre-humana</em><small>mai a nov/2027</small></div><div class="cnt now" data-to="12">6 a <b>0</b> meses para se preparar</div></div>
+    </div>
+    <p class="an-cap">Os dois relógios andam juntos, mas o de baixo anda 1,7x mais rápido. Resultado: a data em que a IA passa a fazer pesquisa melhor que os melhores humanos chegou <strong>mais de um ano</strong> para perto, e o tempo para se adaptar caiu de uns <strong>2 anos</strong> para <strong>6 a 12 meses</strong>.</p>
+  </div>
+
+  <div class="vs">
+    <div class="vcol old"><span class="tag">Visão inicial (2025 até ago/2026)</span>
+      <h3>"Dá tempo de aprender com calma"</h3>
+      <ul>
+        <li><b>Prazo:</b> IA pesquisadora sobre-humana lá por <strong>fim de 2028</strong>; para a maioria das previsões, depois de 2030.</li>
+        <li><b>Leitura comum:</b> a IA ajuda em tarefas soltas; a pessoa continua fazendo o grosso do trabalho.</li>
+        <li><b>Plano que fazia sentido:</b> acompanhar as notícias, testar ferramentas aos poucos ao longo de 2027, pensar em mudar de função até 2028.</li>
+        <li><b>Risco de esperar:</b> baixo.</li>
+      </ul>
+    </div>
+    <div class="vcol now"><span class="tag">Visão agora (nov/2026)</span>
+      <h3>"Aprender fazendo, a partir de já"</h3>
+      <ul>
+        <li><b>Prazo:</b> os seis autores põem a IA pesquisadora sobre-humana em <strong>2027</strong> (maio a novembro); TED-AI, que faz quase todo trabalho de escritório melhor que especialistas, entre set/2027 e set/2028.</li>
+        <li><b>O que já acontece:</b> a IA <strong>conduz</strong> 26% da pesquisa numa empresa de ponta; a pessoa revisa e decide.</li>
+        <li><b>Plano que faz sentido:</b> passar tarefas inteiras para a IA agora e treinar o que continua sendo seu: decidir, conferir, assumir a responsabilidade e lidar com pessoas.</li>
+        <li><b>Risco de esperar:</b> alto. Quem começa em 2028 começa atrasado.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="h3o" style="margin-top:40px">O plano, passo a passo</h3>
+  <p class="sub">Vale mesmo se a previsão errar: se a IA for mais devagar, você só ganhou tempo e habilidade. É um plano "sem arrependimento".</p>
+  <div class="steps2">
+    <div class="st"><span class="when">Esta semana</span><b>Veja onde você está</b><span>Liste as 10 tarefas que mais ocupam a sua semana e rode a escada do kit (<code>minha-escada.py</code>). Ela diz em que nível de 1 a 5 cada tarefa está e quanto a IA já poderia liderar.</span></div>
+    <div class="st"><span class="when">Este mês</span><b>Passe uma tarefa inteira por semana</b><span>Escolha a tarefa mais repetitiva e deixe a IA fazer do começo ao fim; você só revisa. Anote o tempo antes e depois. Quatro semanas, quatro tarefas.</span></div>
+    <div class="st"><span class="when">Até março de 2027</span><b>Aprenda a dirigir, não a digitar</b><span>A habilidade que sobe de valor é pedir bem, conferir o resultado e corrigir a IA. Treine com agentes que executam tarefas, não só com chat.</span></div>
+    <div class="st"><span class="when">Até meados de 2027</span><b>Mude o que você entrega</b><span>Menos execução, mais critério: escolher o que fazer, responder pelo resultado, cuidar do cliente e da equipe. Tenha uma reserva e um plano B para a sua função.</span></div>
+    <div class="st"><span class="when">Todo mês</span><b>Confira os sinais</b><span>Atualize os números com <code>sinais.py</code>. Se desacelerarem, você relaxa um pouco; se continuarem acelerando, você já está do lado certo.</span></div>
+  </div>
+
+  <div class="aj-em" style="margin-top:26px">
+    <b>E o que os autores pedem?</b> Para governos e empresas, eles dizem que, se a IA pesquisadora sobre-humana vier em 2027, é <strong>urgente</strong> desacelerar o desenvolvimento das IAs mais avançadas, de preferência com uma pausa da indústria seguida de um acordo internacional. Isso não depende de você. O que depende de você está no plano acima.
+    <small>Previsões têm muita incerteza e os próprios autores já erraram para os dois lados. Use as datas como alerta, não como certeza.</small>
+  </div>
+</div></section>
+
 <section id="roadmap"><div class="wrap">
   <span class="chip">Roadmap</span>
   <h2>Próximos passos</h2>
@@ -592,6 +696,21 @@
       localStorage.setItem(KEY, light?'light':'dark');
     });
   })();
+</script>
+<script>
+(function(){var A=document.getElementById('janela');if(!A)return;
+var fo=A.querySelector('.fill.old'),fn=A.querySelector('.fill.now'),po=A.querySelector('.pin:not(.now)'),pn=A.querySelector('.pin.now'),
+co=A.querySelector('.cnt.old b'),cn=A.querySelector('.cnt.now b'),D=6000,raf,t0;
+var red=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+function draw(p){var w=96.2*p,wn=Math.min(w,46.2);fo.style.width=w+'%';fn.style.width=wn+'%';
+ co.textContent=Math.round(w/96.2*25);cn.textContent=Math.round(wn/46.2*12);
+ po.classList.toggle('on',p>=1);pn.classList.toggle('on',w>=23.1);}
+function step(t){if(!t0)t0=t;var p=Math.min((t-t0)/D,1);draw(p);if(p<1)raf=requestAnimationFrame(step);}
+function play(){cancelAnimationFrame(raf);t0=0;if(red){draw(1);return;}A.classList.add('run');raf=requestAnimationFrame(step);}
+draw(red?1:0);
+A.querySelector('.replay').addEventListener('click',play);
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){play();io.disconnect();}},{threshold:.4});io.observe(A);}else play();
+})();
 </script>
 </body>
 </html>
