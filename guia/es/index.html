@@ -169,6 +169,27 @@
     .ajrow{grid-template-columns:1fr 1fr;gap:8px 14px}
     .ajrow>span:first-child{grid-column:1/-1}
     .ajrow .dif{grid-column:1/-1}}
+  /* cenário original com projeções por cima + explicações */
+  .cen{margin-bottom:52px}
+  .kbox{display:flex;flex-direction:column;gap:7px;background:var(--card);border:1px solid var(--line);border-left:3px solid var(--amb);border-radius:12px;padding:16px 18px;margin:0 0 22px;font-size:.9rem}
+  .kbox span{color:var(--mut)} .kbox i:not(.sw){font-style:normal;color:var(--txt);font-weight:600}
+  .kbox .sw{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:7px;vertical-align:-1px}
+  .ov{position:relative;background:#fff}
+  .ov .pa{position:absolute;left:0;right:0;pointer-events:none}
+  .ov .vl{position:absolute;top:0;bottom:0;border-left:3px dashed #16a34a}
+  .ov .vl.old{border-left-color:#2563eb}
+  .ov .band{position:absolute;top:0;bottom:0;background:rgba(226,162,59,.32);border-left:2px solid #d97706;border-right:2px solid #d97706}
+  .ov .band.ted{background:repeating-linear-gradient(45deg,rgba(147,51,234,.22) 0 6px,rgba(147,51,234,.08) 6px 12px);border-color:#9333ea}
+  .ov em,.mk em{font-style:normal;display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;font:800 .75rem Sora,sans-serif;color:#fff;background:#16a34a}
+  .ov em{position:absolute;top:-4px;left:50%;transform:translateX(-50%);box-shadow:0 1px 4px rgba(0,0,0,.35)}
+  .ov .vl em{left:-1.5px}
+  .ov .vl.old em,.mk em.old{background:#2563eb}
+  .ov .band em,.mk em.band{background:#d97706} .ov .band.ted em,.mk em.ted{background:#9333ea}
+  .mk{list-style:none;margin:2px 0;padding:0;display:flex;flex-direction:column;gap:6px;color:var(--mut)}
+  .mk li{position:relative;padding-left:30px;min-height:22px} .mk li>em{position:absolute;left:0;top:1px}
+  .ov .band em{top:auto;bottom:6px}
+  .exp{color:var(--mut);font-size:.86rem;margin:12px 0 0;padding-top:12px;border-top:1px dashed var(--line)}
+  .exp b{color:var(--amb)}
 </style>
 </head>
 <body>
@@ -335,7 +356,62 @@
     </a>
   </div>
 
-  <h3 class="h3o">Los gráficos del informe, explicados</h3>
+  <div id="cenario" class="cen">
+  <h3 class="h3o">Los gráficos del escenario original (2025), con las nuevas proyecciones superpuestas</h3>
+  <p class="sub">Estos son gráficos del sitio <a href="https://ai-2027.com/" target="_blank" rel="noopener">ai-2027.com</a>, publicados en abril de 2025. Sobre cada uno agregamos marcas con lo que dice ahora la actualización de noviembre de 2026. Las marcas están numeradas; la leyenda está debajo de la imagen.</p>
+  <div class="kbox"><b>Antes de leer: tres siglas</b>
+    <span><i>Programador sobrehumano</i> (Superhuman Coder): una IA que programa mejor y más rápido que el mejor programador de la empresa.</span>
+    <span><i>SAR</i> (Superhuman AI Researcher, investigador de IA sobrehumano): el siguiente paso. La IA no solo programa, también decide qué investigar, y es mejor en eso que el mejor equipo humano. Viene <strong>después</strong> del programador sobrehumano.</span>
+    <span><i>TED-AI</i>: IA mejor que los mejores especialistas en casi todo el trabajo de oficina.</span>
+  </div>
+
+  <div class="origs">
+    <figure class="orig">
+      <div class="ov"><a href="../assets/ai2027/coder.jpg" target="_blank" rel="noopener"><img src="../assets/ai2027/coder.jpg" alt="Gráfico original de AI 2027: cuándo llega el programador sobrehumano, con marcas de las nuevas proyecciones" loading="lazy"></a>
+        <div class="pa" style="top:5.4%;height:80.55%">
+          <div class="vl hoje" style="left:25.4%"><em>1</em></div>
+          <div class="band" style="left:29.5%;width:3.79%"><em>2</em></div>
+          <div class="vl old" style="left:41.62%"><em>3</em></div>
+        </div>
+      </div>
+      <figcaption><b>A. Cuándo llega el programador sobrehumano (previsión de 2025)</b>
+        <span><i>Qué muestra:</i> cada «colina» es la apuesta de un grupo de pronosticadores sobre el año en que la IA se convierte en el mejor programador. Cuanto más alta la colina en un año, más probable es que ocurra ese año. En 2025, el autor Eli apostaba por la mitad del camino en <strong>dic/2028</strong>.</span>
+        <ol class="mk"><li><em class="hoje">1</em> Hoy: noviembre de 2026.</li><li><em class="band">2</em> Nueva previsión (nov/2026) de los seis autores para el <strong>SAR</strong>: entre mayo y noviembre de 2027.</li><li><em class="old">3</em> Apuesta de Eli en 2025 para el programador sobrehumano: dic/2028.</li></ol>
+        <span><i>En la práctica:</i> el SAR viene <strong>después</strong> del programador sobrehumano y, aun así, la nueva previsión para el SAR (2) cayó antes que la antigua apuesta para el programador (3). Es decir: todo se adelantó más de un año.</span></figcaption>
+    </figure>
+    <figure class="orig">
+      <div class="ov"><a href="../assets/ai2027/takeoff.jpg" target="_blank" rel="noopener"><img src="../assets/ai2027/takeoff.jpg" alt="Gráfico original de AI 2027: el despegue después del programador sobrehumano, con marcas de las nuevas proyecciones" loading="lazy"></a>
+        <div class="pa" style="top:9.7%;height:78.24%">
+          <div class="band" style="left:14.99%;width:8.8%"><em>1</em></div>
+          <div class="vl old" style="left:17.99%"><em>2</em></div>
+          <div class="band ted" style="left:20.98%;width:17.61%"><em>3</em></div>
+        </div>
+      </div>
+      <figcaption><b>B. El «despegue»: del investigador sobrehumano a la superinteligencia</b>
+        <span><i>Qué muestra:</i> el escenario más rápido de AI 2027, que suponía un programador sobrehumano en mar/2027. A partir de ahí, tres colinas: el SAR (rojo, mitad del camino en jul/2027), la IA investigadora superinteligente (verde, nov/2027) y la superinteligencia (azul, abr/2028).</span>
+        <ol class="mk"><li><em class="band">1</em> Nueva previsión de los autores para el SAR: de mayo a noviembre de 2027 (Daniel: mayo).</li><li><em class="old">2</em> Mitad del camino del SAR en el escenario de 2025: julio de 2027.</li><li><em class="band ted">3</em> Nueva previsión para la TED-AI: de septiembre de 2027 (Daniel) a septiembre de 2028 (Eli).</li></ol>
+        <span><i>En la práctica:</i> en 2025 este era el camino «demasiado rápido para creerlo». Ahora las nuevas previsiones caen <strong>encima de él</strong>. De ahí el título de la actualización: «la explosión de inteligencia ocurrirá en 2027, después de todo».</span></figcaption>
+    </figure>
+    <figure class="orig">
+      <div class="ov"><a href="../assets/ai2027/tarefas.jpg" target="_blank" rel="noopener"><img src="../assets/ai2027/tarefas.jpg" alt="Gráfico original de AI 2027: tamaño de las tareas que la IA hace sola, con marcas" loading="lazy"></a>
+        <div class="pa" style="top:8.17%;height:73.73%">
+          <div class="vl old" style="left:70.2%"><em>1</em></div>
+          <div class="vl hoje" style="left:83.03%"><em>2</em></div>
+        </div>
+      </div>
+      <figcaption><b>C. Cuánto tiempo de trabajo hace la IA sola</b>
+        <span><i>Qué muestra:</i> cada punto es un modelo de IA. La altura indica el tamaño de la tarea de programación que termina por sí solo (desde 8 segundos hasta 5 años de trabajo humano; cada escalón del eje es mucho mayor que el anterior). Las líneas punteadas eran las apuestas de 2025; la roja es la que coincide con AI 2027.</span>
+        <ol class="mk"><li><em class="old">1</em> Octubre de 2025: METR midió que, a partir de entonces, la capacidad de los modelos empezó a crecer <strong>1,9x más rápido</strong>.</li><li><em class="hoje">2</em> Hoy: noviembre de 2026.</li></ol>
+        <span><i>En la práctica:</i> la actualización no redibujó este gráfico, pero la nueva medición (gráfico 3, más abajo) muestra que la curva se vuelve más inclinada desde octubre de 2025. Eso es lo que empuja la realidad hacia el lado de las líneas más rápidas.</span></figcaption>
+    </figure>
+    <figure class="orig">
+      <a href="../assets/ai2027/preco.jpg" target="_blank" rel="noopener"><img src="../assets/ai2027/preco.jpg" alt="Gráfico original citado por AI 2027: caída del precio de la IA" loading="lazy"></a>
+      <figcaption><b>D. La IA se abarata muy rápido</b>
+        <span><i>Qué muestra:</i> el precio por usar una IA de cierto nivel (por millón de tokens, los fragmentos de palabras que la IA lee y escribe), de 2021 a 2025. Cada línea descendente representa un nivel de inteligencia. El eje va de 100 dólares a 10 centavos, y se divide por 10 en cada escalón.</span>
+        <span><i>En la práctica:</i> el mismo nivel de inteligencia se vuelve de <strong>9 a 900 veces más barato al año</strong>. Por eso se acelera la carrera: lo que el año pasado costaba caro, al siguiente casi es gratis y puede ejecutarse millones de veces.</span></figcaption>
+    </figure>
+  </div>
+  </div>  <h3 class="h3o">Los gráficos del informe, explicados</h3>
   <p class="sub">Son los gráficos originales (por eso están en inglés). Debajo de cada uno: qué muestra y qué significa en la vida real. Haz clic en la imagen para verla en grande.</p>
   <div class="origs">
     <figure class="orig">
@@ -402,6 +478,12 @@
   <span class="chip">Los gráficos</span>
   <h2>Antes × ahora, <span class="amb">en cuatro gráficos</span></h2>
   <p class="sub">Comparaciones con las cifras de la actualización del 10/11/2026. Barra lisa = medido o previsión; barra rayada = proyección (prolongación de la curva). Pase el cursor para ver el valor.</p>
+  <div class="kbox"><b>Cómo leer estos cuatro gráficos</b>
+    <span><i class="sw sw-now"></i><strong>Ámbar</strong> = lo que aplica ahora o lo que ya se midió.</span>
+    <span><i class="sw sw-old"></i><strong>Azul</strong> = el pronóstico anterior o lo que decía el escenario AI 2027.</span>
+    <span><i class="sw sw-proj"></i><strong>Barra rayada</strong> = proyección: extender la curva hacia el futuro. Puede que no se cumpla.</span>
+    <span>Pasa el cursor (o toca) sobre una barra para ver el valor exacto. Todos los números provienen de la actualización del 10/11/2026 y de la medición de METR.</span>
+  </div>
   <div class="charts">
    <div class="chart"><h3>La previsión avanzó 19 meses</h3><p class="cap">Meses a partir de noviembre de 2026.</p>
     <div class="hb" role="img" aria-label="Previsiones de antes y de ahora, en meses a partir de noviembre de 2026">
@@ -413,6 +495,7 @@
       <div class="row"><span>En la realidad</span><div class="trk" title="En la realidad: noviembre de 2026"><div class="bar now" style="--w:0.4%;width:0.4%"><b>nov/2026</b></div></div></div>
     </div>
     <div class="leg"><span><i class="sw-old"></i>antes / escenario</span><span><i class="sw-now"></i>ahora / medido</span></div>
+    <p class="exp"><b>Qué significa:</b> en agosto de 2026, el pronóstico más optimista (de Daniel) para una IA investigadora mejor que cualquier humano era diciembre de 2028. Tres meses después, pasó a mayo de 2027: la fecha se adelantó <strong>19 meses</strong>. Y la aceleración de 1,7x, que en el escenario solo se alcanzaba en abril de 2027, se midió ahora, en noviembre de 2026: <strong>5 meses antes</strong>.</p>
    </div>
    <div class="chart"><h3>Claude ya lidera el 26% de la investigación</h3><p class="cap">Porcentaje de la investigación de modelos de Anthropic en que la IA lidera (2026) y proyección de automatización total (2027).</p>
     <div class="vb" role="img" aria-label="Porcentaje de la investigación de modelos liderada por Claude">
@@ -427,6 +510,7 @@
     </div>
     <div class="vx"><span>mar</span><span>may</span><span>jun</span><span>jul</span><span>ago/26</span><span class="gap"></span><span>jun/27</span><span>nov/27</span></div>
     <div class="leg"><span><i class="sw-now"></i>medido</span><span><i class="sw-proj"></i>proyección</span></div>
+    <p class="exp"><b>Qué significa:</b> cada barra representa la proporción de la investigación de Anthropic en la que Claude dirige el trabajo y la persona solo lo revisa. Subió mes a mes: 1% en marzo, 12% en mayo, 14% en junio, 22% en julio y <strong>26% en agosto de 2026</strong>. Las dos barras rayadas son la continuación de la curva: 50% de la investigación totalmente automática en junio de 2027 y 95% en noviembre de 2027.</p>
    </div>
    <div class="chart"><h3>La productividad de los investigadores se duplica cada ~3,4 meses</h3><p class="cap">Cuántas veces más rápido trabaja el investigador con IA (escala logarítmica: cada paso es 10x).</p>
     <div class="hb" role="img" aria-label="Aumento de la productividad de los investigadores, escala logarítmica">
@@ -436,6 +520,7 @@
       <div class="row"><span>ago/2028</span><div class="trk" title="Agosto de 2028: ~1.000x (proyección)"><div class="bar proj" style="--w:78.0%;width:78.0%"><b>1.000x</b></div></div></div>
     </div>
     <div class="leg"><span><i class="sw-now"></i>medido</span><span><i class="sw-proj"></i>proyección</span></div>
+    <p class="exp"><b>Qué significa:</b> "12x" es cuánto más rápido dice trabajar un investigador de Anthropic con la IA (septiembre de 2026). Ese número <strong>se duplica cada ~3,4 meses</strong>. Si continúa: 30x en marzo de 2027, 100x en septiembre de 2027 y 1.000x en agosto de 2028. Las barras usan una escala de "potencias de 10" (1x, 10x, 100x, 1.000x); de lo contrario, las más pequeñas ni aparecerían.</p>
    </div>
    <div class="chart"><h3>Cinco años de progreso en uno</h3><p class="cap">Años de progreso de IA por año calendario (1 = promedio de 2024–2025).</p>
     <div class="vb" role="img" aria-label="Años de progreso de IA por año">
@@ -445,6 +530,7 @@
     </div>
     <div class="vx"><span>2025</span><span>2026</span><span>2027</span></div>
     <div class="leg"><span><i class="sw-now"></i>medido</span><span><i class="sw-proj"></i>proyección</span></div>
+    <p class="exp"><b>Qué significa:</b> 1,0 es cuánto avanzaba la IA en un año normal (promedio de 2024–2025). En 2026 fue 1,4: un año rindió como un año y cuatro meses. Para <strong>2027</strong>, el cálculo da <strong>de 4,2 a 4,9 años</strong> de progreso en 12 meses, porque la IA empieza a acelerar su propia investigación.</p>
    </div>
   </div>
 </div></section>
