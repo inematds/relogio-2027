@@ -56,6 +56,9 @@
   .tgl:hover{border-color:var(--amb)}
   .btn{display:inline-block;background:var(--amb);color:#1a1206;font-weight:600;padding:.6em 1.05em;border-radius:10px;font-family:Sora}
   .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+  nav .links a.sec{white-space:nowrap}
+  @media(max-width:1300px){nav .links{gap:14px;font-size:.86rem} nav .links a.sec[href="#fluxo"],nav .links a.sec[href="#roadmap"]{display:none}}
+  @media(max-width:1060px){nav .links a.sec[href="#exemplos"],nav .links a.sec[href="#pre"],nav .links a.sec[href="#video"]{display:none}}
   @media(max-width:760px){nav .links a.sec{display:none}}
   @media(max-width:520px){nav .wrap{gap:8px;padding:8px 14px;height:auto;flex-wrap:wrap} nav .links{gap:8px;margin-left:0;width:100%;justify-content:space-between} nav .btn{padding:.45em .7em;font-size:.82rem} .tgl{width:34px;height:34px}}
   .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
@@ -136,6 +139,36 @@
   .vb .gap{flex:0 0 14px;align-self:center;color:var(--mut);text-align:center}
   .vx{display:flex;gap:6px;font-size:.72rem;color:var(--mut);margin-top:6px}
   .vx span{flex:1;text-align:center} .vx .gap{flex:0 0 14px}
+  /* relatórios originais + gráficos originais + ajuste */
+  .reps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-bottom:46px}
+  .rep{display:flex;flex-direction:column;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;color:var(--txt)}
+  .rep:hover{border-color:var(--amb)}
+  .rep .tag{font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--amb);font-family:Sora;font-weight:600}
+  .rep strong{font-family:Sora;font-size:1.25rem}
+  .rep span{color:var(--mut);font-size:.93rem}
+  .rep em{font-style:normal;color:var(--amb);font-weight:600;font-size:.88rem;margin-top:auto}
+  .h3o{font-family:Sora;font-size:1.35rem;margin:0 0 .2em}
+  .origs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+  .orig{margin:0;background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+  .orig img{display:block;width:100%;height:auto;background:#fff}
+  .orig figcaption{padding:16px 18px;display:flex;flex-direction:column;gap:8px;font-size:.9rem}
+  .orig figcaption b{font-family:Sora;font-size:1.02rem}
+  .orig figcaption span{color:var(--mut)} .orig figcaption i{font-style:normal;color:var(--amb);font-weight:600}
+  .ajuste{margin-top:52px}
+  .aj{border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  .ajrow{display:grid;grid-template-columns:1.5fr 1fr 1fr .9fr;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line);align-items:center;font-size:.92rem}
+  .ajrow:last-child{border-bottom:none}
+  .ajrow small{display:block;color:var(--mut);font-size:.78rem;font-weight:400}
+  .ajhead{background:var(--bg2);font-family:Sora;font-weight:600;color:var(--amb);font-size:.8rem;text-transform:uppercase;letter-spacing:.06em}
+  .ajrow .old{color:var(--c-old);font-weight:600} .ajrow .now{color:var(--c-now);font-weight:700}
+  .ajrow .dif{font-family:Sora;font-weight:800;color:var(--amb)}
+  .aj-em{margin-top:18px;background:rgba(226,162,59,.08);border:1px solid rgba(226,162,59,.35);border-radius:14px;padding:18px 20px}
+  .aj-em small{display:block;color:var(--mut);margin-top:10px;font-size:.82rem}
+  @media(max-width:820px){.reps,.origs{grid-template-columns:1fr}
+    .ajhead{display:none}
+    .ajrow{grid-template-columns:1fr 1fr;gap:8px 14px}
+    .ajrow>span:first-child{grid-column:1/-1}
+    .ajrow .dif{grid-column:1/-1}}
 </style>
 </head>
 <body>
@@ -152,6 +185,7 @@
     <a class="sec" href="#oque">Qué es</a>
     <a class="sec" href="#fluxo">Cómo funciona</a>
     <a class="sec" href="#guia">Guía de uso</a>
+    <a class="sec" href="#relatorios">Informes</a>
     <a class="sec" href="#graficos">Gráficos</a>
     <a class="sec" href="#exemplos">Números</a>
     <a class="sec" href="#video">Vídeo</a>
@@ -282,7 +316,89 @@
   </div></div>
 </div></section>
 
-<section id="graficos"><div class="wrap">
+<section id="relatorios"><div class="wrap">
+  <span class="chip">Los informes originales</span>
+  <h2>De dónde salen las cifras: <span class="amb">los dos informes</span></h2>
+  <p class="sub">Todo en este kit proviene de dos textos públicos, escritos por el mismo grupo de investigadores (AI Futures Project, liderado por Daniel Kokotajlo). Ambos están en inglés; a continuación explicamos cada gráfico en español sencillo.</p>
+  <div class="reps">
+    <a class="rep" href="https://ai-2027.com/" target="_blank" rel="noopener">
+      <span class="tag">1 · El escenario · abril de 2025</span>
+      <strong>AI 2027</strong>
+      <span>Una historia, mes a mes, de cómo la IA podría volverse más inteligente que nosotros para 2027. No es una profecía: es un «¿y si todo sigue a este ritmo?».</span>
+      <em>ai-2027.com ↗</em>
+    </a>
+    <a class="rep" href="https://blog.ai-futures.org/p/q35-timelines-update-looks-like-the" target="_blank" rel="noopener">
+      <span class="tag">2 · La actualización · 10 de noviembre de 2026</span>
+      <strong>Q3.5 Timelines Update</strong>
+      <span>Los mismos autores compararon la historia con lo que realmente ocurrió. Conclusión: la realidad va unos 5 meses <strong>por delante</strong> del escenario.</span>
+      <em>blog.ai-futures.org ↗</em>
+    </a>
+  </div>
+
+  <h3 class="h3o">Los gráficos del informe, explicados</h3>
+  <p class="sub">Son los gráficos originales (por eso están en inglés). Debajo de cada uno: qué muestra y qué significa en la vida real. Haz clic en la imagen para verla en grande.</p>
+  <div class="origs">
+    <figure class="orig">
+      <a href="../assets/orig/trajetoria.jpg" target="_blank" rel="noopener"><img src="../assets/orig/trajetoria.jpg" alt="Gráfico original: trayectoria similar a AI 2027" loading="lazy"></a>
+      <figcaption><b>1. El ritmo que preveía el escenario</b>
+        <span><i>Qué muestra:</i> tres líneas que suben lentamente y luego se disparan. La azul («Pace of progress») es la velocidad del progreso de la IA. En el escenario AI 2027, llegaba a <strong>1.7x</strong> (70 % más rápido de lo normal) recién en <strong>abril de 2027</strong>.</span>
+        <span><i>En la práctica:</i> ese 1.7x ya se midió ahora, en <strong>noviembre de 2026</strong>. De ahí viene lo de «5 meses adelantados».</span></figcaption>
+    </figure>
+    <figure class="orig">
+      <a href="../assets/orig/carro.jpg" target="_blank" rel="noopener"><img src="../assets/orig/carro.jpg" alt="Ilustración original: auto subiendo una cuesta" loading="lazy"></a>
+      <figcaption><b>2. Por qué el motor necesita ser 5x más potente</b>
+        <span><i>Qué muestra:</i> un auto en una cuesta. La cuesta representa la dificultad: cada nuevo descubrimiento es más difícil que el anterior. Para que el auto suba <strong>1.7x</strong> más rápido, el motor (la ayuda de la IA a los programadores) necesita ser unas <strong>5x</strong> más potente.</span>
+        <span><i>En la práctica:</i> ver «solo» 1.7x en el resultado significa que la IA ya está haciendo mucho esfuerzo detrás de escena.</span></figcaption>
+    </figure>
+    <figure class="orig">
+      <a href="../assets/orig/metr.jpg" target="_blank" rel="noopener"><img src="../assets/orig/metr.jpg" alt="Gráfico original de METR: capacidad de los modelos a lo largo del tiempo" loading="lazy"></a>
+      <figcaption><b>3. La medición independiente (METR)</b>
+        <span><i>Qué muestra:</i> cada punto es un modelo de IA de Anthropic (Opus, Sonnet…) con su puntuación de capacidad. Hasta octubre de 2025, los puntos siguen una línea recta; después, la línea se vuelve más inclinada.</span>
+        <span><i>En la práctica:</i> un grupo externo (METR) midió que Anthropic empezó a progresar <strong>~2x más rápido</strong>. No es una opinión de los autores: es una medición.</span></figcaption>
+    </figure>
+    <figure class="orig">
+      <a href="../assets/orig/claude26.jpg" target="_blank" rel="noopener"><img src="../assets/orig/claude26.jpg" alt="Gráfico original: Claude lidera el 26 % de la investigación de modelos" loading="lazy"></a>
+      <figcaption><b>4. La IA ya dirige el 26 % de la investigación</b>
+        <span><i>Qué muestra:</i> las franjas de colores representan niveles de uso de la IA en la investigación de Anthropic, desde «sin IA» (claro) hasta «totalmente automático» (oscuro). La parte naranja intensa es donde <strong>la IA lidera</strong> y la persona solo revisa.</span>
+        <span><i>En la práctica:</i> pasó de <strong>1 % en marzo</strong> a <strong>26 % en agosto de 2026</strong>. En cinco meses, la IA pasó a conducir una cuarta parte del trabajo.</span></figcaption>
+    </figure>
+    <figure class="orig">
+      <a href="../assets/orig/ganho.jpg" target="_blank" rel="noopener"><img src="../assets/orig/ganho.jpg" alt="Gráfico original: el rendimiento de los investigadores se duplica cada 3,4 meses" loading="lazy"></a>
+      <figcaption><b>5. El rendimiento de cada investigador se duplica cada 3,4 meses</b>
+        <span><i>Qué muestra:</i> cuántas veces más rápido trabaja un investigador al usar IA. La escala aumenta de 10 en 10 veces (1x, 10x, 100x, 1,000x). La línea azul es lo que se ha medido hasta hoy; la punteada es la continuación.</span>
+        <span><i>En la práctica:</i> hoy es <strong>12x</strong>. Si el ritmo continúa: 30x en mar/2027, 100x en sep/2027, <strong>1,000x en 2028</strong>. La línea roja es la estimación más conservadora de METR.</span></figcaption>
+    </figure>
+    <figure class="orig">
+      <a href="../assets/orig/logistica.jpg" target="_blank" rel="noopener"><img src="../assets/orig/logistica.jpg" alt="Gráfico original: curva hasta el 95 % de investigación automatizada" loading="lazy"></a>
+      <figcaption><b>6. Cuándo la investigación se vuelve totalmente automática</b>
+        <span><i>Qué muestra:</i> curvas en forma de «S» (empiezan lentamente, suben rápido y se estabilizan). Cada una representa un nivel de automatización. La naranja punteada es la investigación <strong>100 % realizada por la IA</strong>, algo que aún no ha ocurrido: es una predicción.</span>
+        <span><i>En la práctica:</i> si se repite el patrón de las otras curvas, <strong>el 50 %</strong> de la investigación sería totalmente automática en <strong>junio de 2027</strong> y <strong>el 95 %</strong> en <strong>noviembre de 2027</strong>.</span></figcaption>
+    </figure>
+    <figure class="orig">
+      <a href="../assets/orig/anos.jpg" target="_blank" rel="noopener"><img src="../assets/orig/anos.jpg" alt="Gráfico original: años de progreso de la IA por año" loading="lazy"></a>
+      <figcaption><b>7. Cinco años de progreso en un solo año</b>
+        <span><i>Qué muestra:</i> cuánto avanza la IA cada año, en comparación con un año «normal» (1,0 = promedio de 2024–2025). El azul y el rojo representan a dos autores con cálculos un poco diferentes.</span>
+        <span><i>En la práctica:</i> 2026 produjo 1,4 años de progreso. Para <strong>2027</strong>, esperan entre <strong>4,2 y 4,9 años</strong> de avance en 12 meses.</span></figcaption>
+    </figure>
+  </div>
+
+  <div id="ajuste" class="ajuste">
+    <h3 class="h3o">El ajuste: lo que preveía el escenario × lo que está ocurriendo</h3>
+    <p class="sub">Piensa en un viaje. El GPS (el escenario AI 2027) decía que llegarías a cada ciudad en una fecha determinada. Ahora, al mirar la ruta real, los propios autores recalcularon y vieron que estamos llegando <strong>antes</strong>.</p>
+    <div class="aj">
+      <div class="ajrow ajhead"><span>El hito</span><span>Lo que se preveía</span><span>Lo que está ocurriendo</span><span>Diferencia</span></div>
+      <div class="ajrow"><span><b>La IA acelera el progreso 1.7x</b><small>70 % más rápido de lo normal</small></span><span class="old">abril de 2027<small>en el escenario AI 2027</small></span><span class="now">noviembre de 2026<small>ya medido</small></span><span class="dif">5 meses antes</span></div>
+      <div class="ajrow"><span><b>La IA investigadora supera al mejor ser humano</b><small>cuando la IA empieza a crear su propia IA</small></span><span class="old">diciembre de 2028<small>predicción de Daniel en agosto/2026</small></span><span class="now">mayo de 2027<small>predicción actual de Daniel</small></span><span class="dif">19 meses antes</span></div>
+      <div class="ajrow"><span><b>Investigación dirigida por la IA de forma autónoma</b><small>la persona solo revisa</small></span><span class="old">1 %<small>marzo de 2026</small></span><span class="now">26 %<small>agosto de 2026</small></span><span class="dif">26 veces más en 5 meses</span></div>
+      <div class="ajrow"><span><b>Rendimiento de un investigador con IA</b><small>cuántas veces más rápido</small></span><span class="old">12x<small>septiembre de 2026</small></span><span class="now">~100x<small>septiembre de 2027 (proyección)</small></span><span class="dif">se duplica cada 3,4 meses</span></div>
+      <div class="ajrow"><span><b>Progreso de la IA en un año</b><small>1 = un año normal</small></span><span class="old">1,4 años<small>en 2026</small></span><span class="now">4,2 a 4,9 años<small>en 2027 (proyección)</small></span><span class="dif">alrededor de 3x más</span></div>
+    </div>
+    <div class="aj-em">
+      <b>En una frase:</b> el escenario AI 2027 parecía exagerado cuando se publicó; un año y medio después, las cifras reales avanzan <strong>más rápido</strong> que lo previsto. Por eso el kit pregunta: <em>¿y en tu trabajo, también se adelantó el reloj?</em>
+      <small>Atención: «medido» es lo que ya ocurrió; «proyección» es extender la curva y puede no cumplirse. Los propios autores advierten que hay bastante incertidumbre.</small>
+    </div>
+  </div>
+</div></section><section id="graficos"><div class="wrap">
   <span class="chip">Los gráficos</span>
   <h2>Antes × ahora, <span class="amb">en cuatro gráficos</span></h2>
   <p class="sub">Comparaciones con las cifras de la actualización del 10/11/2026. Barra lisa = medido o previsión; barra rayada = proyección (prolongación de la curva). Pase el cursor para ver el valor.</p>
