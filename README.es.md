@@ -1,4 +1,4 @@
-# ⏰ Reloj 2027
+# ⏰ Reloj 2027 — Prepárate: la IA va a superar a los humanos
 
 **🇧🇷 [Português](README.md) · 🇺🇸 [English](README.en.md) · 🇪🇸 [Español](README.es.md)**
 

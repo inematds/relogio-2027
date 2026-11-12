@@ -1,4 +1,4 @@
-# ⏰ Clock 2027
+# ⏰ Clock 2027 — Get ready: AI will surpass humans
 
 **🇧🇷 [Português](README.md) · 🇺🇸 [English](README.en.md) · 🇪🇸 [Español](README.es.md)**
 

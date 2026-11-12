@@ -1,4 +1,4 @@
-# ⏰ Relógio 2027
+# ⏰ Relógio 2027 — Prepare-se: a IA vai superar humanos
 
 **🇧🇷 [Português](README.md) · 🇺🇸 [English](README.en.md) · 🇪🇸 [Español](README.es.md)**
 
