@@ -1,0 +1,14 @@
+{
+  "16x9": {
+    "url": "https://github.com/inematds/relogio-2027/releases/download/video-v1.0.0/ai2027-adiantado-16x9.mp4",
+    "srt": "https://github.com/inematds/relogio-2027/releases/download/video-v1.0.0/ai2027-adiantado-16x9.srt",
+    "youtube": "https://www.youtube.com/watch?v=PoPJ2SLFjsM",
+    "duration": 313.101016
+  },
+  "9x16": {
+    "url": "https://github.com/inematds/relogio-2027/releases/download/video-v1.0.0/ai2027-adiantado-9x16.mp4",
+    "srt": "https://github.com/inematds/relogio-2027/releases/download/video-v1.0.0/ai2027-adiantado-9x16.srt",
+    "youtube": "https://youtube.com/shorts/ukmrqSJVL1k",
+    "duration": 313.101016
+  }
+}

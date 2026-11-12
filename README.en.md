@@ -12,6 +12,10 @@ Clock 2027 is a free kit of three Python scripts for anyone who wants to underst
 
 Complete guide (landing page + step-by-step instructions): **https://inematds.github.io/relogio-2027/guia/en/**
 
+## Video
+
+[Watch on YouTube](https://www.youtube.com/watch?v=PoPJ2SLFjsM) (in Portuguese) · [9:16 Short](https://youtube.com/shorts/ukmrqSJVL1k) · [Player with subtitles and chapters](https://inematds.github.io/relogio-2027/videos/)
+
 ## The thesis in 5 lines
 
 1. On 10/11/2026, the AI Futures Project (authors of the AI 2027 scenario) reported that AI-driven acceleration is already about five months ahead of the scenario.

@@ -12,6 +12,10 @@ Reloj 2027 es un kit gratuito de tres scripts en Python para quienes quieren ent
 
 Guía completa (landing + paso a paso): **https://inematds.github.io/relogio-2027/guia/es/**
 
+## Vídeo
+
+[Ver en YouTube](https://www.youtube.com/watch?v=PoPJ2SLFjsM) (en portugués) · [Short 9:16](https://youtube.com/shorts/ukmrqSJVL1k) · [Reproductor con subtítulos y capítulos](https://inematds.github.io/relogio-2027/videos/)
+
 ## La tesis en 5 líneas
 
 1. El 10/11/2026, AI Futures Project (autores del escenario AI 2027) publicó que la aceleración causada por la IA ya está unos cinco meses por delante del escenario.
