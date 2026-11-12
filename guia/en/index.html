@@ -57,8 +57,7 @@
   .btn{display:inline-block;background:var(--amb);color:#1a1206;font-weight:600;padding:.6em 1.05em;border-radius:10px;font-family:Sora}
   .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
   nav .links a.sec{white-space:nowrap}
-  @media(max-width:1300px){nav .links{gap:14px;font-size:.86rem} nav .links a.sec[href="#fluxo"],nav .links a.sec[href="#roadmap"]{display:none}}
-  @media(max-width:1060px){nav .links a.sec[href="#exemplos"],nav .links a.sec[href="#pre"],nav .links a.sec[href="#video"]{display:none}}
+  @media(max-width:1300px){nav .links{gap:14px;font-size:.86rem}}
   @media(max-width:760px){nav .links a.sec{display:none}}
   @media(max-width:520px){nav .wrap{gap:8px;padding:8px 14px;height:auto;flex-wrap:wrap} nav .links{gap:8px;margin-left:0;width:100%;justify-content:space-between} nav .btn{padding:.45em .7em;font-size:.82rem} .tgl{width:34px;height:34px}}
   .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
@@ -233,6 +232,10 @@
   @media(max-width:1000px){.steps2{grid-template-columns:1fr 1fr}}
   @media(max-width:700px){.vs,.steps2{grid-template-columns:1fr}
     .an-axis{margin-left:0;margin-right:12%} .trk2{grid-template-columns:1fr;gap:24px;margin-right:12%}}
+  /* parte técnica isolada embaixo */
+  .techhead{background:var(--bg2);border-top:3px solid var(--amb);padding:58px 0 8px}
+  .techhead h2{font-family:Sora;margin:.3em 0 0}
+  .techzone{background:var(--bg2)}
 </style>
 </head>
 <body>
@@ -246,15 +249,11 @@
     <a class="pro" href="https://inema.pro" target="_blank" rel="noopener">PRO</a>
   </span>
   <div class="links">
-    <a class="sec" href="#oque">What it is</a>
-    <a class="sec" href="#fluxo">How it works</a>
-    <a class="sec" href="#guia">User guide</a>
+    <a class="sec" href="#video">Video</a>
     <a class="sec" href="#relatorios">Reports</a>
     <a class="sec" href="#graficos">Charts</a>
-    <a class="sec" href="#exemplos">Numbers</a>
-    <a class="sec" href="#video">Video</a>
     <a class="sec" href="#acao">Action plan</a>
-    <a class="sec" href="#roadmap">Roadmap</a>
+    <a class="sec" href="#tecnico">Kit (technical)</a>
     <span class="lang"><a href="../">PT</a><a class="on" href="./">EN</a><a href="../es/">ES</a></span>
     <button class="tgl" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">🌙</button>
     <a class="btn" href="https://github.com/inematds/relogio-2027" target="_blank" rel="noopener">GitHub</a>
@@ -269,116 +268,25 @@
       <h1>Get ready: <span class="amb">AI will surpass humans</span></h1>
       <p class="lead">The authors of the AI 2027 scenario say reality is 5 months ahead and that an AI researcher better than any human should arrive in 2027. This kit recalculates their projections on your machine and measures how much of your work AI already leads.</p>
       <div class="cta">
-        <a class="btn" href="#guia">Start the guide</a>
+        <a class="btn" href="#video">Understand it in 5 minutes</a>
         <a class="btn ghost" href="https://github.com/inematds/relogio-2027" target="_blank" rel="noopener">View on GitHub</a>
       </div>
     </div>
-    <figure><img src="../assets/banner-en.jpg" alt="Clock 2027 banner: AI is 5 months ahead"></figure>
+    <figure><img src="../assets/banner-en.jpg" alt="Clock 2027 — Get ready: AI will surpass humans. A clock whose face becomes a chart: the AI curve crosses the human level in 2027"></figure>
   </div>
 </header>
 
 <section id="resumo" class="resumo"><div class="wrap">
-  <span class="chip">In short</span>
-  <p>Clock 2027 is a free kit of three Python scripts for anyone who wants to understand the speed of AI and prepare without panic. The first recalculates the projections from the November 2026 AI 2027 update and lets you change the assumptions. The second takes your list of tasks, assigns each one an automation level from 1 to 5, and shows how much of your week AI already leads, with a plan for the month. The third records the signals you track month by month. It only requires Python 3; nothing leaves your machine.</p>
+  <span class="chip">In brief</span>
+  <p>In April 2025, a group of researchers published AI 2027, a forecast of how AI could surpass humans by 2027. In November 2026, they checked it against reality: we’re about <strong>5 months ahead</strong>, and everyone now expects AI researchers better than any human by <strong>2027</strong>. This guide explains both reports in plain English, shows the charts, and ends with an <strong>action plan</strong>. At the end, in a separate section, there’s a free kit for anyone who wants to rerun the calculations on their computer.</p>
 </div></section>
 
-<section id="oque"><div class="wrap">
-  <span class="chip">What it is</span>
-  <h2>Three tools, one question: <span class="amb">has the clock moved ahead for you?</span></h2>
-  <p class="sub">On 2026-11-10, the AI Futures Project (<a href="https://blog.ai-futures.org/p/q35-timelines-update-looks-like-the" target="_blank" rel="noopener">read the update</a>) reported that AI-driven acceleration is already about 5 months ahead of the AI 2027 scenario. This kit brings that calculation into your daily life.</p>
-  <figure style="margin:0 0 26px;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000"><img src="../assets/banner-grade-en.jpg" alt="Clock 2027: projection, AL1–AL5 ladder, monthly signals, 30-day plan, human review, and tests" loading="lazy" style="width:100%;display:block"></figure>
-  <div class="grid g3">
-    <div class="card"><h3>📈 Report projection</h3><p><code>projecao.py</code> recalculates two simple extrapolations: researcher output that doubles every ~3.4 months and the fully automated research curve (AL5). You can change the doubling time, starting point, and scenario.</p></div>
-    <div class="card"><h3>🪜 My ladder</h3><p><code>minha-escada.py</code> reads your tasks (hours per week, AL1–AL5 level, critical or not), calculates how much AI already leads, compares it with Anthropic's 26%, and writes a <code>relatorio.md</code> with what to move up and what to review.</p></div>
-    <div class="card"><h3>📡 Monthly signals</h3><p><code>sinais.py</code> compares the indicators you record each month (METR, Anthropic automation, revenue, benchmarks) and shows whether the clock moved ahead ↑ or fell behind ↓.</p></div>
-  </div>
-</div></section>
-
-<section id="fluxo"><div class="wrap">
-  <span class="chip">How it works</span>
-  <h2>From the report to <span class="amb">your week</span></h2>
-  <p class="sub">Public figures are entered as constants, with their sources noted in the code. You change the assumptions and your tasks; the kit does the math.</p>
-  <div class="flow">
-    <span>Report figures</span><span class="arr">→</span>
-    <span>Projection with your assumptions</span><span class="arr">→</span>
-    <span>Your tasks on AL1–AL5</span><span class="arr">→</span>
-    <span>Report + monthly plan</span><span class="arr">→</span>
-    <span>Month-by-month signals</span>
-  </div>
-  <table class="n">
-    <tr><th>Level</th><th>Meaning</th></tr>
-    <tr><td>AL1</td><td>You do it yourself</td></tr>
-    <tr><td>AL2</td><td>AI helps</td></tr>
-    <tr><td>AL3</td><td>AI collaborates</td></tr>
-    <tr><td>AL4</td><td>AI leads and you review</td></tr>
-    <tr><td>AL5</td><td>Fully automated</td></tr>
-  </table>
-</div></section>
-
-<section id="pre"><div class="wrap">
-  <span class="chip">Requirements</span>
-  <h2>Just <span class="amb">Python 3</span></h2>
-  <p class="sub">No packages to install, no keys, no connection required. Works on Linux, Mac, and Windows. <strong>On Windows</strong>: install Python from <a href="https://www.python.org/downloads/" target="_blank" rel="noopener">python.org</a>, open the kit folder in File Explorer, right-click and choose “Open in Terminal” (PowerShell), and replace <code>python3</code> with <code>py</code> in all commands.</p>
-  <div class="grid g3">
-    <div class="card"><h3>🐍 Python 3</h3><p>Check the version. If you see “not recognized,” install it from <a href="https://www.python.org/downloads/" target="_blank" rel="noopener">python.org</a>.</p><pre><span class="c"># should show 3.x</span>
-<span class="k">python3 --version</span></pre></div>
-    <div class="card"><h3>📥 The kit</h3><p>With git, clone the repository. Without git, <a href="https://github.com/inematds/relogio-2027/archive/refs/heads/main.zip">download the ZIP</a>, unzip it, and open a terminal in the <code>relogio-2027-main</code> folder.</p><pre><span class="k">git clone https://github.com/inematds/relogio-2027</span>
-<span class="k">cd relogio-2027</span></pre></div>
-    <div class="card"><h3>📝 A spreadsheet</h3><p>To edit CSVs: use any text editor, Excel, or LibreOffice. You can save as Excel's regular “CSV”: the kit accepts commas or semicolons, and numbers with a comma (2,5).</p></div>
-  </div>
-</div></section>
-
-<section id="guia"><div class="wrap">
-  <span class="chip">User guide · step by step</span>
-  <h2>In <span class="amb">10 minutes</span></h2>
-  <p class="sub">This is extrapolation, not prophecy: the dates are conditional calculations, not guaranteed deadlines.</p>
-
-  <div class="step"><div class="b">1</div><div>
-    <h3>Check the clock</h3>
-    <p>Run the baseline projection, then a slower scenario to see how much the dates change. “30x” means the researcher with AI produces 30 times what they would without AI (a gain they themselves report); “doubling” is how many months that gain takes to double.</p>
-<pre><span class="k">python3 kit/scripts/projecao.py</span>  <span class="c"># 30x ~Feb/2027 · 100x ~Aug/2027 · 1,000x ~Aug/2028 · 95% AL5 ~Nov/2027</span>
-<span class="k">python3 kit/scripts/projecao.py --cenario lento</span>
-<span class="k">python3 kit/scripts/projecao.py --dobra-meses 5 --ganho-hoje 8</span>  <span class="c"># your own assumptions</span></pre>
-  </div></div>
-
-  <div class="step"><div class="b">2</div><div>
-    <h3>List your tasks</h3>
-    <p>Open <code>kit/exemplos/minhas-tarefas.csv</code> and replace the examples with your tasks: task, hours per week, level (AL1 to AL5), and whether it is critical (<code>s</code>/<code>n</code>). Do not count the same hour twice.</p>
-    <p>The column names and values stay in Portuguese: tarefa = task, horas_semana = hours per week, nivel = level, critico = critical (s = yes, n = no). The column names must NOT be translated. What the scripts print and relatorio.md are in Portuguese.</p>
-<pre><span class="s">tarefa,horas_semana,nivel,critico</span>
-<span class="s">Rascunhar textos,8,AL3,n</span>
-<span class="s">Resumir reuniões,4,AL4,n</span></pre>
-  </div></div>
-
-  <div class="step"><div class="b">3</div><div>
-    <h3>Measure your ladder</h3>
-    <p>The script shows the share of hours where AI already leads (AL4+AL5), the projection, and the three tasks to move up one level this month. Critical tasks go on the human review list. If you run it without replacing the example, the result is for the example, not for you; to use your own file without changing the example, pass <code>--csv</code>.</p>
-<pre><span class="k">python3 kit/scripts/minha-escada.py</span>  <span class="c"># saves kit/relatorio.md</span>
-<span class="k">cp kit/exemplos/minhas-tarefas.csv minhas.csv</span>  <span class="c"># creates your copy (Windows: copy)</span>
-<span class="k">python3 kit/scripts/minha-escada.py --csv minhas.csv</span>  <span class="c"># uses your copy</span>
-<span class="k">python3 kit/scripts/minha-escada.py --saida kit/relatorio-dez.md</span>  <span class="c"># saves another version</span></pre>
-  </div></div>
-
-  <div class="step"><div class="b">4</div><div>
-    <h3>Record the signals each month</h3>
-    <p>In <code>kit/exemplos/sinais.csv</code>, the sample values are fictional: replace them with numbers you collect (month, indicator, value), always using the same unit and exactly the same indicator name each month. The script does not fetch anything from the internet.</p>
-<pre><span class="s">mes,indicador,valor</span>
-<span class="s">2026-11,Anthropic parcela AL4 em porcentagem,26</span>
-<span class="k">python3 kit/scripts/sinais.py</span>  <span class="c"># ↑ moved ahead · ↓ fell behind · average doubling time in months</span></pre>
-  </div></div>
-
-  <div class="step"><div class="b">5</div><div>
-    <h3>Use the prompts (optional)</h3>
-    <p>In <code>kit/prompts/</code> there are three prompts to paste into any AI: classify your tasks from AL1–AL5, create a 30-day plan to move up one level, and decide what to keep under human review. Do not paste sensitive data.</p>
-<pre><span class="c"># open in Notepad (or any editor) and copy the text:</span>
-<span class="s">kit/prompts/01-classifique.md</span></pre>
-  </div></div>
-
-  <div class="step"><div class="b">6</div><div>
-    <h3>Check that everything works</h3>
-    <p>22 tests check the dates against the report (one-month tolerance), the example, and the error messages.</p>
-<pre><span class="k">python3 kit/testes/run.py</span>  <span class="c"># Ran 22 tests … OK</span></pre>
-  </div></div>
+<section id="video"><div class="wrap">
+  <span class="chip">Video</span>
+  <h2>The update explained on video</h2>
+  <p class="sub">What the AI 2027 authors measured, the new dates and how to measure your own ladder with this kit, in five minutes (in Portuguese).</p>
+  <div style="aspect-ratio:16/9;border-radius:14px;overflow:hidden;border:1px solid var(--line)"><iframe src="https://www.youtube-nocookie.com/embed/PoPJ2SLFjsM" title="Video: The AI 2027 authors: AI is already 5 months ahead" style="width:100%;height:100%;border:0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+  <p class="mut" style="margin-top:12px"><a href="https://www.youtube.com/watch?v=PoPJ2SLFjsM" target="_blank" rel="noopener">▶ Watch on YouTube</a> · <a href="https://inematds.github.io/relogio-2027/videos/">Player with subtitles and chapters</a></p>
 </div></section>
 
 <section id="relatorios"><div class="wrap">
@@ -518,7 +426,9 @@
       <small>Note: “measured” means it has already happened; “projection” means extending the curve, which may not come true. The authors themselves caution that there is a lot of uncertainty.</small>
     </div>
   </div>
-</div></section><section id="graficos"><div class="wrap">
+</div></section>
+
+<section id="graficos"><div class="wrap">
   <span class="chip">The charts</span>
   <h2>Before × now, <span class="amb">in four charts</span></h2>
   <p class="sub">Comparisons using the numbers from the 10/11/2026 update. Solid bar = measured or forecast; striped bar = projection (extrapolated trend). Hover to see the value.</p>
@@ -579,31 +489,6 @@
   </div>
 </div></section>
 
-<section id="exemplos"><div class="wrap">
-  <span class="chip">Numbers</span>
-  <h2>The numbers the kit uses</h2>
-  <p class="sub">All are public, from the <a href="https://blog.ai-futures.org/p/q35-timelines-update-looks-like-the" target="_blank" rel="noopener">AI Futures Project update on 2026-11-10</a> and the <a href="https://metr.org/blog/2026-11-05-anthropic-ai-rd-acceleration-assessment/" target="_blank" rel="noopener">METR assessment of Anthropic</a>. METR is an independent group that measures what AIs can do; AL4 means AI leads the task and the person only reviews.</p>
-  <table class="n">
-    <tr><th>Indicator</th><th>Value</th></tr>
-    <tr><td>Anthropic progress acceleration (METR)</td><td>~2x (range 1.3x to 3x)</td></tr>
-    <tr><td>Share of that acceleration caused by AI</td><td>~80% → 1.7x</td></tr>
-    <tr><td>Lead over the AI 2027 scenario</td><td>~5 months</td></tr>
-    <tr><td>Model research led by Claude (AL4)</td><td>1% in Mar/2026 → 26% in Aug/2026</td></tr>
-    <tr><td>Researchers' self-reported gain</td><td>~12x in Sep/2026, doubling every ~3.4 months</td></tr>
-    <tr><td>Fully automated research (AL5, extrapolation)</td><td>50% ~Jun/2027 · 95% ~Nov/2027</td></tr>
-    <tr><td>Superhuman AI researcher</td><td>likely in 2027 (all authors)</td></tr>
-  </table>
-  <p class="sub" style="margin-top:22px">Works with other INEMA kits: <a href="https://github.com/inematds/negocios-com-ia" target="_blank" rel="noopener">negocios-com-ia</a> · <a href="https://github.com/inematds/esforco-certo" target="_blank" rel="noopener">esforco-certo</a> · <a href="https://github.com/inematds/audite-seu-claude" target="_blank" rel="noopener">audite-seu-claude</a> · <a href="https://github.com/inematds/agente-que-aprende" target="_blank" rel="noopener">agente-que-aprende</a> · <a href="https://github.com/inematds/caixa-do-agente" target="_blank" rel="noopener">caixa-do-agente</a> · <a href="https://github.com/inematds/agente-blindado" target="_blank" rel="noopener">agente-blindado</a>.</p>
-</div></section>
-
-<section id="video"><div class="wrap">
-  <span class="chip">Video</span>
-  <h2>The update explained on video</h2>
-  <p class="sub">What the AI 2027 authors measured, the new dates and how to measure your own ladder with this kit, in five minutes (in Portuguese).</p>
-  <div style="aspect-ratio:16/9;border-radius:14px;overflow:hidden;border:1px solid var(--line)"><iframe src="https://www.youtube-nocookie.com/embed/PoPJ2SLFjsM" title="Video: The AI 2027 authors: AI is already 5 months ahead" style="width:100%;height:100%;border:0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
-  <p class="mut" style="margin-top:12px"><a href="https://www.youtube.com/watch?v=PoPJ2SLFjsM" target="_blank" rel="noopener">▶ Watch on YouTube</a> · <a href="https://inematds.github.io/relogio-2027/videos/">Player with subtitles and chapters</a></p>
-</div></section>
-
 <section id="acao"><div class="wrap">
   <span class="chip">Final analysis · action plan</span>
   <h2>The window to prepare <span class="amb">has shrunk</span></h2>
@@ -651,17 +536,140 @@
   <h3 class="h3o" style="margin-top:40px">The plan, step by step</h3>
   <p class="sub">It still works if the forecast is wrong: if AI moves more slowly, you’ve only gained time and skills. It’s a “no-regrets” plan.</p>
   <div class="steps2">
-    <div class="st"><span class="when">This week</span><b>See where you stand</b><span>List the 10 tasks that take up most of your week and run the kit’s ladder (<code>minha-escada.py</code>). It tells you what level from 1 to 5 each task is at and how much AI could already lead.</span></div>
+    <div class="st"><span class="when">This week</span><b>See where you stand</b><span>List the 10 tasks that take up most of your week and run the kit’s ladder (<a href="#guia">how to use ↓</a>). It tells you what level from 1 to 5 each task is at and how much AI could already lead.</span></div>
     <div class="st"><span class="when">This month</span><b>Hand over one whole task each week</b><span>Choose the most repetitive task and let AI do it from start to finish; you only review. Record the time before and after. Four weeks, four tasks.</span></div>
     <div class="st"><span class="when">By March 2027</span><b>Learn to direct, not type</b><span>The skill increasing in value is making good requests, checking the result, and correcting AI. Practice with agents that carry out tasks, not just chat.</span></div>
     <div class="st"><span class="when">By mid-2027</span><b>Change what you deliver</b><span>Less execution, more judgment: choosing what to do, taking responsibility for the result, looking after clients and the team. Keep a reserve and a backup plan for your role.</span></div>
-    <div class="st"><span class="when">Every month</span><b>Check the signals</b><span>Update the numbers with <code>sinais.py</code>. If they slow down, you can ease up a little; if they keep accelerating, you’re already on the right side.</span></div>
+    <div class="st"><span class="when">Every month</span><b>Check the signals</b><span>Update the numbers with <a href="#guia">the kit’s signals dashboard</a>. If they slow down, you can ease up a little; if they keep accelerating, you’re already on the right side.</span></div>
   </div>
 
   <div class="aj-em" style="margin-top:26px">
     <b>And what do the authors call for?</b> For governments and companies, they say that if a superhuman AI researcher arrives in 2027, it is <strong>urgent</strong> to slow the development of the most advanced AIs, preferably with an industry pause followed by an international agreement. That’s not up to you. What is up to you is in the plan above.
     <small>Forecasts are highly uncertain, and the authors themselves have already been wrong in both directions. Use the dates as a warning, not a certainty.</small>
   </div>
+</div></section>
+
+<div id="tecnico" class="techhead"><div class="wrap">
+  <span class="chip">Technical section</span>
+  <h2>The kit: <span class="amb">for anyone who wants to rerun the calculations</span></h2>
+  <p class="sub">From here on, this is the technical section: installing, running the scripts, and viewing the numbers they use. You <strong>don’t need</strong> this section to understand what’s above.</p>
+</div></div>
+
+<div class="techzone">
+<section id="oque"><div class="wrap">
+  <span class="chip">What it is</span>
+  <h2>Three tools, one question: <span class="amb">has the clock moved ahead for you?</span></h2>
+  <p class="sub">On 2026-11-10, the AI Futures Project (<a href="https://blog.ai-futures.org/p/q35-timelines-update-looks-like-the" target="_blank" rel="noopener">read the update</a>) reported that AI-driven acceleration is already about 5 months ahead of the AI 2027 scenario. This kit brings that calculation into your daily life.</p>
+  <figure style="margin:0 0 26px;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000"><img src="../assets/banner-grade-en.jpg" alt="Clock 2027: projection, AL1–AL5 ladder, monthly signals, 30-day plan, human review, and tests" loading="lazy" style="width:100%;display:block"></figure>
+  <div class="grid g3">
+    <div class="card"><h3>📈 Report projection</h3><p><code>projecao.py</code> recalculates two simple extrapolations: researcher output that doubles every ~3.4 months and the fully automated research curve (AL5). You can change the doubling time, starting point, and scenario.</p></div>
+    <div class="card"><h3>🪜 My ladder</h3><p><code>minha-escada.py</code> reads your tasks (hours per week, AL1–AL5 level, critical or not), calculates how much AI already leads, compares it with Anthropic's 26%, and writes a <code>relatorio.md</code> with what to move up and what to review.</p></div>
+    <div class="card"><h3>📡 Monthly signals</h3><p><code>sinais.py</code> compares the indicators you record each month (METR, Anthropic automation, revenue, benchmarks) and shows whether the clock moved ahead ↑ or fell behind ↓.</p></div>
+  </div>
+</div></section>
+
+<section id="fluxo"><div class="wrap">
+  <span class="chip">How it works</span>
+  <h2>From the report to <span class="amb">your week</span></h2>
+  <p class="sub">Public figures are entered as constants, with their sources noted in the code. You change the assumptions and your tasks; the kit does the math.</p>
+  <div class="flow">
+    <span>Report figures</span><span class="arr">→</span>
+    <span>Projection with your assumptions</span><span class="arr">→</span>
+    <span>Your tasks on AL1–AL5</span><span class="arr">→</span>
+    <span>Report + monthly plan</span><span class="arr">→</span>
+    <span>Month-by-month signals</span>
+  </div>
+  <table class="n">
+    <tr><th>Level</th><th>Meaning</th></tr>
+    <tr><td>AL1</td><td>You do it yourself</td></tr>
+    <tr><td>AL2</td><td>AI helps</td></tr>
+    <tr><td>AL3</td><td>AI collaborates</td></tr>
+    <tr><td>AL4</td><td>AI leads and you review</td></tr>
+    <tr><td>AL5</td><td>Fully automated</td></tr>
+  </table>
+</div></section>
+
+<section id="pre"><div class="wrap">
+  <span class="chip">Requirements</span>
+  <h2>Just <span class="amb">Python 3</span></h2>
+  <p class="sub">No packages to install, no keys, no connection required. Works on Linux, Mac, and Windows. <strong>On Windows</strong>: install Python from <a href="https://www.python.org/downloads/" target="_blank" rel="noopener">python.org</a>, open the kit folder in File Explorer, right-click and choose “Open in Terminal” (PowerShell), and replace <code>python3</code> with <code>py</code> in all commands.</p>
+  <div class="grid g3">
+    <div class="card"><h3>🐍 Python 3</h3><p>Check the version. If you see “not recognized,” install it from <a href="https://www.python.org/downloads/" target="_blank" rel="noopener">python.org</a>.</p><pre><span class="c"># should show 3.x</span>
+<span class="k">python3 --version</span></pre></div>
+    <div class="card"><h3>📥 The kit</h3><p>With git, clone the repository. Without git, <a href="https://github.com/inematds/relogio-2027/archive/refs/heads/main.zip">download the ZIP</a>, unzip it, and open a terminal in the <code>relogio-2027-main</code> folder.</p><pre><span class="k">git clone https://github.com/inematds/relogio-2027</span>
+<span class="k">cd relogio-2027</span></pre></div>
+    <div class="card"><h3>📝 A spreadsheet</h3><p>To edit CSVs: use any text editor, Excel, or LibreOffice. You can save as Excel's regular “CSV”: the kit accepts commas or semicolons, and numbers with a comma (2,5).</p></div>
+  </div>
+</div></section>
+
+<section id="guia"><div class="wrap">
+  <span class="chip">User guide · step by step</span>
+  <h2>In <span class="amb">10 minutes</span></h2>
+  <p class="sub">This is extrapolation, not prophecy: the dates are conditional calculations, not guaranteed deadlines.</p>
+
+  <div class="step"><div class="b">1</div><div>
+    <h3>Check the clock</h3>
+    <p>Run the baseline projection, then a slower scenario to see how much the dates change. “30x” means the researcher with AI produces 30 times what they would without AI (a gain they themselves report); “doubling” is how many months that gain takes to double.</p>
+<pre><span class="k">python3 kit/scripts/projecao.py</span>  <span class="c"># 30x ~Feb/2027 · 100x ~Aug/2027 · 1,000x ~Aug/2028 · 95% AL5 ~Nov/2027</span>
+<span class="k">python3 kit/scripts/projecao.py --cenario lento</span>
+<span class="k">python3 kit/scripts/projecao.py --dobra-meses 5 --ganho-hoje 8</span>  <span class="c"># your own assumptions</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">2</div><div>
+    <h3>List your tasks</h3>
+    <p>Open <code>kit/exemplos/minhas-tarefas.csv</code> and replace the examples with your tasks: task, hours per week, level (AL1 to AL5), and whether it is critical (<code>s</code>/<code>n</code>). Do not count the same hour twice.</p>
+    <p>The column names and values stay in Portuguese: tarefa = task, horas_semana = hours per week, nivel = level, critico = critical (s = yes, n = no). The column names must NOT be translated. What the scripts print and relatorio.md are in Portuguese.</p>
+<pre><span class="s">tarefa,horas_semana,nivel,critico</span>
+<span class="s">Rascunhar textos,8,AL3,n</span>
+<span class="s">Resumir reuniões,4,AL4,n</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">3</div><div>
+    <h3>Measure your ladder</h3>
+    <p>The script shows the share of hours where AI already leads (AL4+AL5), the projection, and the three tasks to move up one level this month. Critical tasks go on the human review list. If you run it without replacing the example, the result is for the example, not for you; to use your own file without changing the example, pass <code>--csv</code>.</p>
+<pre><span class="k">python3 kit/scripts/minha-escada.py</span>  <span class="c"># saves kit/relatorio.md</span>
+<span class="k">cp kit/exemplos/minhas-tarefas.csv minhas.csv</span>  <span class="c"># creates your copy (Windows: copy)</span>
+<span class="k">python3 kit/scripts/minha-escada.py --csv minhas.csv</span>  <span class="c"># uses your copy</span>
+<span class="k">python3 kit/scripts/minha-escada.py --saida kit/relatorio-dez.md</span>  <span class="c"># saves another version</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">4</div><div>
+    <h3>Record the signals each month</h3>
+    <p>In <code>kit/exemplos/sinais.csv</code>, the sample values are fictional: replace them with numbers you collect (month, indicator, value), always using the same unit and exactly the same indicator name each month. The script does not fetch anything from the internet.</p>
+<pre><span class="s">mes,indicador,valor</span>
+<span class="s">2026-11,Anthropic parcela AL4 em porcentagem,26</span>
+<span class="k">python3 kit/scripts/sinais.py</span>  <span class="c"># ↑ moved ahead · ↓ fell behind · average doubling time in months</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">5</div><div>
+    <h3>Use the prompts (optional)</h3>
+    <p>In <code>kit/prompts/</code> there are three prompts to paste into any AI: classify your tasks from AL1–AL5, create a 30-day plan to move up one level, and decide what to keep under human review. Do not paste sensitive data.</p>
+<pre><span class="c"># open in Notepad (or any editor) and copy the text:</span>
+<span class="s">kit/prompts/01-classifique.md</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">6</div><div>
+    <h3>Check that everything works</h3>
+    <p>22 tests check the dates against the report (one-month tolerance), the example, and the error messages.</p>
+<pre><span class="k">python3 kit/testes/run.py</span>  <span class="c"># Ran 22 tests … OK</span></pre>
+  </div></div>
+</div></section>
+
+<section id="exemplos"><div class="wrap">
+  <span class="chip">Numbers</span>
+  <h2>The numbers the kit uses</h2>
+  <p class="sub">All are public, from the <a href="https://blog.ai-futures.org/p/q35-timelines-update-looks-like-the" target="_blank" rel="noopener">AI Futures Project update on 2026-11-10</a> and the <a href="https://metr.org/blog/2026-11-05-anthropic-ai-rd-acceleration-assessment/" target="_blank" rel="noopener">METR assessment of Anthropic</a>. METR is an independent group that measures what AIs can do; AL4 means AI leads the task and the person only reviews.</p>
+  <table class="n">
+    <tr><th>Indicator</th><th>Value</th></tr>
+    <tr><td>Anthropic progress acceleration (METR)</td><td>~2x (range 1.3x to 3x)</td></tr>
+    <tr><td>Share of that acceleration caused by AI</td><td>~80% → 1.7x</td></tr>
+    <tr><td>Lead over the AI 2027 scenario</td><td>~5 months</td></tr>
+    <tr><td>Model research led by Claude (AL4)</td><td>1% in Mar/2026 → 26% in Aug/2026</td></tr>
+    <tr><td>Researchers' self-reported gain</td><td>~12x in Sep/2026, doubling every ~3.4 months</td></tr>
+    <tr><td>Fully automated research (AL5, extrapolation)</td><td>50% ~Jun/2027 · 95% ~Nov/2027</td></tr>
+    <tr><td>Superhuman AI researcher</td><td>likely in 2027 (all authors)</td></tr>
+  </table>
+  <p class="sub" style="margin-top:22px">Works with other INEMA kits: <a href="https://github.com/inematds/negocios-com-ia" target="_blank" rel="noopener">negocios-com-ia</a> · <a href="https://github.com/inematds/esforco-certo" target="_blank" rel="noopener">esforco-certo</a> · <a href="https://github.com/inematds/audite-seu-claude" target="_blank" rel="noopener">audite-seu-claude</a> · <a href="https://github.com/inematds/agente-que-aprende" target="_blank" rel="noopener">agente-que-aprende</a> · <a href="https://github.com/inematds/caixa-do-agente" target="_blank" rel="noopener">caixa-do-agente</a> · <a href="https://github.com/inematds/agente-blindado" target="_blank" rel="noopener">agente-blindado</a>.</p>
 </div></section>
 
 <section id="roadmap"><div class="wrap">
@@ -672,6 +680,7 @@
   <div class="phase"><div class="tag">Next</div><div class="d"><strong>Chart of your ladder</strong><span>A local HTML page that draws your curve alongside Anthropic's curve.</span></div></div>
   <div class="phase"><div class="tag">Later</div><div class="d"><strong>Team ladder</strong><span>Combine CSVs from multiple people to see the ladder for a team or company.</span></div></div>
 </div></section>
+</div>
 
 <footer>
   <div class="wrap">
