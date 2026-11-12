@@ -58,6 +58,8 @@
   .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
   nav .links a.sec{white-space:nowrap}
   @media(max-width:1300px){nav .links{gap:14px;font-size:.86rem}}
+  @media(max-width:1100px){nav .links a.sec[href="#video"],nav .links a.sec[href="#graficos"]{display:none}}
+  @media(max-width:960px){nav .links a.sec[href="#relatorios"]{display:none}}
   @media(max-width:760px){nav .links a.sec{display:none}}
   @media(max-width:520px){nav .wrap{gap:8px;padding:8px 14px;height:auto;flex-wrap:wrap} nav .links{gap:8px;margin-left:0;width:100%;justify-content:space-between} nav .btn{padding:.45em .7em;font-size:.82rem} .tgl{width:34px;height:34px}}
   .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
@@ -236,6 +238,8 @@
   .techhead{background:var(--bg2);border-top:3px solid var(--amb);padding:58px 0 8px}
   .techhead h2{font-family:Sora;margin:.3em 0 0}
   .techzone{background:var(--bg2)}
+  .caso-cta{display:flex;flex-direction:column;gap:6px;margin-top:26px;background:var(--card);border:1px solid var(--amb);border-radius:16px;padding:20px 22px;color:var(--txt)}
+  .caso-cta:hover{background:var(--bg2)} .caso-cta b{font:800 1.2rem Sora,sans-serif} .caso-cta>span:last-child{color:var(--mut)}
 </style>
 </head>
 <body>
@@ -253,6 +257,7 @@
     <a class="sec" href="#relatorios">Informes</a>
     <a class="sec" href="#graficos">Gráficos</a>
     <a class="sec" href="#acao">Plan de acción</a>
+    <a class="sec" href="../caso/es/">Caso real</a>
     <a class="sec" href="#tecnico">Kit (técnico)</a>
     <span class="lang"><a href="../">PT</a><a href="../en/">EN</a><a class="on" href="./">ES</a></span>
     <button class="tgl" id="themeToggle" aria-label="Cambiar tema" title="Cambiar tema">🌙</button>
@@ -543,6 +548,8 @@
     <div class="st"><span class="when">Hasta mediados de 2027</span><b>Cambia lo que entregas</b><span>Menos ejecución, más criterio: elegir qué hacer, responder por el resultado, atender al cliente y al equipo. Ten un fondo de reserva y un plan B para tu puesto.</span></div>
     <div class="st"><span class="when">Cada mes</span><b>Revisa las señales</b><span>Actualiza las cifras con <a href="#guia">el panel de señales del kit</a>. Si se desaceleran, puedes relajarte un poco; si siguen acelerando, ya estás del lado correcto.</span></div>
   </div>
+
+  <a class="caso-cta" href="../caso/es/"><span class="chip">Caso real</span><b>La escalera de Nei, medida por los registros</b><span>Un mes de trabajo real con Claude Code y Codex: la IA ya conduce el 52,2% de las horas (Anthropic estaba en el 26%), el 17,9% ya funciona solo y la proyección llega al 95% conducido por la IA en abr./2027. Con tablas, gráficos y la proyección hasta el AL5. →</span></a>
 
   <div class="aj-em" style="margin-top:26px">
     <b>¿Y qué piden los autores?</b> A los gobiernos y las empresas les dicen que, si la IA investigadora sobrehumana llega en 2027, es <strong>urgente</strong> desacelerar el desarrollo de las IA más avanzadas, de preferencia con una pausa de la industria seguida de un acuerdo internacional. Eso no depende de ti. Lo que depende de ti está en el plan de arriba.

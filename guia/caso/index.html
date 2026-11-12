@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<!-- TEMPLATE projetos-landing-guia. Troque placeholders e o conteudo. NAO reescreva o CSS.
+     TRILINGUE: este arquivo e a versao PT (guia/index.html). As versoes guia/en/index.html e
+     guia/es/index.html sao copias traduzidas: lang="en"/"es", seletor com a.on no idioma,
+     hrefs do seletor ../ e ../es/ (ou ../en/), e imagens assets/ -> ../assets/. -->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Caso real: a escada do Nei — Relógio 2027</title>
+<meta name="description" content="Um mês de logs reais do Nei Maldaner (INEMA): quanto do trabalho a IA já conduz, por tarefa, e a projeção até o AL5.">
+<link rel="alternate" hreflang="pt-BR" href="https://inematds.github.io/relogio-2027/guia/">
+<link rel="alternate" hreflang="en" href="https://inematds.github.io/relogio-2027/guia/en/">
+<link rel="alternate" hreflang="es" href="https://inematds.github.io/relogio-2027/guia/es/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0c10; --bg2:#14141b; --card:#16161e; --line:#272730;
+    --txt:#e9e9ee; --mut:#9a9aa6; --amb:#E2A23B; --amb2:#f0c070; --sky:#38bdf8; --pro:#cbd5e1;
+    color-scheme:dark;
+  }
+  body.light{
+    --bg:#f6f7f9; --bg2:#eceef2; --card:#ffffff; --line:#e1e3ea;
+    --txt:#1a1a22; --mut:#5b5b68; --amb:#b9791d; --amb2:#a16207; --sky:#0369a1; --pro:#b45309;
+    color-scheme:light;
+  }
+  body.light .hero .glow{opacity:.5}
+  body.light pre{background:#0e0e14;color:#d6d6e0}
+  body.light pre .c{color:#8a8a98}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:Sora,sans-serif;line-height:1.15;margin:0}
+  a{color:var(--amb);text-decoration:none}
+  code,pre{font-family:"JetBrains Mono",monospace}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+  .mut{color:var(--mut)} .amb{color:var(--amb)}
+  .chip{display:inline-block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amb);font-weight:600;font-family:Sora}
+  nav{position:sticky;top:0;z-index:30;backdrop-filter:blur(12px);background:rgba(12,12,16,.78);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;gap:22px;height:60px}
+  nav .brand{display:flex;align-items:center;gap:8px;font-family:Sora;font-weight:800;letter-spacing:-.02em;color:var(--amb)}
+  nav .brand .emoji{font-size:1.25rem}
+  nav .sep{color:var(--mut);opacity:.45}
+  nav .inema{color:var(--sky);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .inema:hover{filter:brightness(1.15)}
+  nav .pro{color:var(--pro);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .pro:hover{filter:brightness(1.15)}
+  nav .clubpro{display:inline-flex;align-items:center;gap:6px}
+  nav .links{margin-left:auto;display:flex;align-items:center;gap:20px;font-size:.92rem}
+  nav .links a.sec{color:var(--mut)} nav .links a.sec:hover{color:var(--txt)}
+  .lang{display:inline-flex;gap:2px;font-family:Sora;font-size:.78rem}
+  .lang a{color:var(--mut);padding:.2em .45em;border-radius:6px} .lang a.on{color:var(--amb);background:rgba(226,162,59,.12)}
+  .tgl{background:var(--bg2);border:1px solid var(--line);color:var(--txt);width:38px;height:38px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:1.05rem}
+  .tgl:hover{border-color:var(--amb)}
+  .btn{display:inline-block;background:var(--amb);color:#1a1206;font-weight:600;padding:.6em 1.05em;border-radius:10px;font-family:Sora}
+  .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+  nav .links a.sec{white-space:nowrap}
+  @media(max-width:1300px){nav .links{gap:14px;font-size:.86rem}}
+  @media(max-width:760px){nav .links a.sec{display:none}}
+  @media(max-width:520px){nav .wrap{gap:8px;padding:8px 14px;height:auto;flex-wrap:wrap} nav .links{gap:8px;margin-left:0;width:100%;justify-content:space-between} nav .btn{padding:.45em .7em;font-size:.82rem} .tgl{width:34px;height:34px}}
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero .glow{position:absolute;inset:-40% -20% auto auto;width:70%;height:600px;background:radial-gradient(closest-side,rgba(226,162,59,.22),transparent 70%);pointer-events:none}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:74px 22px}
+  .hero h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;letter-spacing:-.025em}
+  .hero p.lead{font-size:1.18rem;color:var(--mut);margin:1.1em 0 1.6em;max-width:34ch}
+  .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .hero figure{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000}
+  .hero figure img{width:100%;height:auto;display:block}
+  .resumo{padding:38px 0 34px;border-bottom:1px solid var(--line)}
+  .resumo p{font-size:1.12rem;line-height:1.7;max-width:74ch;margin:.55em 0 0}
+  @media(max-width:780px){.hero .wrap{grid-template-columns:1fr;padding:48px 22px}}
+  section{padding:62px 0;border-bottom:1px solid var(--line)}
+  section h2{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;letter-spacing:-.02em}
+  section .sub{color:var(--mut);margin:.6em 0 2em;max-width:62ch}
+  .grid{display:grid;gap:16px}
+  .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:820px){.g3,.g4{grid-template-columns:1fr 1fr}}
+  @media(max-width:540px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .card h3{font-size:1.05rem;margin-bottom:.4em}
+  .card p{color:var(--mut);font-size:.92rem;margin:0}
+  .num{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:8px;background:rgba(226,162,59,.14);color:var(--amb);font-family:Sora;font-weight:800;font-size:.9rem;margin-bottom:.7em}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+  .flow span{background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:.45em .9em;font-size:.85rem;font-family:Sora;font-weight:600}
+  .flow .arr{color:var(--amb);border:none;background:none;padding:0 .1em}
+  pre{background:#0a0a0e;border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow:auto;font-size:.86rem;line-height:1.6;color:#d6d6e0}
+  pre .c{color:#6f6f7c} pre .k{color:var(--amb2)} pre .s{color:#9ece6a}
+  .step{display:grid;grid-template-columns:46px minmax(0,1fr);gap:16px;margin-bottom:26px}
+  .step>div,.card{min-width:0}
+  p code,li code,td code{overflow-wrap:anywhere}
+  .step .b{width:46px;height:46px;border-radius:12px;background:var(--amb);color:#1a1206;font-family:Sora;font-weight:800;font-size:1.25rem;display:flex;align-items:center;justify-content:center}
+  .step h3{font-size:1.12rem;margin-bottom:.3em}
+  .step p{color:var(--mut);margin:.2em 0 .7em}
+  .ex{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:680px){.ex{grid-template-columns:1fr}}
+  .ex figure{margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  .ex figure img{width:100%;height:auto;display:block}
+  .ex figcaption{padding:12px 14px;font-size:.88rem;color:var(--mut);background:var(--card)}
+  .phase{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .phase:last-child{border:none}
+  .phase .tag{flex:0 0 92px;font-family:Sora;font-weight:800;color:var(--amb)}
+  .phase .d strong{display:block;margin-bottom:.2em}
+  .phase .d span{color:var(--mut);font-size:.92rem}
+  footer{padding:46px 0;text-align:center;color:var(--mut);font-size:.9rem}
+  .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:.3em .8em;font-size:.78rem;color:var(--mut);margin:0 4px}
+  table.n{width:100%;border-collapse:collapse;font-size:.92rem;margin-top:10px}
+  table.n th,table.n td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left}
+  table.n th{color:var(--amb);font-family:Sora}
+  /* gráficos comparativos (âmbar = agora/realidade, azul = antes/cenário, hachura = projeção) */
+  :root{--c-now:#BF8224;--c-old:#4D8FE0}
+  body.light{--c-now:#B9791D;--c-old:#2F6FC4}
+  .charts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+  @media(max-width:820px){.charts{grid-template-columns:1fr}}
+  .chart{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 18px 14px}
+  .chart h3{margin:0 0 4px;font-family:Sora;font-size:1.02rem}
+  .chart .cap{color:var(--mut);font-size:.84rem;margin:0 0 14px}
+  .leg{display:flex;flex-wrap:wrap;gap:14px;font-size:.78rem;color:var(--mut);margin-top:10px}
+  .leg i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+  .sw-now{background:var(--c-now)} .sw-old{background:var(--c-old)}
+  .sw-proj{background:repeating-linear-gradient(45deg,var(--c-now) 0 3px,transparent 3px 7px);border:1px solid var(--c-now)}
+  .hb{display:grid;grid-template-columns:minmax(0,1fr);gap:8px}
+  .hb .g{font-size:.78rem;color:var(--mut);margin-top:6px}
+  .hb .row{display:grid;grid-template-columns:118px minmax(0,1fr);gap:10px;align-items:center;font-size:.82rem}
+  .hb .row>span:first-child{color:var(--mut);line-height:1.25}
+  .hb .trk{position:relative;height:22px}
+  .bar{height:100%;border-radius:0 4px 4px 0;min-width:4px;display:flex;align-items:center}
+  .bar.now{background:var(--c-now)} .bar.old{background:var(--c-old)}
+  .bar.proj{background:repeating-linear-gradient(45deg,var(--c-now) 0 3px,transparent 3px 7px);border:1px solid var(--c-now)}
+  .bar b{position:absolute;left:calc(var(--w) + 8px);font-weight:600;font-size:.8rem;color:var(--txt);white-space:nowrap}
+  .vb{display:flex;align-items:flex-end;gap:6px;height:190px;border-bottom:1px solid var(--line);padding-top:22px}
+  .vb .col{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;position:relative}
+  .vb .col .v{font-size:.74rem;font-weight:600;color:var(--txt);margin-bottom:3px}
+  .vb .col .b{width:100%;max-width:38px;border-radius:4px 4px 0 0;min-height:2px}
+  .vb .col .b.now{background:var(--c-now)} .vb .col .b.old{background:var(--c-old)}
+  .vb .col .b.proj{background:repeating-linear-gradient(45deg,var(--c-now) 0 3px,transparent 3px 7px);border:1px solid var(--c-now);border-bottom:none}
+  .vb .gap{flex:0 0 14px;align-self:center;color:var(--mut);text-align:center}
+  .vx{display:flex;gap:6px;font-size:.72rem;color:var(--mut);margin-top:6px}
+  .vx span{flex:1;text-align:center} .vx .gap{flex:0 0 14px}
+  /* relatórios originais + gráficos originais + ajuste */
+  .reps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-bottom:46px}
+  .rep{display:flex;flex-direction:column;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;color:var(--txt)}
+  .rep:hover{border-color:var(--amb)}
+  .rep .tag{font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--amb);font-family:Sora;font-weight:600}
+  .rep strong{font-family:Sora;font-size:1.25rem}
+  .rep span{color:var(--mut);font-size:.93rem}
+  .rep em{font-style:normal;color:var(--amb);font-weight:600;font-size:.88rem;margin-top:auto}
+  .h3o{font-family:Sora;font-size:1.35rem;margin:0 0 .2em}
+  .origs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+  .orig{margin:0;background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+  .orig img{display:block;width:100%;height:auto;background:#fff}
+  .orig figcaption{padding:16px 18px;display:flex;flex-direction:column;gap:8px;font-size:.9rem}
+  .orig figcaption b{font-family:Sora;font-size:1.02rem}
+  .orig figcaption span{color:var(--mut)} .orig figcaption i{font-style:normal;color:var(--amb);font-weight:600}
+  .ajuste{margin-top:52px}
+  .aj{border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  .ajrow{display:grid;grid-template-columns:1.5fr 1fr 1fr .9fr;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line);align-items:center;font-size:.92rem}
+  .ajrow:last-child{border-bottom:none}
+  .ajrow small{display:block;color:var(--mut);font-size:.78rem;font-weight:400}
+  .ajhead{background:var(--bg2);font-family:Sora;font-weight:600;color:var(--amb);font-size:.8rem;text-transform:uppercase;letter-spacing:.06em}
+  .ajrow .old{color:var(--c-old);font-weight:600} .ajrow .now{color:var(--c-now);font-weight:700}
+  .ajrow .dif{font-family:Sora;font-weight:800;color:var(--amb)}
+  .aj-em{margin-top:18px;background:rgba(226,162,59,.08);border:1px solid rgba(226,162,59,.35);border-radius:14px;padding:18px 20px}
+  .aj-em small{display:block;color:var(--mut);margin-top:10px;font-size:.82rem}
+  @media(max-width:820px){.reps,.origs{grid-template-columns:1fr}
+    .ajhead{display:none}
+    .ajrow{grid-template-columns:1fr 1fr;gap:8px 14px}
+    .ajrow>span:first-child{grid-column:1/-1}
+    .ajrow .dif{grid-column:1/-1}}
+  /* cenário original com projeções por cima + explicações */
+  .cen{margin-bottom:52px}
+  .kbox{display:flex;flex-direction:column;gap:7px;background:var(--card);border:1px solid var(--line);border-left:3px solid var(--amb);border-radius:12px;padding:16px 18px;margin:0 0 22px;font-size:.9rem}
+  .kbox span{color:var(--mut)} .kbox i:not(.sw){font-style:normal;color:var(--txt);font-weight:600}
+  .kbox .sw{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:7px;vertical-align:-1px}
+  .ov{position:relative;background:#fff}
+  .ov .pa{position:absolute;left:0;right:0;pointer-events:none}
+  .ov .vl{position:absolute;top:0;bottom:0;border-left:3px dashed #16a34a}
+  .ov .vl.old{border-left-color:#2563eb}
+  .ov .band{position:absolute;top:0;bottom:0;background:rgba(226,162,59,.32);border-left:2px solid #d97706;border-right:2px solid #d97706}
+  .ov .band.ted{background:repeating-linear-gradient(45deg,rgba(147,51,234,.22) 0 6px,rgba(147,51,234,.08) 6px 12px);border-color:#9333ea}
+  .ov em,.mk em{font-style:normal;display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;font:800 .75rem Sora,sans-serif;color:#fff;background:#16a34a}
+  .ov em{position:absolute;top:-4px;left:50%;transform:translateX(-50%);box-shadow:0 1px 4px rgba(0,0,0,.35)}
+  .ov .vl em{left:-1.5px}
+  .ov .vl.old em,.mk em.old{background:#2563eb}
+  .ov .band em,.mk em.band{background:#d97706} .ov .band.ted em,.mk em.ted{background:#9333ea}
+  .mk{list-style:none;margin:2px 0;padding:0;display:flex;flex-direction:column;gap:6px;color:var(--mut)}
+  .mk li{position:relative;padding-left:30px;min-height:22px} .mk li>em{position:absolute;left:0;top:1px}
+  .ov .band em{top:auto;bottom:6px}
+  .exp{color:var(--mut);font-size:.86rem;margin:12px 0 0;padding-top:12px;border-top:1px dashed var(--line)}
+  .exp b{color:var(--amb)}
+  /* plano de ação + animação da janela */
+  .anim{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 22px 18px;margin-bottom:34px}
+  .an-top{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-bottom:26px}
+  .clk{display:flex;align-items:center;gap:10px;font-size:.88rem;color:var(--mut)} .clk b{color:var(--amb)}
+  .dial{position:relative;width:42px;height:42px;border-radius:50%;border:3px solid var(--c-old)}
+  .dial.now{border-color:var(--c-now)}
+  .hand{position:absolute;left:50%;bottom:50%;width:3px;height:15px;margin-left:-1.5px;border-radius:2px;background:var(--txt);transform-origin:50% 100%}
+  .anim.run .hand.slow{animation:spin 3s linear infinite} .anim.run .hand.fast{animation:spin 1.765s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .replay{margin-left:auto;background:var(--bg2);border:1px solid var(--line);color:var(--txt);border-radius:10px;padding:.45em .9em;cursor:pointer;font:600 .85rem Sora,sans-serif}
+  .replay:hover{border-color:var(--amb)}
+  .an-axis{position:relative;height:34px;margin:0 8% 6px 150px;border-bottom:1px solid var(--line);font-size:.74rem;color:var(--mut)}
+  .an-axis span{position:absolute;bottom:4px;transform:translateX(-50%);text-align:center;line-height:1.15;white-space:nowrap}
+  .an-axis span:first-child{transform:none}
+  .trk2{display:grid;grid-template-columns:140px minmax(0,1fr);gap:10px;align-items:center;margin:18px 8% 0 0}
+  .trk2 .lbl{font:600 .82rem Sora,sans-serif;color:var(--mut)}
+  .lane{position:relative;height:30px;background:var(--bg2);border-radius:8px;margin-bottom:46px}
+  .fill{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:8px}
+  .fill.old{background:var(--c-old)} .fill.now{background:var(--c-now)}
+  .zone{position:absolute;top:-4px;bottom:-4px;background:repeating-linear-gradient(45deg,rgba(226,162,59,.35) 0 5px,transparent 5px 10px);border:1px dashed var(--c-now);border-radius:6px}
+  .pin{position:absolute;top:-6px;bottom:-6px;border-left:3px solid var(--c-old);opacity:.25;transition:opacity .4s}
+  .pin.now{border-color:var(--c-now)} .pin.on{opacity:1}
+  .pin em{position:absolute;top:100%;margin-top:4px;font-style:normal;font-size:.72rem;font-weight:600;white-space:nowrap;transform:translateX(-100%);color:var(--txt)}
+  .pin.now em{transform:none;left:4px}
+  .pin small{position:absolute;bottom:100%;margin-bottom:2px;font-size:.72rem;color:var(--mut);white-space:nowrap;transform:translateX(-50%)}
+  .cnt{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:.8rem;color:#fff;font-weight:600;white-space:nowrap;text-shadow:0 1px 3px rgba(0,0,0,.6)}
+  .cnt b{font:800 1.05rem Sora,sans-serif}
+  .an-cap{color:var(--mut);font-size:.9rem;margin:0}
+  .vs{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .vcol{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+  .vcol.old{border-top:4px solid var(--c-old)} .vcol.now{border-top:4px solid var(--c-now)}
+  .vcol .tag{font:600 .74rem Sora,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+  .vcol h3{font-family:Sora;margin:.4em 0 .7em;font-size:1.1rem}
+  .vcol ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:8px;color:var(--mut);font-size:.9rem}
+  .vcol li b{color:var(--txt)}
+  .steps2{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+  .st{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:6px;font-size:.86rem}
+  .st .when{font:800 .78rem Sora,sans-serif;color:var(--amb);text-transform:uppercase;letter-spacing:.05em}
+  .st b{font-family:Sora;font-size:.98rem} .st>span:last-child{color:var(--mut)}
+  .st code{font-size:.8rem;color:var(--amb2)}
+  @media(max-width:1000px){.steps2{grid-template-columns:1fr 1fr}}
+  @media(max-width:700px){.vs,.steps2{grid-template-columns:1fr}
+    .an-axis{margin-left:0;margin-right:12%} .trk2{grid-template-columns:1fr;gap:24px;margin-right:12%}}
+  /* parte técnica isolada embaixo */
+  .techhead{background:var(--bg2);border-top:3px solid var(--amb);padding:58px 0 8px}
+  .techhead h2{font-family:Sora;margin:.3em 0 0}
+  .techzone{background:var(--bg2)}
+
+  /* página do caso real */
+  :root{--l2:#64748b;--l3:#38bdf8;--l4:#E2A23B;--l5:#f97316;--old:#4D8FE0}
+  body.light{--l2:#94a3b8;--l3:#0284c7;--l4:#b9791d;--l5:#ea580c;--old:#2F6FC4}
+  .cz-hero{padding:70px 0 46px;border-bottom:1px solid var(--line)} .cz-hero .lead{color:var(--mut);font-size:1.12rem;max-width:62ch} .cz-hero h1{font-family:Sora;font-size:clamp(2rem,4.4vw,3.1rem);line-height:1.1;margin:.3em 0}
+  .kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:26px}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+  .kpi b{display:block;font:800 1.7rem Sora,sans-serif;color:var(--amb)} .kpi span{color:var(--mut);font-size:.86rem}
+  .regra,.papeis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+  .papeis{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .regra>div,.papeis>div,.marcos>div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:4px}
+  .regra b,.papeis b{font-family:Sora} .regra span,.papeis span,.marcos span{color:var(--mut);font-size:.86rem}
+  .sv{width:100%;height:auto;display:block}
+  .chart.rolar{overflow-x:auto} .chart.rolar .sv{min-width:720px}
+  .sv-in{fill:#111;font:700 15px Inter,sans-serif} .sv-lb{fill:var(--txt);font:500 14px Inter,sans-serif}
+  .sv-v{fill:var(--txt);font:700 13px Inter,sans-serif} .sv-ax{fill:var(--mut);font:12px Inter,sans-serif}
+  .sv-grid{stroke:var(--line);stroke-width:1} .sv-ref{stroke:var(--mut);stroke-dasharray:6 5;stroke-width:1.3}
+  .leg .tracejado{background:repeating-linear-gradient(90deg,var(--mut) 0 5px,transparent 5px 9px)!important;height:3px!important;vertical-align:3px!important}
+  .tw{overflow-x:auto;margin-top:18px} .cz-t td:nth-child(n+2),.cz-t th:nth-child(n+2){white-space:nowrap}
+  .crit{font-size:.7rem;color:var(--l5);border:1px solid var(--l5);border-radius:6px;padding:0 5px;margin-left:6px}
+  .nota{color:var(--mut);font-size:.84rem;margin-top:12px}
+  .cz-cols{display:grid;grid-template-columns:1.2fr 1fr;gap:18px;align-items:start}
+  .marcos{display:flex;flex-direction:column;gap:10px;margin-top:18px} .marcos b{font:800 1.3rem Sora,sans-serif;color:var(--amb)}
+  @media(max-width:900px){.kpis,.regra{grid-template-columns:1fr 1fr}.papeis{grid-template-columns:1fr 1fr}.cz-cols{grid-template-columns:1fr}}
+  @media(max-width:520px){.papeis{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a class="brand" href="../"><span class="emoji">⏰</span> Relógio 2027</a>
+  <span class="sep">|</span>
+  <span class="clubpro">
+    <a class="inema" href="https://inema.club" target="_blank" rel="noopener">INEMA.CLUB</a>
+    <span class="sep">-</span>
+    <a class="pro" href="https://inema.pro" target="_blank" rel="noopener">PRO</a>
+  </span>
+  <div class="links">
+    <a class="sec" href="#escada">A escada</a>
+    <a class="sec" href="#projecao">Projeção</a>
+    <a class="sec" href="#papel">O papel</a>
+    <a class="sec" href="../">Guia</a>
+    <span class="lang"><a class="on" href="./">PT</a><a href="en/">EN</a><a href="es/">ES</a></span>
+    <button class="tgl" id="themeToggle" aria-label="Alternar tema" title="Alternar tema">🌙</button>
+    <a class="btn" href="https://github.com/inematds/relogio-2027" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</div></nav>
+
+<header class="cz-hero" id="top"><div class="wrap">
+  <span class="chip">Caso real · medido em 12/11/2026</span>
+  <h1>A escada do Nei: <span class="amb">a IA já conduz 52,2%</span> do trabalho</h1>
+  <p class="lead">Este é o resultado do kit rodado nos logs reais de um mês de trabalho do Nei Maldaner (INEMA) com o Claude Code e o Codex. Serve de exemplo de como ler a sua própria escada e de para onde ela aponta.</p>
+  <div class="kpis">
+    <div class="kpi"><b>52,2%</b><span>das horas a IA conduz (AL4+AL5)</span></div>
+    <div class="kpi"><b>17,9%</b><span>já roda sozinho (AL5)</span></div>
+    <div class="kpi"><b>26%</b><span>Anthropic, ago/2026 (AL4)</span></div>
+    <div class="kpi"><b>abr/2027</b><span>projeção: 95% conduzido pela IA</span></div>
+  </div>
+</div></header>
+
+<section id="medida"><div class="wrap">
+  <span class="chip">Como foi medido</span>
+  <h2>Um mês de logs, <span class="amb">lido na própria máquina</span></h2>
+  <p class="sub">De 13/10/2026 a 12/11/2026. O kit leu 9.959 sessões do Claude Code e 3.233 do Codex: 1.366 conversas com o Nei e 11.269 sessões que rodaram sozinhas (scripts, timers, bots). A IA fez 111.442 ações (comandos, edições, leituras). Um modelo barato (codex gpt-6-luna (low)) só agrupou os pedidos em tarefas; o nível de cada sessão vem do comportamento registrado, não de opinião.</p>
+  <div class="regra">
+    <div><b>Rodou sozinha</b><span>um pedido, sem conversa → AL5</span></div>
+    <div><b>Conversa com muita ação</b><span>15+ ações da IA por mensagem → AL4</span></div>
+    <div><b>Conversa média</b><span>5 a 15 ações por mensagem → AL3</span></div>
+    <div><b>Conversa curta</b><span>menos de 5 → AL2</span></div>
+  </div>
+</div></section>
+
+<section id="escada"><div class="wrap">
+  <span class="chip">A escada</span>
+  <h2>Onde estão as horas, <span class="amb">nível por nível</span></h2>
+  <p class="sub">A barra é o total de horas de trabalho com IA no mês, dividido pelos quatro níveis. Metade já está na parte de cima da escada.</p>
+  <div class="chart"><svg viewBox="0 0 920 66" class="sv" role="img" aria-label="Divisão das horas por nível: AL2 4,6%, AL3 43,2%, AL4 34,3%, AL5 17,9%"><rect x="0.0" y="10" width="42.3" height="46" fill="var(--l2)"/><rect x="42.3" y="10" width="397.4" height="46" fill="var(--l3)"/><text x="241.0" y="39" text-anchor="middle" class="sv-in">AL3 43,2%</text><rect x="439.8" y="10" width="315.6" height="46" fill="var(--l4)"/><text x="597.5" y="39" text-anchor="middle" class="sv-in">AL4 34,3%</text><rect x="755.3" y="10" width="164.7" height="46" fill="var(--l5)"/><text x="837.7" y="39" text-anchor="middle" class="sv-in">AL5 17,9%</text></svg><div class="leg"><span><i style="background:var(--l2)"></i>AL2 a IA ajuda</span><span><i style="background:var(--l3)"></i>AL3 a IA colabora</span><span><i style="background:var(--l4)"></i>AL4 a IA conduz, você revisa</span><span><i style="background:var(--l5)"></i>AL5 roda sozinho</span></div></div>
+  <h3 class="h3o" style="margin-top:34px">Por tarefa</h3>
+  <p class="sub">Cada barra é uma tarefa: o comprimento são as horas por semana e as cores mostram em que nível elas foram feitas. ⚠ = tarefa crítica (vai a público ou mexe em sistema), que o kit segura no AL4.</p>
+  <div class="chart rolar"><svg viewBox="0 0 980 350" class="sv" role="img" aria-label="Horas por semana de cada tarefa, divididas por nível"><text x="0" y="23" class="sv-lb">Produzir vídeos e séries ⚠</text><rect x="330.0" y="6" width="5.2" height="22" fill="var(--l2)"><title>AL2: 1%</title></rect><rect x="335.2" y="6" width="182.0" height="22" fill="var(--l3)"><title>AL3: 35%</title></rect><rect x="517.2" y="6" width="239.2" height="22" fill="var(--l4)"><title>AL4: 46%</title></rect><rect x="756.4" y="6" width="93.6" height="22" fill="var(--l5)"><title>AL5: 18%</title></rect><text x="858.0" y="22" class="sv-v">75,9 h · AL4</text><text x="0" y="57" class="sv-lb">Outras tarefas</text><rect x="330.0" y="40" width="31.5" height="22" fill="var(--l2)"><title>AL2: 10%</title></rect><rect x="361.5" y="40" width="145.0" height="22" fill="var(--l3)"><title>AL3: 46%</title></rect><rect x="506.5" y="40" width="37.8" height="22" fill="var(--l4)"><title>AL4: 12%</title></rect><rect x="544.3" y="40" width="97.7" height="22" fill="var(--l5)"><title>AL5: 31%</title></rect><text x="650.0" y="56" class="sv-v">46,0 h · AL3</text><text x="0" y="91" class="sv-lb">Criar projetos e kits</text><rect x="330.0" y="74" width="3.9" height="22" fill="var(--l2)"><title>AL2: 3%</title></rect><rect x="333.9" y="74" width="57.3" height="22" fill="var(--l3)"><title>AL3: 44%</title></rect><rect x="391.2" y="74" width="69.0" height="22" fill="var(--l4)"><title>AL4: 53%</title></rect><text x="468.2" y="90" class="sv-v">19,0 h · AL4</text><text x="0" y="125" class="sv-lb">Pesquisar e validar conteúdo</text><rect x="330.0" y="108" width="8.5" height="22" fill="var(--l2)"><title>AL2: 9%</title></rect><rect x="338.5" y="108" width="52.9" height="22" fill="var(--l3)"><title>AL3: 56%</title></rect><rect x="391.5" y="108" width="26.5" height="22" fill="var(--l4)"><title>AL4: 28%</title></rect><rect x="417.9" y="108" width="6.6" height="22" fill="var(--l5)"><title>AL5: 7%</title></rect><text x="432.5" y="124" class="sv-v">13,8 h · AL3</text><text x="0" y="159" class="sv-lb">Manter sistemas e servidores ⚠</text><rect x="330.0" y="142" width="6.3" height="22" fill="var(--l2)"><title>AL2: 11%</title></rect><rect x="336.3" y="142" width="36.8" height="22" fill="var(--l3)"><title>AL3: 64%</title></rect><rect x="373.2" y="142" width="14.4" height="22" fill="var(--l4)"><title>AL4: 25%</title></rect><text x="395.5" y="158" class="sv-v">8,4 h · AL3</text><text x="0" y="193" class="sv-lb">Traduzir conteúdos</text><rect x="330.0" y="176" width="1.3" height="22" fill="var(--l2)"><title>AL2: 3%</title></rect><rect x="331.3" y="176" width="14.3" height="22" fill="var(--l3)"><title>AL3: 32%</title></rect><rect x="345.6" y="176" width="4.9" height="22" fill="var(--l4)"><title>AL4: 11%</title></rect><rect x="350.5" y="176" width="24.0" height="22" fill="var(--l5)"><title>AL5: 54%</title></rect><text x="382.5" y="192" class="sv-v">6,5 h · AL5</text><text x="0" y="227" class="sv-lb">Analisar métricas e operações ⚠</text><rect x="330.0" y="210" width="1.2" height="22" fill="var(--l2)"><title>AL2: 3%</title></rect><rect x="331.2" y="210" width="23.8" height="22" fill="var(--l3)"><title>AL3: 61%</title></rect><rect x="355.0" y="210" width="10.2" height="22" fill="var(--l4)"><title>AL4: 26%</title></rect><rect x="365.1" y="210" width="3.9" height="22" fill="var(--l5)"><title>AL5: 10%</title></rect><text x="377.1" y="226" class="sv-v">5,7 h · AL3</text><text x="0" y="261" class="sv-lb">Criar cursos e formações</text><rect x="330.0" y="244" width="8.4" height="22" fill="var(--l3)"><title>AL3: 26%</title></rect><rect x="338.4" y="244" width="23.8" height="22" fill="var(--l4)"><title>AL4: 74%</title></rect><text x="370.2" y="260" class="sv-v">4,7 h · AL4</text><text x="0" y="295" class="sv-lb">Planejar produtos e campanhas ⚠</text><rect x="330.0" y="278" width="18.6" height="22" fill="var(--l3)"><title>AL3: 85%</title></rect><rect x="348.6" y="278" width="3.3" height="22" fill="var(--l4)"><title>AL4: 15%</title></rect><text x="359.9" y="294" class="sv-v">3,2 h · AL3</text><text x="0" y="329" class="sv-lb">Publicar e divulgar conteúdo ⚠</text><rect x="330.0" y="312" width="0.5" height="22" fill="var(--l2)"><title>AL2: 4%</title></rect><rect x="330.5" y="312" width="7.3" height="22" fill="var(--l3)"><title>AL3: 63%</title></rect><rect x="337.8" y="312" width="3.8" height="22" fill="var(--l4)"><title>AL4: 33%</title></rect><text x="349.6" y="328" class="sv-v">1,7 h · AL3</text></svg><div class="leg"><span><i style="background:var(--l2)"></i>AL2 a IA ajuda</span><span><i style="background:var(--l3)"></i>AL3 a IA colabora</span><span><i style="background:var(--l4)"></i>AL4 a IA conduz, você revisa</span><span><i style="background:var(--l5)"></i>AL5 roda sozinho</span></div></div>
+  <div class="tw"><table class="n cz-t"><tr><th>Tarefa</th><th>h/sem*</th><th>Nível</th><th>IA conduz</th><th>Roda sozinho</th><th>Para onde vai</th></tr><tr><td>Produzir vídeos e séries <span class=crit>crítica</span></td><td>75,9</td><td><b>AL4</b></td><td>64%</td><td>18%</td><td>teto AL4 (crítica) · 95% em AL4+ em mar/2027</td></tr><tr><td>Outras tarefas</td><td>46,0</td><td><b>AL3</b></td><td>43%</td><td>31%</td><td>50% em AL5 em dez/2026</td></tr><tr><td>Criar projetos e kits</td><td>19,0</td><td><b>AL4</b></td><td>53%</td><td>0%</td><td>ainda sem AL5 medido</td></tr><tr><td>Pesquisar e validar conteúdo</td><td>13,8</td><td><b>AL3</b></td><td>35%</td><td>7%</td><td>50% em AL5 em mar/2027</td></tr><tr><td>Manter sistemas e servidores <span class=crit>crítica</span></td><td>8,4</td><td><b>AL3</b></td><td>25%</td><td>0%</td><td>teto AL4 (crítica) · 95% em AL4+ em jun/2027</td></tr><tr><td>Traduzir conteúdos</td><td>6,5</td><td><b>AL5</b></td><td>65%</td><td>54%</td><td>já passou de 50% em AL5</td></tr><tr><td>Analisar métricas e operações <span class=crit>crítica</span></td><td>5,7</td><td><b>AL3</b></td><td>36%</td><td>10%</td><td>teto AL4 (crítica) · 95% em AL4+ em mai/2027</td></tr><tr><td>Criar cursos e formações</td><td>4,7</td><td><b>AL4</b></td><td>74%</td><td>0%</td><td>ainda sem AL5 medido</td></tr><tr><td>Planejar produtos e campanhas <span class=crit>crítica</span></td><td>3,2</td><td><b>AL3</b></td><td>15%</td><td>0%</td><td>teto AL4 (crítica) · 95% em AL4+ em jul/2027</td></tr><tr><td>Publicar e divulgar conteúdo <span class=crit>crítica</span></td><td>1,7</td><td><b>AL3</b></td><td>33%</td><td>0%</td><td>teto AL4 (crítica) · 95% em AL4+ em mai/2027</td></tr></table></div>
+  <p class="nota">* Horas de trabalho COM a IA: somam sessões em paralelo e o tempo da máquina (por isso o total, 184,9 h/semana, passa de uma semana real). Servem para comparar tarefas, não para contar o tempo da pessoa. O que é feito sem IA (gravar, reuniões, ligações) não aparece nos logs.</p>
+</div></section>
+
+<section id="comparacao"><div class="wrap">
+  <span class="chip">Comparação</span>
+  <h2>Mais adiantado que <span class="amb">o laboratório de ponta</span></h2>
+  <p class="sub">No relatório de novembro de 2026, a IA liderava 26% da pesquisa da Anthropic e nenhuma tarefa estava totalmente automática. No caso do Nei, a IA conduz o dobro disso e quase um quinto já roda sozinho, principalmente traduções e as rotinas de vídeo.</p>
+  <div class="chart"><svg viewBox="0 0 920 166" class="sv" role="img" aria-label="Comparação com a Anthropic"><text x="0" y="23" class="sv-lb">Nei: IA conduz (AL4+AL5)</text><rect x="330" y="6" width="281.9" height="24" fill="var(--l4)"/><text x="619.9" y="23" class="sv-v">52,2%</text><text x="0" y="63" class="sv-lb">Anthropic ago/2026: IA lidera (AL4)</text><rect x="330" y="46" width="140.4" height="24" fill="var(--old)"/><text x="478.4" y="63" class="sv-v">26,0%</text><text x="0" y="103" class="sv-lb">Nei: roda sozinho (AL5)</text><rect x="330" y="86" width="96.7" height="24" fill="var(--l5)"/><text x="434.7" y="103" class="sv-v">17,9%</text><text x="0" y="143" class="sv-lb">Anthropic ago/2026: roda sozinho (AL5)</text><rect x="330" y="126" width="3.0" height="24" fill="var(--old)"/><text x="338.0" y="143" class="sv-v">0,0%</text></svg></div>
+  <p class="nota">Comparação ilustrativa: a rotina de um criador de conteúdo não é a mesma coisa que pesquisa de modelos de IA. O ponto é o ritmo, não a régua exata.</p>
+</div></section>
+
+<section id="projecao"><div class="wrap">
+  <span class="chip">Projeção</span>
+  <h2>Quando chega <span class="amb">no AL5</span></h2>
+  <p class="sub">A curva usa a mesma velocidade que os autores do AI 2027 projetam para a pesquisa automática (de 50% em jun/2027 para 95% em nov/2027), aplicada ao ponto de partida do Nei. Linha âmbar: parte conduzida pela IA (AL4+AL5). Linha laranja: parte que roda sozinha (AL5).</p>
+  <div class="chart rolar"><svg viewBox="0 0 920 340" class="sv" role="img" aria-label="Projeção de 12 meses: parte conduzida pela IA (AL4+AL5) e parte que roda sozinha (AL5)"><line x1="56" x2="876" y1="296.0" y2="296.0" class="sv-grid"/><text x="48" y="300.0" text-anchor="end" class="sv-ax">0%</text><line x1="56" x2="876" y1="228.5" y2="228.5" class="sv-grid"/><text x="48" y="232.5" text-anchor="end" class="sv-ax">25%</text><line x1="56" x2="876" y1="161.0" y2="161.0" class="sv-ref"/><text x="48" y="165.0" text-anchor="end" class="sv-ax">50%</text><line x1="56" x2="876" y1="93.5" y2="93.5" class="sv-grid"/><text x="48" y="97.5" text-anchor="end" class="sv-ax">75%</text><line x1="56" x2="876" y1="39.5" y2="39.5" class="sv-ref"/><text x="48" y="43.5" text-anchor="end" class="sv-ax">95%</text><line x1="56" x2="876" y1="26.0" y2="26.0" class="sv-grid"/><text x="48" y="30.0" text-anchor="end" class="sv-ax">100%</text><text x="56.0" y="322" text-anchor="middle" class="sv-ax">nov/2026</text><text x="192.7" y="322" text-anchor="middle" class="sv-ax">jan/2027</text><text x="329.3" y="322" text-anchor="middle" class="sv-ax">mar/2027</text><text x="466.0" y="322" text-anchor="middle" class="sv-ax">mai/2027</text><text x="602.7" y="322" text-anchor="middle" class="sv-ax">jul/2027</text><text x="739.3" y="322" text-anchor="middle" class="sv-ax">set/2027</text><text x="876.0" y="322" text-anchor="middle" class="sv-ax">nov/2027</text><polyline points="56.0,155.1 124.3,117.3 192.7,85.7 261.0,62.7 329.3,47.9 397.7,38.7 466.0,33.3 534.3,30.1 602.7,28.2 671.0,27.4 739.3,26.8 807.7,26.3 876.0,26.3" fill="none" stroke="var(--l4)" stroke-width="3.5"/><circle cx="56.0" cy="155.1" r="4.5" fill="var(--l4)"><title>AL4+AL5: 52,2%</title></circle><text x="56.0" y="145.1" text-anchor="middle" class="sv-v">52%</text><circle cx="124.3" cy="117.3" r="4.5" fill="var(--l4)"><title>AL4+AL5: 66,2%</title></circle><text x="124.3" y="107.3" text-anchor="middle" class="sv-v">66%</text><circle cx="261.0" cy="62.7" r="4.5" fill="var(--l4)"><title>AL4+AL5: 86,4%</title></circle><text x="261.0" y="52.7" text-anchor="middle" class="sv-v">86%</text><circle cx="466.0" cy="33.3" r="4.5" fill="var(--l4)"><title>AL4+AL5: 97,3%</title></circle><text x="466.0" y="23.3" text-anchor="middle" class="sv-v">97%</text><circle cx="876.0" cy="26.3" r="4.5" fill="var(--l4)"><title>AL4+AL5: 99,9%</title></circle><text x="876.0" y="16.3" text-anchor="middle" class="sv-v">100%</text><polyline points="56.0,247.7 124.3,220.1 192.7,184.5 261.0,145.3 329.3,108.6 397.7,79.2 466.0,58.4 534.3,45.2 602.7,37.1 671.0,32.2 739.3,29.5 807.7,27.9 876.0,27.1" fill="none" stroke="var(--l5)" stroke-width="3.5"/><circle cx="56.0" cy="247.7" r="4.5" fill="var(--l5)"><title>AL5: 17,9%</title></circle><text x="56.0" y="237.7" text-anchor="middle" class="sv-v">18%</text><circle cx="124.3" cy="220.1" r="4.5" fill="var(--l5)"><title>AL5: 28,1%</title></circle><text x="124.3" y="210.1" text-anchor="middle" class="sv-v">28%</text><circle cx="261.0" cy="145.3" r="4.5" fill="var(--l5)"><title>AL5: 55,8%</title></circle><text x="261.0" y="135.3" text-anchor="middle" class="sv-v">56%</text><circle cx="466.0" cy="58.4" r="4.5" fill="var(--l5)"><title>AL5: 88,0%</title></circle><text x="466.0" y="48.4" text-anchor="middle" class="sv-v">88%</text><circle cx="876.0" cy="27.1" r="4.5" fill="var(--l5)"><title>AL5: 99,6%</title></circle><text x="876.0" y="17.1" text-anchor="middle" class="sv-v">100%</text></svg><div class="leg"><span><i style="background:var(--l4)"></i>IA conduz (AL4+AL5)</span><span><i style="background:var(--l5)"></i>roda sozinho (AL5)</span><span><i class="tracejado"></i>marcas de 50% e 95%</span></div></div>
+  <div class="cz-cols">
+    <div class="tw"><table class="n"><tr><th>Mês</th><th>Data</th><th>IA conduz</th><th>Roda sozinho</th></tr><tr><td>0</td><td>nov/2026</td><td>52,2%</td><td>17,9%</td></tr><tr><td>1</td><td>dez/2026</td><td>66,2%</td><td>28,1%</td></tr><tr><td>2</td><td>jan/2027</td><td>77,9%</td><td>41,3%</td></tr><tr><td>3</td><td>fev/2027</td><td>86,4%</td><td>55,8%</td></tr><tr><td>6</td><td>mai/2027</td><td>97,3%</td><td>88,0%</td></tr><tr><td>9</td><td>ago/2027</td><td>99,5%</td><td>97,7%</td></tr><tr><td>12</td><td>nov/2027</td><td>99,9%</td><td>99,6%</td></tr></table></div>
+    <div class="marcos">
+      <div><b>abr/2027</b><span>95% do trabalho conduzido pela IA</span></div>
+      <div><b>jan/2027</b><span>metade rodando sozinha (50% em AL5)</span></div>
+      <div><b>jul/2027</b><span>quase tudo rodando sozinho (95% em AL5)</span></div>
+    </div>
+  </div>
+  <p class="nota">É extrapolação, não profecia. Ela supõe que a rotina do Nei acelera no mesmo ritmo do laboratório, e ignora o teto das tarefas críticas: na prática, publicar e mexer em servidores continuam com revisão humana, então o AL5 total não chega a 100%.</p>
+</div></section>
+
+<section id="papel"><div class="wrap">
+  <span class="chip">O que isso quer dizer</span>
+  <h2>Se a IA faz quase tudo, <span class="amb">o que sobra para a pessoa?</span></h2>
+  <p class="sub">Os números mostram que o Nei já não executa a maior parte do trabalho: ele dirige. Em um mês foram 11.269 sessões automáticas e só 1.366 conversas. O trabalho diário vira cinco coisas que a IA não faz por ele.</p>
+  <div class="papeis">
+    <div><b>1. Escolher</b><span>o que vale fazer, para quem e o que fica de fora.</span></div>
+    <div><b>2. Conferir e assinar</b><span>abrir de verdade uma entrega por dia; publicar fica no AL4.</span></div>
+    <div><b>3. Ensinar o sistema</b><span>cada correção vira regra, e o erro não volta.</span></div>
+    <div><b>4. Estar com gente</b><span>comunidade, alunos, lives: a confiança é com a pessoa real.</span></div>
+    <div><b>5. Experimentar</b><span>testar o novo antes dos outros; a IA acelera o que já existe.</span></div>
+  </div>
+  <div class="aj-em" style="margin-top:22px"><b>Missão do dia (gerada pelo kit no dia da medição):</b> Confira uma tradução antes de publicar. Hoje, escolha uma tradução recente e compare um trecho com o original. Marque qualquer mudança de sentido e, se encontrar uma, corrija o conteúdo ou ajuste a orientação para a IA. Deu certo quando você registrou se o trecho preservou o sentido.</div>
+</div></section>
+
+<section id="faca"><div class="wrap">
+  <span class="chip">Faça o seu</span>
+  <h2>Meça a sua escada <span class="amb">pelos seus logs</span></h2>
+  <p class="sub">Se você usa Claude Code ou Codex, dois comandos geram o mesmo relatório para você. Nada sai da sua máquina, exceto os pedidos resumidos (sem segredos) para o modelo barato que agrupa as tarefas; com <code>--motor palavras</code> nem isso.</p>
+<pre><span class="k">python3 kit/scripts/de-logs.py --dias 30</span>            <span class="c"># lê os logs → sessoes.json</span>
+<span class="k">python3 kit/scripts/escada-logs.py --motor codex</span>   <span class="c"># ou --motor ollama / palavras</span></pre>
+  <p class="mut" style="margin-top:12px"><a href="../#tecnico">Parte técnica do kit ↗</a> · <a href="../">Voltar ao guia Relógio 2027</a></p>
+</div></section>
+
+<footer>
+  <div class="wrap">
+    <div class="pill">Python 3</div><div class="pill">sem dependências</div><div class="pill">offline</div>
+    <p style="margin-top:18px">Relógio 2027 — Prepare-se: a IA vai superar humanos · extrapolação, não profecia ·
+      <a href="https://github.com/inematds/relogio-2027">inematds/relogio-2027</a> ·
+      <a href="https://inema.club">INEMA.CLUB</a></p>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var KEY='relogio-2027-theme';
+    var b=document.body, t=document.getElementById('themeToggle');
+    if(localStorage.getItem(KEY)==='light'){ b.classList.add('light'); t.textContent='☀️'; }
+    t.addEventListener('click',function(){
+      var light=b.classList.toggle('light');
+      t.textContent=light?'☀️':'🌙';
+      localStorage.setItem(KEY, light?'light':'dark');
+    });
+  })();
+</script>
+<script>
+(function(){var A=document.getElementById('janela');if(!A)return;
+var fo=A.querySelector('.fill.old'),fn=A.querySelector('.fill.now'),po=A.querySelector('.pin:not(.now)'),pn=A.querySelector('.pin.now'),
+co=A.querySelector('.cnt.old b'),cn=A.querySelector('.cnt.now b'),D=6000,raf,t0;
+var red=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+function draw(p){var w=96.2*p,wn=Math.min(w,46.2);fo.style.width=w+'%';fn.style.width=wn+'%';
+ co.textContent=Math.round(w/96.2*25);cn.textContent=Math.round(wn/46.2*12);
+ po.classList.toggle('on',p>=1);pn.classList.toggle('on',w>=23.1);}
+function step(t){if(!t0)t0=t;var p=Math.min((t-t0)/D,1);draw(p);if(p<1)raf=requestAnimationFrame(step);}
+function play(){cancelAnimationFrame(raf);t0=0;if(red){draw(1);return;}A.classList.add('run');raf=requestAnimationFrame(step);}
+draw(red?1:0);
+A.querySelector('.replay').addEventListener('click',play);
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){play();io.disconnect();}},{threshold:.4});io.observe(A);}else play();
+})();
+</script>
+</body>
+</html>

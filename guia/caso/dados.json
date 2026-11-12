@@ -1,0 +1,174 @@
+{
+ "gerado_em": "2026-11-12T00:49:12-03:00",
+ "periodo": {
+  "inicio": "2026-10-13",
+  "fim": "2026-11-12",
+  "dias": 30
+ },
+ "fontes": {
+  "claude_sessoes": 9959,
+  "codex_sessoes": 3233,
+  "conversas": 1366,
+  "automaticas": 11269,
+  "acoes": 111442
+ },
+ "parcela_ia": 52.2,
+ "parcela_anterior": null,
+ "anthropic_ref": 26,
+ "projecao": [
+  {
+   "meses": 0,
+   "pct": 52.2
+  },
+  {
+   "meses": 1,
+   "pct": 66.2
+  },
+  {
+   "meses": 3,
+   "pct": 86.4
+  },
+  {
+   "meses": 6,
+   "pct": 97.3
+  }
+ ],
+ "tarefas": [
+  {
+   "tarefa": "Produzir vídeos e séries",
+   "horas_semana": 75.9,
+   "nivel": "AL4",
+   "critico": true,
+   "mix": {
+    "AL4": 46,
+    "AL3": 35,
+    "AL5": 18,
+    "AL2": 1
+   },
+   "proximo": null
+  },
+  {
+   "tarefa": "Outras tarefas",
+   "horas_semana": 46.0,
+   "nivel": "AL3",
+   "critico": false,
+   "mix": {
+    "AL3": 46,
+    "AL5": 31,
+    "AL4": 12,
+    "AL2": 10
+   },
+   "proximo": "AL4"
+  },
+  {
+   "tarefa": "Criar projetos e kits",
+   "horas_semana": 19.0,
+   "nivel": "AL4",
+   "critico": false,
+   "mix": {
+    "AL4": 53,
+    "AL3": 44,
+    "AL2": 3,
+    "AL5": 0
+   },
+   "proximo": "AL5"
+  },
+  {
+   "tarefa": "Pesquisar e validar conteúdo",
+   "horas_semana": 13.8,
+   "nivel": "AL3",
+   "critico": false,
+   "mix": {
+    "AL3": 56,
+    "AL4": 28,
+    "AL2": 9,
+    "AL5": 7
+   },
+   "proximo": "AL4"
+  },
+  {
+   "tarefa": "Manter sistemas e servidores",
+   "horas_semana": 8.4,
+   "nivel": "AL3",
+   "critico": true,
+   "mix": {
+    "AL3": 64,
+    "AL4": 25,
+    "AL2": 11,
+    "AL5": 0
+   },
+   "proximo": "AL4"
+  },
+  {
+   "tarefa": "Traduzir conteúdos",
+   "horas_semana": 6.5,
+   "nivel": "AL5",
+   "critico": false,
+   "mix": {
+    "AL5": 54,
+    "AL3": 32,
+    "AL4": 11,
+    "AL2": 3
+   },
+   "proximo": null
+  },
+  {
+   "tarefa": "Analisar métricas e operações",
+   "horas_semana": 5.7,
+   "nivel": "AL3",
+   "critico": true,
+   "mix": {
+    "AL3": 61,
+    "AL4": 26,
+    "AL5": 10,
+    "AL2": 3
+   },
+   "proximo": "AL4"
+  },
+  {
+   "tarefa": "Criar cursos e formações",
+   "horas_semana": 4.7,
+   "nivel": "AL4",
+   "critico": false,
+   "mix": {
+    "AL4": 74,
+    "AL3": 26
+   },
+   "proximo": "AL5"
+  },
+  {
+   "tarefa": "Planejar produtos e campanhas",
+   "horas_semana": 3.2,
+   "nivel": "AL3",
+   "critico": true,
+   "mix": {
+    "AL3": 85,
+    "AL4": 15
+   },
+   "proximo": "AL4"
+  },
+  {
+   "tarefa": "Publicar e divulgar conteúdo",
+   "horas_semana": 1.7,
+   "nivel": "AL3",
+   "critico": true,
+   "mix": {
+    "AL3": 63,
+    "AL4": 33,
+    "AL2": 4
+   },
+   "proximo": "AL4"
+  }
+ ],
+ "leitura": "A IA conduz 52,2% das horas registradas nos últimos 30 dias; não há uma medição anterior comparável, e a referência da Anthropic era 26% em agosto de 2026. Vídeos e séries concentram mais horas e já operam em AL4, com revisão humana; nas tarefas críticas de sistemas, métricas, planejamento e publicação, a IA ainda colabora em AL3.",
+ "acoes": [
+  "Mantenha a revisão humana em vídeos, cursos e projetos, que já estão em AL4.",
+  "Escolha uma tarefa crítica em AL3 e registre um caso em que a revisão humana detectou algo importante.",
+  "Confira uma amostra de traduções em AL5 antes de publicar."
+ ],
+ "missao_do_dia": {
+  "titulo": "Confira uma tradução antes de publicar",
+  "texto": "Hoje, escolha uma tradução recente e compare um trecho com o original. Marque qualquer mudança de sentido e, se encontrar uma, corrija o conteúdo ou ajuste a orientação para a IA. Deu certo quando você registrou se o trecho preservou o sentido."
+ },
+ "motor": "codex gpt-6-luna (low)"
+}

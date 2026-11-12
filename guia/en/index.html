@@ -58,6 +58,8 @@
   .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
   nav .links a.sec{white-space:nowrap}
   @media(max-width:1300px){nav .links{gap:14px;font-size:.86rem}}
+  @media(max-width:1100px){nav .links a.sec[href="#video"],nav .links a.sec[href="#graficos"]{display:none}}
+  @media(max-width:960px){nav .links a.sec[href="#relatorios"]{display:none}}
   @media(max-width:760px){nav .links a.sec{display:none}}
   @media(max-width:520px){nav .wrap{gap:8px;padding:8px 14px;height:auto;flex-wrap:wrap} nav .links{gap:8px;margin-left:0;width:100%;justify-content:space-between} nav .btn{padding:.45em .7em;font-size:.82rem} .tgl{width:34px;height:34px}}
   .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
@@ -236,6 +238,8 @@
   .techhead{background:var(--bg2);border-top:3px solid var(--amb);padding:58px 0 8px}
   .techhead h2{font-family:Sora;margin:.3em 0 0}
   .techzone{background:var(--bg2)}
+  .caso-cta{display:flex;flex-direction:column;gap:6px;margin-top:26px;background:var(--card);border:1px solid var(--amb);border-radius:16px;padding:20px 22px;color:var(--txt)}
+  .caso-cta:hover{background:var(--bg2)} .caso-cta b{font:800 1.2rem Sora,sans-serif} .caso-cta>span:last-child{color:var(--mut)}
 </style>
 </head>
 <body>
@@ -253,6 +257,7 @@
     <a class="sec" href="#relatorios">Reports</a>
     <a class="sec" href="#graficos">Charts</a>
     <a class="sec" href="#acao">Action plan</a>
+    <a class="sec" href="../caso/en/">Real case</a>
     <a class="sec" href="#tecnico">Kit (technical)</a>
     <span class="lang"><a href="../">PT</a><a class="on" href="./">EN</a><a href="../es/">ES</a></span>
     <button class="tgl" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">🌙</button>
@@ -543,6 +548,8 @@
     <div class="st"><span class="when">By mid-2027</span><b>Change what you deliver</b><span>Less execution, more judgment: choosing what to do, taking responsibility for the result, looking after clients and the team. Keep a reserve and a backup plan for your role.</span></div>
     <div class="st"><span class="when">Every month</span><b>Check the signals</b><span>Update the numbers with <a href="#guia">the kit’s signals dashboard</a>. If they slow down, you can ease up a little; if they keep accelerating, you’re already on the right side.</span></div>
   </div>
+
+  <a class="caso-cta" href="../caso/en/"><span class="chip">Real case</span><b>Nei’s ladder, measured from the logs</b><span>One real month of work with Claude Code and Codex: AI now leads 52.2% of the hours (Anthropic was at 26%), 17.9% already runs on its own, and the projection reaches 95% AI-led by Apr 2027. With tables, charts, and the projection through AL5. →</span></a>
 
   <div class="aj-em" style="margin-top:26px">
     <b>And what do the authors call for?</b> For governments and companies, they say that if a superhuman AI researcher arrives in 2027, it is <strong>urgent</strong> to slow the development of the most advanced AIs, preferably with an industry pause followed by an international agreement. That’s not up to you. What is up to you is in the plan above.
