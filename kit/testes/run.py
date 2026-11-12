@@ -163,6 +163,53 @@ class KitTestes(unittest.TestCase):
     def test_22_arquivo_ausente(self):
         self.erro(self.rodar('minha-escada.py', '--csv', self.pasta / 'nao-existe.csv'), '')
 
+    def logs_falsos(self):
+        """Uma conversa do Claude Code (2 pedidos, 40 ações), uma sessão automática e um codex_exec."""
+        import json as J
+        from datetime import datetime, timedelta, timezone
+        t0 = datetime.now(timezone.utc) - timedelta(hours=3)
+        iso = lambda m: (t0 + timedelta(minutes=m)).isoformat().replace('+00:00', 'Z')
+        cl = self.pasta / 'claude' / 'proj'; cl.mkdir(parents=True)
+        linhas = [{'type': 'user', 'timestamp': iso(0), 'cwd': '/x', 'entrypoint': 'cli',
+                   'message': {'content': 'faz o vídeo explicativo do relatório; chave sk-abcdefghijklmnop1234'}}]
+        for i in range(40):
+            linhas.append({'parentUuid': 'p', 'message': {'content': [{'type': 'tool_use', 'name': 'Bash'}]}, 'type': 'assistant', 'timestamp': iso(1 + i * 0.2)})
+        linhas.append({'type': 'user', 'timestamp': iso(9), 'message': {'content': 'agora publica'}})
+        (cl / 'a.jsonl').write_text('\n'.join(J.dumps(l) for l in linhas), encoding='utf-8')
+        (cl / 'b.jsonl').write_text('\n'.join(J.dumps(l) for l in [
+            {'type': 'user', 'timestamp': iso(20), 'entrypoint': 'sdk-cli', 'message': {'content': 'Traduza o texto abaixo para inglês'}},
+            {'message': {'content': [{'type': 'text', 'text': 'ok'}]}, 'type': 'assistant', 'timestamp': iso(23)}]), encoding='utf-8')
+        cx = self.pasta / 'codex' / '2026' / '11'; cx.mkdir(parents=True)
+        (cx / 'c.jsonl').write_text('\n'.join(J.dumps(l) for l in [
+            {'type': 'session_meta', 'timestamp': iso(30), 'payload': {'originator': 'codex_exec', 'cwd': '/y'}},
+            {'type': 'response_item', 'timestamp': iso(30), 'payload': {'type': 'message', 'role': 'user', 'content': [{'type': 'input_text', 'text': 'Traduza para espanhol'}]}},
+            {'type': 'response_item', 'timestamp': iso(32), 'payload': {'type': 'function_call'}}]), encoding='utf-8')
+
+    def test_23_de_logs_le_claude_e_codex_sem_segredo(self):
+        import json as J
+        self.logs_falsos()
+        r = self.rodar('de-logs.py', '--claude', self.pasta / 'claude', '--codex', self.pasta / 'codex', '--saida', self.pasta / 's.json')
+        self.assertEqual(r.returncode, 0, r.stderr)
+        s = J.loads((self.pasta / 's.json').read_text(encoding='utf-8'))['sessoes']
+        self.assertEqual(len(s), 3)
+        conversa = next(x for x in s if x['fonte'] == 'claude' and not x['automatica'])
+        self.assertEqual((conversa['humanos'], conversa['acoes']), (2, 40))
+        self.assertNotIn('sk-abcdef', conversa['primeiro'])
+        self.assertTrue(all(x['automatica'] for x in s if x is not conversa))
+
+    def test_24_escada_logs_sem_ia(self):
+        import json as J
+        self.logs_falsos()
+        self.rodar('de-logs.py', '--dias', 1, '--claude', self.pasta / 'claude', '--codex', self.pasta / 'codex', '--saida', self.pasta / 's.json')
+        r = self.rodar('escada-logs.py', '--entrada', self.pasta / 's.json', '--pasta', self.pasta / 'out', '--motor', 'palavras')
+        self.assertEqual(r.returncode, 0, r.stderr)
+        e = J.loads((self.pasta / 'out' / 'escada.json').read_text(encoding='utf-8'))
+        self.assertTrue(0 < e['parcela_ia'] <= 100)
+        self.assertTrue(e['missao_do_dia']['titulo'])
+        nomes = {t['tarefa'] for t in e['tarefas']}
+        self.assertIn('Produzir vídeos', nomes)
+        self.assertTrue((self.pasta / 'out' / 'relatorio-executivo.md').exists())
+
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
