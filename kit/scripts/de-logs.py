@@ -5,6 +5,7 @@ import glob
 import json
 import os
 import re
+import sys
 import time
 from datetime import datetime, timezone
 from multiprocessing import Pool
@@ -129,6 +130,15 @@ def main():
     a.saida.write_text(json.dumps(resumo, ensure_ascii=False), encoding='utf-8')
     n = lambda f: sum(1 for s in sessoes if s['fonte'] == f)
     print(f'{len(sessoes)} sessões ({n("claude")} Claude Code, {n("codex")} Codex) em {a.dias} dias → {a.saida}')
+    # aviso: a fonte cujos registros começam bem depois do início pedido (o Claude Code apaga logs com mais de 30 dias)
+    for f, nome in (('claude', 'Claude Code'), ('codex', 'Codex')):
+        ts = [s['inicio'] for s in sessoes if s['fonte'] == f]
+        if ts and (time.time() - min(ts)) / 86400 < a.dias - 3:
+            dias = int((time.time() - min(ts)) // 86400) + 1
+            desde = datetime.fromtimestamp(min(ts)).date().isoformat()
+            print(f'AVISO: você pediu {a.dias} dias, mas os registros do {nome} só cobrem {dias} dias (desde {desde}). '
+                  'O Claude Code apaga registros com mais de 30 dias, a não ser que você aumente o cleanupPeriodDays; '
+                  'o que já foi apagado não volta.', file=sys.stderr)
 
 
 if __name__ == '__main__':

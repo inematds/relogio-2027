@@ -359,7 +359,7 @@
 <section id="faca"><div class="wrap">
   <span class="chip">Haz el tuyo</span>
   <h2>Mide tu escalera <span class="amb">con tus registros</span></h2>
-  <p class="sub">Si usas Claude Code o Codex, dos comandos generan el mismo informe para ti. Nada sale de tu máquina, salvo las solicitudes resumidas (sin secretos) que se envían al modelo económico que agrupa las tareas; con <code>--motor palavras</code> ni siquiera eso.</p>
+  <p class="sub">Si usas Claude Code o Codex, dos comandos generan el mismo informe para ti. El primero (<code>de-logs.py</code>) lee los registros solo en tu computadora, sin internet. El segundo (<code>escada-logs.py</code>) asigna nombres a las tareas de una de tres maneras: <code>--motor codex</code>, la opción predeterminada, envía el comienzo de tus solicitudes (sin claves, correos electrónicos ni números largos) al modelo económico de OpenAI mediante tu suscripción de Codex; <code>--motor ollama</code> usa un modelo en tu computadora; <code>--motor palavras</code> usa palabras clave y no envía nada. <b>Datos confidenciales (trabajo de clientes, información reservada): usa <code>--motor palavras</code> u <code>ollama</code>, y ejecuta los comandos tú mismo en la terminal</b>, porque si le pides a tu IA que los ejecute y resuma, el informe pasa por su proveedor. Claude Code borra los registros de más de 30 días (aumenta <code>cleanupPeriodDays</code> para medir un período más largo); si falta algún período, <code>de-logs.py</code> te avisa.</p>
 <pre><span class="k">python3 kit/scripts/de-logs.py --dias 30</span>            <span class="c"># lee los registros → sessoes.json</span>
 <span class="k">python3 kit/scripts/escada-logs.py --motor codex</span>   <span class="c"># o --motor ollama / palavras</span></pre>
   <p class="mut" style="margin-top:12px"><a href="../../es/#tecnico">Parte técnica del kit ↗</a> · <a href="../../es/">Volver a la guía Relógio 2027</a></p>
@@ -368,7 +368,7 @@
 
 <footer>
   <div class="wrap">
-    <div class="pill">Python 3</div><div class="pill">sin dependencias</div><div class="pill">sin conexión</div>
+    <div class="pill">Python 3</div><div class="pill">sin dependencias</div><div class="pill">sin conexión con --motor palavras</div>
     <p style="margin-top:18px">Reloj 2027 — Prepárate: la IA va a superar a los humanos · extrapolación, no profecía ·
       <a href="https://github.com/inematds/relogio-2027">inematds/relogio-2027</a> ·
       <a href="https://inema.club">INEMA.CLUB</a></p>
