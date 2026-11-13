@@ -359,7 +359,7 @@
 <section id="faca"><div class="wrap">
   <span class="chip">Try it yourself</span>
   <h2>Measure your ladder <span class="amb">from your own logs</span></h2>
-  <p class="sub">If you use Claude Code or Codex, two commands generate the same report for you. The first (<code>de-logs.py</code>) reads the records only on your computer, without internet access. The second (<code>escada-logs.py</code>) labels tasks in one of three ways: <code>--motor codex</code>, the default, sends the beginning of your prompts (without keys, emails, or long numbers) to OpenAI’s low-cost model through your Codex subscription; <code>--motor ollama</code> uses a model on your computer; <code>--motor palavras</code> uses keywords and sends nothing. <b>Confidential data (client work, confidential information): use <code>--motor palavras</code> or <code>ollama</code>, and run the commands yourself in the terminal</b>, because if you ask your AI to run them and summarize the results, the report passes through its provider. Claude Code deletes records older than 30 days (increase <code>cleanupPeriodDays</code> to measure a longer period); if the period is missing, <code>de-logs.py</code> will let you know.</p>
+  <p class="sub">If you use Claude Code or Codex, two commands generate the same report for you. The first (<code>de-logs.py</code>) reads the records only on your computer, without internet access. The second (<code>escada-logs.py</code>) labels tasks in one of three ways: <code>--motor codex</code>, the default, sends the beginning of your requests and the task and hours table to OpenAI through your Codex subscription to write the summary (the kit removes known keys, emails, and long numbers; the rest of the text is sent); <code>--motor ollama</code> uses a model on your computer; <code>--motor palavras</code> uses keywords and sends nothing. <b>Confidential data (client work, confidential information): use <code>--motor palavras</code> or <code>ollama</code>, and run the commands yourself in the terminal</b>, because if you ask your AI to run them and summarize the results, the report passes through its provider. Claude Code deletes records older than 30 days (increase <code>cleanupPeriodDays</code> to measure a longer period); if the period is missing, <code>de-logs.py</code> will let you know.</p>
 <pre><span class="k">python3 kit/scripts/de-logs.py --dias 30</span>            <span class="c"># reads the logs → sessoes.json</span>
 <span class="k">python3 kit/scripts/escada-logs.py --motor codex</span>   <span class="c"># or --motor ollama / palavras</span></pre>
   <p class="mut" style="margin-top:12px"><a href="../../en/#tecnico">Technical details of the toolkit ↗</a> · <a href="../../en/">Back to the Relógio 2027 guide</a></p>
@@ -368,7 +368,7 @@
 
 <footer>
   <div class="wrap">
-    <div class="pill">Python 3</div><div class="pill">no dependencies</div><div class="pill">offline with --motor palavras</div>
+    <div class="pill">Python 3</div><div class="pill">no dependencies</div><div class="pill">offline with --motor palavras or ollama</div>
     <p style="margin-top:18px">Clock 2027 — Get ready: AI will surpass humans · extrapolation, not prophecy ·
       <a href="https://github.com/inematds/relogio-2027">inematds/relogio-2027</a> ·
       <a href="https://inema.club">INEMA.CLUB</a></p>

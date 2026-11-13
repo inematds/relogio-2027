@@ -361,7 +361,7 @@
 <section id="faca"><div class="wrap">
   <span class="chip">Faça o seu</span>
   <h2>Meça a sua escada <span class="amb">pelos seus logs</span></h2>
-  <p class="sub">Se você usa Claude Code ou Codex, dois comandos geram o mesmo relatório para você. O primeiro (<code>de-logs.py</code>) lê os registros só no seu computador, sem internet. O segundo (<code>escada-logs.py</code>) dá nome às tarefas de um de três jeitos: <code>--motor codex</code>, o padrão, manda o começo dos seus pedidos (sem chaves, e-mails nem números longos) para o modelo barato da OpenAI pela sua assinatura do Codex; <code>--motor ollama</code> usa um modelo no seu computador; <code>--motor palavras</code> usa palavras-chave e não manda nada. <b>Dados confidenciais (trabalho de cliente, sigilo): use <code>--motor palavras</code> ou <code>ollama</code>, e rode os comandos você mesmo no terminal</b>, porque se pedir à sua IA para rodar e resumir, o relatório passa pelo provedor dela. O Claude Code apaga registros com mais de 30 dias (aumente o <code>cleanupPeriodDays</code> para medir mais); se faltar período, o <code>de-logs.py</code> avisa.</p>
+  <p class="sub">Se você usa Claude Code ou Codex, dois comandos geram o mesmo relatório para você. O primeiro (<code>de-logs.py</code>) lê os registros só no seu computador, sem internet. O segundo (<code>escada-logs.py</code>) dá nome às tarefas de um de três jeitos: <code>--motor codex</code>, o padrão, manda à OpenAI, pela sua assinatura do Codex, o começo dos seus pedidos e a tabela de tarefas e horas para escrever o resumo (o kit tira chaves conhecidas, e-mails e números longos; o resto do texto vai); <code>--motor ollama</code> usa um modelo no seu computador; <code>--motor palavras</code> usa palavras-chave e não manda nada. <b>Dados confidenciais (trabalho de cliente, sigilo): use <code>--motor palavras</code> ou <code>ollama</code>, e rode os comandos você mesmo no terminal</b>, porque se pedir à sua IA para rodar e resumir, o relatório passa pelo provedor dela. O Claude Code apaga registros com mais de 30 dias (aumente o <code>cleanupPeriodDays</code> para medir mais); se faltar período, o <code>de-logs.py</code> avisa.</p>
 <pre><span class="k">python3 kit/scripts/de-logs.py --dias 30</span>            <span class="c"># lê os logs → sessoes.json</span>
 <span class="k">python3 kit/scripts/escada-logs.py --motor codex</span>   <span class="c"># ou --motor ollama / palavras</span></pre>
   <p class="mut" style="margin-top:12px"><a href="../#tecnico">Parte técnica do kit ↗</a> · <a href="../">Voltar ao guia Relógio 2027</a></p>
@@ -369,7 +369,7 @@
 
 <footer>
   <div class="wrap">
-    <div class="pill">Python 3</div><div class="pill">sem dependências</div><div class="pill">offline com --motor palavras</div>
+    <div class="pill">Python 3</div><div class="pill">sem dependências</div><div class="pill">offline com --motor palavras ou ollama</div>
     <p style="margin-top:18px">Relógio 2027 — Prepare-se: a IA vai superar humanos · extrapolação, não profecia ·
       <a href="https://github.com/inematds/relogio-2027">inematds/relogio-2027</a> ·
       <a href="https://inema.club">INEMA.CLUB</a></p>
